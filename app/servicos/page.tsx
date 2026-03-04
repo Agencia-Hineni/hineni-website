@@ -35,6 +35,37 @@ const process = [
   "Publicação estruturada e plano de evolução",
 ];
 
+const capabilities = [
+  "Integração com WhatsApp e canais de contato",
+  "Otimização básica para mecanismos de busca (SEO)",
+  "Estrutura responsiva para celular e computador",
+  "Suporte técnico e manutenção contínua",
+];
+
+const plans = [
+  {
+    name: "Plano Essencial",
+    implementation: "R$ 1.899,90",
+    monthly: "R$ 299,00/mês",
+    contract: "Contrato de 12 meses",
+    featured: false,
+  },
+  {
+    name: "Plano Profissional",
+    implementation: "R$ 2.899,90",
+    monthly: "R$ 399,00/mês",
+    contract: "Contrato de 12 meses",
+    featured: true,
+  },
+  {
+    name: "Plano Premium",
+    implementation: "R$ 4.499,89 até R$ 8.999,98",
+    monthly: "R$ 899,00/mês",
+    contract: "Mensalidade recorrente",
+    featured: false,
+  },
+];
+
 export default function ServicosPage() {
   return (
     <>
@@ -62,6 +93,75 @@ export default function ServicosPage() {
                   <div className="mt-8 border-t border-slate-200 pt-5">
                     <p className="text-xs font-semibold uppercase tracking-[0.16em] text-tech-blue">
                       Escopo sob medida
+                    </p>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className={`bg-shell ${SECTION_CLASSES.compact}`}>
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Soluções complementares"
+              title="Estrutura digital completa para operação e continuidade."
+              description="Além da construção do site, a HINENI entrega recursos essenciais para comunicação, visibilidade e manutenção técnica contínua."
+            />
+          </Reveal>
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            {capabilities.map((item, index) => (
+              <Reveal key={item} delay={index * 0.06}>
+                <article className="premium-card-light rounded-2xl px-6 py-5">
+                  <p className="text-sm font-medium leading-relaxed text-slate-700">{item}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className={`bg-deep-blue ${SECTION_CLASSES.compact}`}>
+        <Container>
+          <Reveal>
+            <SectionHeading
+              tone="dark"
+              eyebrow="Planos"
+              title="Modelos comerciais estruturados para diferentes níveis de operação."
+              description="Escolha o plano adequado ao momento da empresa, mantendo padrão institucional, previsibilidade de investimento e evolução técnica."
+            />
+          </Reveal>
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {plans.map((plan, index) => (
+              <Reveal key={plan.name} delay={index * 0.08}>
+                <article
+                  className={`h-full rounded-3xl p-8 text-slate-200 ${
+                    plan.featured
+                      ? "border border-gold-accent/45 bg-[linear-gradient(165deg,rgba(11,15,25,0.9),rgba(30,58,138,0.36))] shadow-[0_26px_52px_rgba(2,6,23,0.5)]"
+                      : "premium-card-dark"
+                  }`}
+                >
+                  {plan.featured ? (
+                    <span className="inline-flex rounded-full border border-gold-accent/45 bg-gold-accent/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-gold-accent">
+                      Recomendado
+                    </span>
+                  ) : null}
+                  <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                    {plan.name}
+                  </p>
+                  <div className="mt-6 border-t border-slate-700 pt-5">
+                    <p className="text-xs uppercase tracking-[0.14em] text-slate-400">
+                      Implementação
+                    </p>
+                    <p className="mt-2 text-xl font-semibold text-shell">{plan.implementation}</p>
+                  </div>
+                  <div className="mt-6 border-t border-slate-700 pt-5">
+                    <p className="text-xs uppercase tracking-[0.14em] text-slate-400">Mensalidade</p>
+                    <p className="mt-2 text-lg font-semibold text-shell">{plan.monthly}</p>
+                    <p className="mt-2 text-xs uppercase tracking-[0.14em] text-slate-400">
+                      {plan.contract}
                     </p>
                   </div>
                 </article>

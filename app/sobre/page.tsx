@@ -45,6 +45,9 @@ export default function SobrePage() {
             <p className="mt-5 max-w-3xl text-base leading-relaxed text-slate-600">
               Atuamos com rigor técnico e direção institucional para que cada projeto represente autoridade, confiança e maturidade empresarial.
             </p>
+            <p className="mt-5 max-w-3xl text-base leading-relaxed text-slate-600">
+              Nossa missão é ajudar empresas e organizações a desenvolverem uma presença digital sólida, com design moderno, funcionalidade, desempenho e experiência positiva para seus usuários.
+            </p>
           </Reveal>
 
           <Reveal delay={0.1}>

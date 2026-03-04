@@ -27,6 +27,7 @@ export default function ContatoPage() {
             <p>Atendimento institucional: atendimento@hineni.com.br</p>
             <p>Prazo de retorno: até 1 dia útil</p>
             <p>Formato: reunião de alinhamento estratégico</p>
+            <p>Instagram: @hineni.digital</p>
           </div>
         </Reveal>
 

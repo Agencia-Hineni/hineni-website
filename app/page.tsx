@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Reveal } from "@/components/animations/reveal";
 import { Container } from "@/components/ui/container";
 import { HeroActions } from "@/components/ui/hero-actions";
@@ -44,10 +45,24 @@ const differentiators = [
   },
 ];
 
+const reasons = [
+  "Maior credibilidade para sua marca",
+  "Facilidade de contato com clientes",
+  "Melhor organização das informações",
+  "Fortalecimento da imagem institucional",
+];
+
 export default function HomePage() {
   return (
     <>
       <section className={`hero-depth relative overflow-hidden text-slate-100 ${SECTION_CLASSES.hero}`}>
+        <Image
+          src="/branding/banner-principal.png"
+          alt="Banner institucional da HINENI"
+          fill
+          priority
+          className="object-cover object-center opacity-40"
+        />
         <div className="surface-grid absolute inset-0 opacity-[0.13]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_18%,rgba(30,58,138,0.35),transparent_58%),radial-gradient(circle_at_14%_78%,rgba(184,148,66,0.08),transparent_42%)]" />
         <Container className="relative flex min-h-[100svh] flex-col justify-center">
@@ -96,6 +111,27 @@ export default function HomePage() {
                 <article className="premium-card-light h-full rounded-2xl p-6">
                   <h3 className="text-lg font-semibold text-deep-blue">{item.title}</h3>
                   <p className="mt-3 max-w-sm text-sm leading-relaxed text-slate-600">{item.text}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className={`bg-shell ${SECTION_CLASSES.compact}`}>
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Por que investir"
+              title="Uma presença digital profissional fortalece autoridade e crescimento."
+              description="Empresas que comunicam com clareza no ambiente online geram mais confiança, contato qualificado e percepção de valor."
+            />
+          </Reveal>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2">
+            {reasons.map((reason, index) => (
+              <Reveal key={reason} delay={index * 0.06}>
+                <article className="premium-card-light rounded-2xl px-6 py-5">
+                  <p className="text-sm font-medium text-slate-700">{reason}</p>
                 </article>
               </Reveal>
             ))}

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Reveal } from "@/components/animations/reveal";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -14,40 +15,12 @@ export const metadata: Metadata = createPageMetadata({
 
 const projects = [
   {
-    name: "Atlas Corporate Group",
-    segment: "Consultoria Empresarial",
-    scope: "Reposicionamento institucional e jornada de autoridade digital.",
-    status: "Case em estruturação",
-  },
-  {
-    name: "Prime Nexus Logistics",
-    segment: "Logística e Operações",
-    scope: "Plataforma institucional orientada a expansão comercial B2B.",
-    status: "Case em estruturação",
-  },
-  {
-    name: "Vértice Health Solutions",
-    segment: "Saúde Corporativa",
-    scope: "Arquitetura digital para comunicação técnica e credibilidade de marca.",
-    status: "Case em estruturação",
-  },
-  {
-    name: "Orion Capital Partners",
-    segment: "Financeiro",
-    scope: "Página institucional de alto padrão com foco em relacionamento executivo.",
-    status: "Case em estruturação",
-  },
-  {
-    name: "NovaSteel Engenharia",
-    segment: "Indústria",
-    scope: "Presença digital robusta para portfólio industrial e captação corporativa.",
-    status: "Case em estruturação",
-  },
-  {
-    name: "Halo Property Group",
-    segment: "Mercado Imobiliário",
-    scope: "Estrutura digital preparada para expansão de empreendimentos e estudos futuros.",
-    status: "Case em estruturação",
+    name: "Igreja TDA",
+    segment: "Institucional",
+    scope:
+      "Site institucional desenvolvido para fortalecer presença digital, clareza de comunicação e experiência de navegação da comunidade.",
+    status: "Projeto publicado",
+    url: "https://igrejatda.com",
   },
 ];
 
@@ -82,6 +55,14 @@ export default function ProjetosPage() {
                   </div>
                   <h2 className="mt-5 text-xl leading-snug text-shell">{project.name}</h2>
                   <p className="mt-4 text-sm leading-relaxed text-slate-300">{project.scope}</p>
+                  <Link
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-6 inline-flex text-xs font-semibold uppercase tracking-[0.16em] text-gold-accent hover:text-shell"
+                  >
+                    Visitar projeto
+                  </Link>
                 </article>
               </Reveal>
             ))}

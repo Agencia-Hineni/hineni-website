@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -30,8 +31,15 @@ export function SiteHeader() {
     >
       <Container className="flex h-20 items-center justify-between gap-6">
         <Link href="/" className="inline-flex items-center gap-3">
-          <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-700 bg-slate-900 text-xs font-semibold tracking-[0.18em] text-slate-200">
-            H
+          <span className="inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-slate-700 bg-slate-900">
+            <Image
+              src="/branding/favicon-final-51.png"
+              alt="Símbolo da HINENI"
+              width={40}
+              height={40}
+              className="h-full w-full object-cover"
+              priority
+            />
           </span>
           <span className="text-sm font-semibold tracking-[0.32em] text-slate-100 sm:text-base">
             HINENI
