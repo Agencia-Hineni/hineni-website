@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+:root {
+  --shell: #f8fafc;
+  --ink: #0b0f19;
+  --deep-blue: #0f172a;
+  --tech-blue: #1e3a8a;
+  --gold-accent: #b89442;
+  --foreground: #0f172a;
+  --transition-standard: 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@theme inline {
+  --color-shell: var(--shell);
+  --color-ink: var(--ink);
+  --color-deep-blue: var(--deep-blue);
+  --color-tech-blue: var(--tech-blue);
+  --color-gold-accent: var(--gold-accent);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-heading);
+}
+
+body {
+  background: radial-gradient(circle at 0% 0%, rgba(30, 58, 138, 0.08), transparent 46%),
+    radial-gradient(circle at 100% 100%, rgba(11, 15, 25, 0.06), transparent 42%),
+    var(--shell);
+  color: var(--foreground);
+  min-height: 100vh;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading), sans-serif;
+  letter-spacing: -0.024em;
+  line-height: 1.05;
+}
+
+::selection {
+  background: rgba(30, 58, 138, 0.18);
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  transition: color var(--transition-standard), background-color var(--transition-standard),
+    border-color var(--transition-standard), transform var(--transition-standard),
+    box-shadow var(--transition-standard), opacity var(--transition-standard);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid rgba(30, 58, 138, 0.42);
+  outline-offset: 2px;
+}
+
+.surface-grid {
+  background-image: linear-gradient(rgba(148, 163, 184, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.16) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+
+.hero-depth {
+  background-image: radial-gradient(circle at 82% 24%, rgba(30, 58, 138, 0.45), transparent 54%),
+    radial-gradient(circle at 18% 75%, rgba(15, 23, 42, 0.58), transparent 48%),
+    linear-gradient(140deg, #0b0f19 0%, #0f172a 64%, #0b0f19 100%);
+}
+
+.premium-card-light {
+  border: 1px solid rgba(148, 163, 184, 0.34);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.07);
+}
+
+.premium-card-dark {
+  border: 1px solid rgba(100, 116, 139, 0.45);
+  background: rgba(11, 15, 25, 0.7);
+  box-shadow: 0 20px 36px rgba(2, 6, 23, 0.38);
+}
+
+.premium-card-light,
+.premium-card-dark {
+  transition: transform var(--transition-standard), box-shadow var(--transition-standard),
+    border-color var(--transition-standard), background-color var(--transition-standard);
+}
+
+.premium-card-light:hover,
+.premium-card-dark:hover {
+  transform: translateY(-4px);
+}
+
+.premium-card-light:hover {
+  box-shadow: 0 22px 44px rgba(15, 23, 42, 0.14);
+}
+
+.premium-card-dark:hover {
+  box-shadow: 0 24px 48px rgba(2, 6, 23, 0.48);
+}
