@@ -46,6 +46,14 @@ export const siteMetadata: Metadata = {
     index: true,
     follow: true,
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/branding/favicon-final-51.png", type: "image/png" },
+    ],
+    shortcut: ["/favicon.ico"],
+    apple: ["/branding/favicon-final-51.png"],
+  },
 };
 
 export function createPageMetadata({
