@@ -57,8 +57,8 @@ export default function ProjetosPage() {
                 <article className="premium-card-dark overflow-hidden rounded-3xl text-slate-200">
                   <div className="relative aspect-[16/9] w-full">
                     <Image
-                      src="/branding/banner-principal.png"
-                      alt="Banner institucional da HINENI"
+                      src="/branding/tda-cover.png"
+                      alt="Capa do projeto Igreja TDA"
                       fill
                       className="object-cover object-center opacity-45"
                     />
