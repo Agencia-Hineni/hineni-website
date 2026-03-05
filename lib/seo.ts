@@ -27,11 +27,20 @@ export const siteMetadata: Metadata = {
     siteName: SITE_CONFIG.name,
     locale: "pt_BR",
     type: "website",
+    images: [
+      {
+        url: "/branding/banner-principal.png",
+        width: 1536,
+        height: 1024,
+        alt: "Banner institucional da HINENI",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: SITE_CONFIG.defaultTitle,
     description: SITE_CONFIG.defaultDescription,
+    images: ["/branding/banner-principal.png"],
   },
   robots: {
     index: true,
@@ -62,11 +71,20 @@ export function createPageMetadata({
       siteName: SITE_CONFIG.name,
       locale: "pt_BR",
       type: "website",
+      images: [
+        {
+          url: "/branding/banner-principal.png",
+          width: 1536,
+          height: 1024,
+          alt: "Banner institucional da HINENI",
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: pageTitle,
       description,
+      images: ["/branding/banner-principal.png"],
     },
   };
 }

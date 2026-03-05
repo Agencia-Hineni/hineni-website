@@ -2,6 +2,8 @@ export const SITE_CONFIG = {
   name: "HINENI",
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://hineni.com.br",
   contactEmail: "atendimento@hineni.com.br",
+  instagram: "https://instagram.com/hineni.digital",
+  tagline: "Elevando sua presença digital",
   defaultTitle: "HINENI | Estrutura Digital Empresarial",
   defaultDescription:
     "A HINENI projeta estruturas digitais empresariais com foco em autoridade, posicionamento e performance para marcas que operam com visão de crescimento.",

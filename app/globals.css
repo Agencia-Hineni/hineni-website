@@ -106,3 +106,22 @@ textarea:focus-visible {
 .premium-card-dark:hover {
   box-shadow: 0 24px 48px rgba(2, 6, 23, 0.48);
 }
+
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: -3rem;
+  z-index: 60;
+  border-radius: 999px;
+  background: #1e3a8a;
+  color: #f8fafc;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.skip-link:focus {
+  top: 0.75rem;
+}

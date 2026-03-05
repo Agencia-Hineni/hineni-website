@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans, Sora } from "next/font/google";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { SITE_CONFIG } from "@/lib/constants";
 import { siteMetadata } from "@/lib/seo";
 import "./globals.css";
 
@@ -19,6 +20,17 @@ const displayFont = Sora({
 
 export const metadata: Metadata = siteMetadata;
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE_CONFIG.name,
+  url: SITE_CONFIG.siteUrl,
+  logo: `${SITE_CONFIG.siteUrl}/branding/favicon-final-51.png`,
+  email: SITE_CONFIG.contactEmail,
+  sameAs: [SITE_CONFIG.instagram],
+  slogan: SITE_CONFIG.tagline,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,9 +39,18 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${bodyFont.variable} ${displayFont.variable}`}>
       <body className="bg-shell font-sans text-slate-900 antialiased">
+        <a href="#conteudo-principal" className="skip-link">
+          Ir para o conteúdo principal
+        </a>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
         <div className="relative flex min-h-screen flex-col">
           <SiteHeader />
-          <main className="flex-1">{children}</main>
+          <main id="conteudo-principal" className="flex-1">
+            {children}
+          </main>
           <SiteFooter />
         </div>
       </body>
