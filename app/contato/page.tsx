@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SECTION_CLASSES } from "@/lib/constants";
 import { createPageMetadata } from "@/lib/seo";
+import { getSiteContent } from "@/lib/site-content";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Contato",
@@ -13,7 +14,9 @@ export const metadata: Metadata = createPageMetadata({
   path: "/contato",
 });
 
-export default function ContatoPage() {
+export default async function ContatoPage() {
+  const content = await getSiteContent();
+
   return (
     <section className={`bg-shell ${SECTION_CLASSES.standard}`}>
       <Container className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
@@ -25,10 +28,10 @@ export default function ContatoPage() {
             className="mb-0"
           />
           <div className="mt-8 space-y-3 text-sm text-slate-600">
-            <p>Atendimento institucional: atendimento@hineni.com.br</p>
+            <p>Atendimento institucional: {content.contact.email}</p>
             <p>Prazo de retorno: até 1 dia útil</p>
             <p>Formato: reunião de alinhamento estratégico</p>
-            <p>Instagram: @hineni.digital</p>
+            <p>Instagram: {content.contact.instagram}</p>
           </div>
         </Reveal>
 

@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SECTION_CLASSES } from "@/lib/constants";
 import { createPageMetadata } from "@/lib/seo";
+import { getSiteContent } from "@/lib/site-content";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Serviços",
@@ -42,31 +43,9 @@ const capabilities = [
   "Suporte técnico e manutenção contínua",
 ];
 
-const plans = [
-  {
-    name: "Plano Essencial",
-    implementation: "R$ 1.899,90",
-    monthly: "R$ 299,00/mês",
-    contract: "Contrato de 12 meses",
-    featured: false,
-  },
-  {
-    name: "Plano Profissional",
-    implementation: "R$ 2.899,90",
-    monthly: "R$ 399,00/mês",
-    contract: "Contrato de 12 meses",
-    featured: true,
-  },
-  {
-    name: "Plano Premium",
-    implementation: "R$ 4.499,89 até R$ 8.999,98",
-    monthly: "R$ 899,00/mês",
-    contract: "Mensalidade recorrente",
-    featured: false,
-  },
-];
+export default async function ServicosPage() {
+  const content = await getSiteContent();
 
-export default function ServicosPage() {
   return (
     <>
       <section className={`bg-deep-blue ${SECTION_CLASSES.compact}`}>
@@ -134,7 +113,7 @@ export default function ServicosPage() {
             />
           </Reveal>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {plans.map((plan, index) => (
+            {content.plans.map((plan, index) => (
               <Reveal key={plan.name} delay={index * 0.08}>
                 <article
                   className={`h-full rounded-3xl p-8 text-slate-200 ${

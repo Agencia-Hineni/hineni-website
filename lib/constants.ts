@@ -14,6 +14,9 @@ export const SITE_CONFIG = {
     "landing page estrategica para empresas",
     "desenvolvimento web de alta performance",
     "presenca digital corporativa",
+    "agencia digital em sao paulo",
+    "criacao de sites empresariais no brasil",
+    "desenvolvimento web para empresas no brasil",
   ],
 } as const;
 

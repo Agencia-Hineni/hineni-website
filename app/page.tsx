@@ -7,6 +7,7 @@ import { HeroActions } from "@/components/ui/hero-actions";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SECTION_CLASSES } from "@/lib/constants";
 import { createPageMetadata } from "@/lib/seo";
+import { getSiteContent } from "@/lib/site-content";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Estrutura Digital para Empresas que Pensam Grande",
@@ -45,16 +46,25 @@ const differentiators = [
   },
 ];
 
-const reasons = [
-  "Maior credibilidade para sua marca",
-  "Facilidade de contato com clientes",
-  "Melhor organização das informações",
-  "Fortalecimento da imagem institucional",
-];
+export default async function HomePage() {
+  const content = await getSiteContent();
 
-export default function HomePage() {
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "HINENI",
+    areaServed: content.localSeo.cities.map((city) => ({ "@type": "City", name: city })),
+    description: content.localSeo.description,
+    email: content.contact.email,
+    url: "https://hineni.com.br",
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
       <section className={`hero-depth relative overflow-hidden text-slate-100 ${SECTION_CLASSES.hero}`}>
         <Image
           src="/branding/banner-principal.png"
@@ -122,16 +132,16 @@ export default function HomePage() {
         <Container>
           <Reveal>
             <SectionHeading
-              eyebrow="Por que investir"
-              title="Uma presença digital profissional fortalece autoridade e crescimento."
-              description="Empresas que comunicam com clareza no ambiente online geram mais confiança, contato qualificado e percepção de valor."
+              eyebrow="Atendimento local"
+              title={content.localSeo.headline}
+              description={content.localSeo.description}
             />
           </Reveal>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2">
-            {reasons.map((reason, index) => (
-              <Reveal key={reason} delay={index * 0.06}>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {content.localSeo.cities.map((city, index) => (
+              <Reveal key={city} delay={index * 0.06}>
                 <article className="premium-card-light rounded-2xl px-6 py-5">
-                  <p className="text-sm font-medium text-slate-700">{reason}</p>
+                  <p className="text-sm font-medium text-slate-700">{city}</p>
                 </article>
               </Reveal>
             ))}
