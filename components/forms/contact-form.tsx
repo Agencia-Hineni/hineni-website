@@ -1,6 +1,8 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { SelectField, TextArea, TextInput } from "@/components/ui/field";
 
 type FormState = {
   nome: string;
@@ -70,48 +72,48 @@ export function ContactForm() {
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="text-sm text-slate-700">
           Nome
-          <input
+          <TextInput
             required
             type="text"
             name="nome"
             value={form.nome}
             onChange={(event) => setForm((prev) => ({ ...prev, nome: event.target.value }))}
-            className="mt-2 w-full rounded-xl border border-slate-300 bg-white/80 px-4 py-3 outline-none focus:border-tech-blue"
+            className="mt-2"
             placeholder="Seu nome"
           />
         </label>
         <label className="text-sm text-slate-700">
           Empresa
-          <input
+          <TextInput
             required
             type="text"
             name="empresa"
             value={form.empresa}
             onChange={(event) => setForm((prev) => ({ ...prev, empresa: event.target.value }))}
-            className="mt-2 w-full rounded-xl border border-slate-300 bg-white/80 px-4 py-3 outline-none focus:border-tech-blue"
+            className="mt-2"
             placeholder="Nome da empresa"
           />
         </label>
         <label className="text-sm text-slate-700">
           E-mail corporativo
-          <input
+          <TextInput
             required
             type="email"
             name="email"
             value={form.email}
             onChange={(event) => setForm((prev) => ({ ...prev, email: event.target.value }))}
-            className="mt-2 w-full rounded-xl border border-slate-300 bg-white/80 px-4 py-3 outline-none focus:border-tech-blue"
+            className="mt-2"
             placeholder="voce@empresa.com"
           />
         </label>
         <label className="text-sm text-slate-700">
           Telefone
-          <input
+          <TextInput
             type="tel"
             name="telefone"
             value={form.telefone}
             onChange={(event) => setForm((prev) => ({ ...prev, telefone: event.target.value }))}
-            className="mt-2 w-full rounded-xl border border-slate-300 bg-white/80 px-4 py-3 outline-none focus:border-tech-blue"
+            className="mt-2"
             placeholder="+55 (00) 00000-0000"
           />
         </label>
@@ -119,12 +121,12 @@ export function ContactForm() {
 
       <label className="mt-5 block text-sm text-slate-700">
         Serviço de interesse
-        <select
+        <SelectField
           required
           name="servico"
           value={form.servico}
           onChange={(event) => setForm((prev) => ({ ...prev, servico: event.target.value }))}
-          className="mt-2 w-full rounded-xl border border-slate-300 bg-white/80 px-4 py-3 outline-none focus:border-tech-blue"
+          className="mt-2"
         >
           <option value="" disabled>
             Selecione uma opção
@@ -132,29 +134,25 @@ export function ContactForm() {
           <option>Sites Institucionais Empresariais</option>
           <option>Landing Pages Estratégicas</option>
           <option>Estrutura Digital para Negócios</option>
-        </select>
+        </SelectField>
       </label>
 
       <label className="mt-5 block text-sm text-slate-700">
         Contexto do projeto
-        <textarea
+        <TextArea
           required
           name="contexto"
           value={form.contexto}
           onChange={(event) => setForm((prev) => ({ ...prev, contexto: event.target.value }))}
           rows={5}
-          className="mt-2 w-full rounded-xl border border-slate-300 bg-white/80 px-4 py-3 outline-none focus:border-tech-blue"
+          className="mt-2"
           placeholder="Descreva objetivos, prazo e escopo esperado."
         />
       </label>
 
-      <button
-        type="submit"
-        disabled={status === "loading"}
-        className="mt-7 inline-flex rounded-full bg-tech-blue px-7 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-shell shadow-[0_12px_28px_rgba(30,58,138,0.24)] hover:bg-[#2749ad] disabled:cursor-not-allowed disabled:opacity-70"
-      >
+      <Button type="submit" disabled={status === "loading"} className="mt-7">
         {status === "loading" ? "Enviando..." : "Enviar Solicitação"}
-      </button>
+      </Button>
 
       {message ? (
         <p

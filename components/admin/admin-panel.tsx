@@ -14,20 +14,30 @@ export function AdminPanel() {
   const [content, setContent] = useState<SiteContent>(emptyContent);
   const [status, setStatus] = useState("");
   const [loaded, setLoaded] = useState(false);
+  const [history, setHistory] = useState<string[]>([]);
   const disabled = useMemo(() => !token.trim(), [token]);
 
   async function loadContent() {
     setStatus("Carregando...");
-    const response = await fetch("/api/admin/content", {
-      headers: { "x-admin-token": token.trim() },
-    });
-    const data = await response.json();
+    const [contentResponse, historyResponse] = await Promise.all([
+      fetch("/api/admin/content", {
+        headers: { "x-admin-token": token.trim() },
+      }),
+      fetch("/api/admin/content/history", {
+        headers: { "x-admin-token": token.trim() },
+      }),
+    ]);
+    const data = await contentResponse.json();
 
-    if (!response.ok || !data.ok) {
+    if (!contentResponse.ok || !data.ok) {
       setStatus(data.message ?? "Falha ao carregar.");
       return;
     }
     setContent(data.content as SiteContent);
+    if (historyResponse.ok) {
+      const historyData = (await historyResponse.json()) as { ok: boolean; history?: string[] };
+      setHistory(historyData.history ?? []);
+    }
     setLoaded(true);
     setStatus("Conteúdo carregado.");
   }
@@ -44,6 +54,9 @@ export function AdminPanel() {
     });
     const data = await response.json();
     setStatus(data.message ?? (response.ok ? "Salvo." : "Falha ao salvar."));
+    if (response.ok) {
+      await loadContent();
+    }
   }
 
   return (
@@ -225,6 +238,26 @@ export function AdminPanel() {
           >
             Salvar alterações
           </button>
+
+          <section>
+            <h2 className="text-xl text-deep-blue">Histórico de versões</h2>
+            <p className="mt-2 text-sm text-slate-600">
+              A cada atualização, o conteúdo anterior é salvo em snapshot.
+            </p>
+            <ul className="mt-3 space-y-2">
+              {history.length ? (
+                history.map((item) => (
+                  <li key={item} className="rounded-xl border border-slate-200 px-3 py-2 text-xs text-slate-600">
+                    {item}
+                  </li>
+                ))
+              ) : (
+                <li className="rounded-xl border border-slate-200 px-3 py-2 text-xs text-slate-500">
+                  Sem histórico ainda.
+                </li>
+              )}
+            </ul>
+          </section>
         </div>
       ) : null}
 

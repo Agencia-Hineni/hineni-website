@@ -12,6 +12,35 @@ type RateEntry = {
 
 const rateLimitStore = new Map<string, RateEntry>();
 
+async function consumeUpstashLimit(key: string) {
+  const url = process.env.UPSTASH_REDIS_REST_URL;
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+
+  if (!url || !token) return null;
+
+  try {
+    const response = await fetch(`${url}/pipeline`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify([
+        ["INCR", key],
+        ["EXPIRE", key, Math.ceil(WINDOW_MS / 1000)],
+      ]),
+      cache: "no-store",
+    });
+
+    if (!response.ok) return null;
+    const result = (await response.json()) as Array<{ result?: number }>;
+    const count = Number(result?.[0]?.result ?? 0);
+    return Number.isNaN(count) ? null : count;
+  } catch {
+    return null;
+  }
+}
+
 function getClientIp(req: NextRequest) {
   const forwarded = req.headers.get("x-forwarded-for");
   if (forwarded) return forwarded.split(",")[0].trim();
@@ -32,6 +61,15 @@ function isRateLimited(ip: string) {
   return false;
 }
 
+async function isRateLimitedSmart(ip: string) {
+  const key = `contact:rate:${ip}`;
+  const upstashCount = await consumeUpstashLimit(key);
+  if (upstashCount !== null) {
+    return upstashCount > MAX_REQUESTS;
+  }
+  return isRateLimited(ip);
+}
+
 function isValidEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
@@ -39,7 +77,7 @@ function isValidEmail(value: string) {
 export async function POST(req: NextRequest) {
   try {
     const ip = getClientIp(req);
-    if (isRateLimited(ip)) {
+    if (await isRateLimitedSmart(ip)) {
       return NextResponse.json(
         { ok: false, message: "Muitas tentativas. Tente novamente em instantes." },
         { status: 429 },

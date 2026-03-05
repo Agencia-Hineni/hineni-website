@@ -24,6 +24,7 @@ export type SiteContent = {
 };
 
 const contentFilePath = path.join(process.cwd(), "data", "site-content.json");
+const historyDirPath = path.join(process.cwd(), "data", "history");
 
 const fallbackContent: SiteContent = {
   contact: {
@@ -74,5 +75,30 @@ export async function getSiteContent(): Promise<SiteContent> {
 }
 
 export async function setSiteContent(content: SiteContent) {
+  await fs.mkdir(historyDirPath, { recursive: true });
+  const snapshotName = `site-content-${new Date().toISOString().replace(/[:.]/g, "-")}.json`;
+  const snapshotPath = path.join(historyDirPath, snapshotName);
+
+  try {
+    const current = await fs.readFile(contentFilePath, "utf8");
+    await fs.writeFile(snapshotPath, current, "utf8");
+  } catch {
+    // No previous file to snapshot.
+  }
+
   await fs.writeFile(contentFilePath, JSON.stringify(content, null, 2), "utf8");
+}
+
+export async function getContentHistory() {
+  try {
+    const files = await fs.readdir(historyDirPath, { withFileTypes: true });
+    return files
+      .filter((entry) => entry.isFile() && entry.name.endsWith(".json"))
+      .map((entry) => entry.name)
+      .sort()
+      .reverse()
+      .slice(0, 20);
+  } catch {
+    return [];
+  }
 }

@@ -67,7 +67,7 @@ export default async function HomePage() {
       />
       <section className={`hero-depth relative overflow-hidden text-slate-100 ${SECTION_CLASSES.hero}`}>
         <Image
-          src="/branding/banner-principal.png"
+          src="/branding/banner-principal.webp"
           alt="Banner institucional da HINENI"
           fill
           priority
