@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { DM_Sans, Sora } from "next/font/google";
+import Script from "next/script";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SITE_CONFIG } from "@/lib/constants";
@@ -39,6 +40,19 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${bodyFont.variable} ${displayFont.variable}`}>
       <body className="bg-shell font-sans text-slate-900 antialiased">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17997502951"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-gtag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17997502951');
+          `}
+        </Script>
+
         <a href="#conteudo-principal" className="skip-link">
           Ir para o conteúdo principal
         </a>
