@@ -34,8 +34,8 @@ const fallbackContent: SiteContent = {
   localSeo: {
     headline: "Atendimento estratégico em todo o Brasil",
     description:
-      "A HINENI atende empresas em diferentes regiões com estrutura digital institucional, processos claros e foco em posicionamento profissional.",
-    cities: ["São Paulo", "Rio de Janeiro", "Belo Horizonte"],
+      "A HINENI atende empresas em âmbito nacional, com operação digital e estrutura estratégica para posicionamento profissional em qualquer região do Brasil.",
+    cities: ["Atendimento nacional", "Operação 100% digital", "Presença em todo o Brasil"],
   },
   plans: [
     {
