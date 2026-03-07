@@ -8,9 +8,9 @@ import { createPageMetadata } from "@/lib/seo";
 import { getSiteContent } from "@/lib/site-content";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Servicos",
+  title: "Serviços",
   description:
-    "Escopos digitais da HINENI para empresas que precisam de site institucional, paginas de conversao e base tecnica de evolucao.",
+    "Escopos digitais da HINENI para empresas que precisam de site institucional, páginas de conversão e base técnica de evolução.",
   path: "/servicos",
 });
 
@@ -24,49 +24,49 @@ type Service = {
 const services: Service[] = [
   {
     title: "Site Institucional Empresarial",
-    text: "Projeto completo para fortalecer confianca da marca e organizar comunicacao com clientes, parceiros e investidores.",
-    idealFor: "Empresas em fase de consolidacao ou reposicionamento institucional.",
+    text: "Projeto completo para fortalecer confiança da marca e organizar comunicação com clientes, parceiros e investidores.",
+    idealFor: "Empresas em fase de consolidação ou reposicionamento institucional.",
     deliverables: [
-      "Arquitetura de paginas e navegacao",
-      "Copy orientada a clareza de proposta",
-      "Desenvolvimento responsivo com SEO tecnico",
+      "Arquitetura de páginas e navegação",
+      "Copy orientada à clareza de proposta",
+      "Desenvolvimento responsivo com SEO técnico",
     ],
   },
   {
-    title: "Landing Page de Captacao",
-    text: "Pagina orientada a campanha com estrutura objetiva para captar demanda qualificada em lancamentos e midia paga.",
-    idealFor: "Times comerciais e de marketing que precisam de conversao com leitura rapida.",
+    title: "Landing Page de Captação",
+    text: "Página orientada a campanha com estrutura objetiva para captar demanda qualificada em lançamentos e mídia paga.",
+    idealFor: "Times comerciais e de marketing que precisam de conversão com leitura rápida.",
     deliverables: [
-      "Estrutura de secao focada no objetivo da oferta",
-      "Integracao de contato e rastreamento de eventos",
-      "Ajustes para performance e carregamento rapido",
+      "Estrutura de seção focada no objetivo da oferta",
+      "Integração de contato e rastreamento de eventos",
+      "Ajustes para performance e carregamento rápido",
     ],
   },
   {
-    title: "Evolucao e Manutencao Tecnica",
-    text: "Ciclo de melhorias para manter o site atualizado, com governanca de conteudo e base pronta para novos movimentos.",
+    title: "Evolução e Manutenção Técnica",
+    text: "Ciclo de melhorias para manter o site atualizado, com governança de conteúdo e base pronta para novos movimentos.",
     idealFor: "Empresas que querem escalar sem reconstruir o projeto a cada nova demanda.",
     deliverables: [
       "Rotina de ajustes e melhorias",
-      "Suporte tecnico para novas paginas e integracoes",
-      "Revisao periodica de performance e estrutura",
+      "Suporte técnico para novas páginas e integrações",
+      "Revisão periódica de performance e estrutura",
     ],
   },
 ];
 
 const process = [
-  "Diagnostico do contexto atual e dos objetivos do negocio",
-  "Definicao de escopo, cronograma e prioridades de entrega",
-  "Criacao da arquitetura de conteudo e direcao de interface",
-  "Desenvolvimento, validacao e publicacao",
-  "Acompanhamento pos-lancamento com plano de evolucao",
+  "Diagnóstico do contexto atual e dos objetivos do negócio",
+  "Definição de escopo, cronograma e prioridades de entrega",
+  "Criação da arquitetura de conteúdo e direção de interface",
+  "Desenvolvimento, validação e publicação",
+  "Acompanhamento pós-lançamento com plano de evolução",
 ];
 
 const principles = [
-  "Escopo fechado por etapa, com transparencia de investimento",
-  "Comunicacao direta sobre status e dependencias do projeto",
-  "Decisoes tecnicas orientadas por impacto real para o negocio",
-  "Base preparada para SEO, analytics e crescimento continuo",
+  "Escopo fechado por etapa, com transparência de investimento",
+  "Comunicação direta sobre status e dependências do projeto",
+  "Decisões técnicas orientadas por impacto real para o negócio",
+  "Base preparada para SEO, analytics e crescimento contínuo",
 ];
 
 export default async function ServicosPage() {
@@ -79,9 +79,9 @@ export default async function ServicosPage() {
           <Reveal>
             <SectionHeading
               tone="dark"
-              eyebrow="Servicos"
-              title="Solucoes digitais com escopo claro e execucao profissional."
-              description="Cada projeto e conduzido com metodo, acompanhamento e foco em resultado aplicavel no dia a dia da empresa."
+              eyebrow="Serviços"
+              title="Soluções digitais com escopo claro e execução profissional."
+              description="Cada projeto é conduzido com método, acompanhamento e foco em resultado aplicável no dia a dia da empresa."
             />
           </Reveal>
         </Container>
@@ -104,7 +104,7 @@ export default async function ServicosPage() {
                   <p className="mt-2 text-sm leading-relaxed text-slate-600">{service.idealFor}</p>
                   <div className="mt-6 border-t border-slate-200 pt-5">
                     <p className="text-xs font-semibold uppercase tracking-[0.16em] text-tech-blue">
-                      Entregaveis base
+                      Entregáveis base
                     </p>
                     <ul className="mt-3 space-y-2 text-sm text-slate-600">
                       {service.deliverables.map((item) => (
@@ -123,9 +123,9 @@ export default async function ServicosPage() {
         <Container>
           <Reveal>
             <SectionHeading
-              eyebrow="Diretrizes de execucao"
-              title="Padrao de trabalho para manter qualidade e previsibilidade."
-              description="A operacao e estruturada para que o projeto avance com seguranca tecnica e alinhamento com o time da empresa."
+              eyebrow="Diretrizes de execução"
+              title="Padrão de trabalho para manter qualidade e previsibilidade."
+              description="A operação é estruturada para que o projeto avance com segurança técnica e alinhamento com o time da empresa."
             />
           </Reveal>
           <div className="mt-10 grid gap-4 md:grid-cols-2">
@@ -146,8 +146,8 @@ export default async function ServicosPage() {
             <SectionHeading
               tone="dark"
               eyebrow="Planos"
-              title="Modelos comerciais para diferentes estagios de operacao."
-              description="Escolha um ponto de partida e evolua a estrutura conforme a demanda do negocio."
+              title="Modelos comerciais para diferentes estágios de operação."
+              description="Escolha um ponto de partida e evolua a estrutura conforme a demanda do negócio."
             />
           </Reveal>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -169,7 +169,7 @@ export default async function ServicosPage() {
                     {plan.name}
                   </p>
                   <div className="mt-6 border-t border-slate-700 pt-5">
-                    <p className="text-xs uppercase tracking-[0.14em] text-slate-400">Implementacao</p>
+                    <p className="text-xs uppercase tracking-[0.14em] text-slate-400">Implementação</p>
                     <p className="mt-2 text-xl font-semibold text-shell">{plan.implementation}</p>
                   </div>
                   <div className="mt-6 border-t border-slate-700 pt-5">
@@ -192,8 +192,8 @@ export default async function ServicosPage() {
             <SectionHeading
               tone="dark"
               eyebrow="Como conduzimos"
-              title="Etapas objetivas para entregar com consistencia tecnica."
-              description="A conducao segue um fluxo simples e transparente para facilitar decisao, aprovacao e implantacao."
+              title="Etapas objetivas para entregar com consistência técnica."
+              description="A condução segue um fluxo simples e transparente para facilitar decisão, aprovação e implantação."
               className="mb-0"
             />
           </Reveal>

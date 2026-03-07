@@ -10,46 +10,46 @@ import { createPageMetadata } from "@/lib/seo";
 import { getSiteContent } from "@/lib/site-content";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Sites Profissionais para Operacao Empresarial",
+  title: "Sites Profissionais para Operação Empresarial",
   description:
-    "Solucoes digitais para empresas que precisam de presenca online confiavel, com escopo claro e evolucao continua.",
+    "Soluções digitais para empresas que precisam de presença online confiável, com escopo claro e evolução contínua.",
   path: "/",
 });
 
 const pillars = [
   {
-    title: "Diagnostico Objetivo",
-    text: "Antes de desenhar telas, mapeamos objetivo comercial, publico, estrutura de conteudo e prioridades de negocio.",
+    title: "Diagnóstico Objetivo",
+    text: "Antes de desenhar telas, mapeamos objetivo comercial, público, estrutura de conteúdo e prioridades de negócio.",
   },
   {
-    title: "Execucao Tecnica",
-    text: "Projeto, desenvolvimento e publicacao com padrao profissional de performance, acessibilidade e organizacao do codigo.",
+    title: "Execução Técnica",
+    text: "Projeto, desenvolvimento e publicação com padrão profissional de performance, acessibilidade e organização do código.",
   },
   {
-    title: "Evolucao Continua",
-    text: "Seu site entra em producao pronto para melhorias constantes sem retrabalho de arquitetura ou perda de consistencia.",
+    title: "Evolução Contínua",
+    text: "Seu site entra em produção pronto para melhorias constantes sem retrabalho de arquitetura ou perda de consistência.",
   },
 ];
 
 const workModel = [
   {
-    title: "Escopo definido desde o inicio",
-    text: "Entregaveis, prazo e responsabilidades alinhados para evitar ruido durante o projeto.",
+    title: "Escopo definido desde o início",
+    text: "Entregáveis, prazo e responsabilidades alinhados para evitar ruído durante o projeto.",
   },
   {
-    title: "Comunicacao de acompanhamento",
-    text: "Atualizacoes diretas de status, pendencias e proximas etapas com linguagem de negocio.",
+    title: "Comunicação de acompanhamento",
+    text: "Atualizações diretas de status, pendências e próximas etapas com linguagem de negócio.",
   },
   {
-    title: "Decisoes baseadas em contexto real",
-    text: "Cada recomendacao considera maturidade da empresa, momento comercial e capacidade de operacao interna.",
+    title: "Decisões baseadas em contexto real",
+    text: "Cada recomendação considera maturidade da empresa, momento comercial e capacidade de operação interna.",
   },
 ];
 
 const commitments = [
-  "Arquitetura de paginas orientada para clareza de leitura e confianca institucional",
-  "Base tecnica preparada para SEO, rastreamento de eventos e futuras integracoes",
-  "Experiencia consistente em desktop e mobile para publico e equipe comercial",
+  "Arquitetura de páginas orientada para clareza de leitura e confiança institucional",
+  "Base técnica preparada para SEO, rastreamento de eventos e futuras integrações",
+  "Experiência consistente em desktop e mobile para público e equipe comercial",
 ];
 
 const trustSignals = ["Escopo validado", "Cronograma objetivo", "Acompanhamento semanal"];
@@ -86,17 +86,17 @@ export default async function HomePage() {
         <Container className="relative flex min-h-[100svh] flex-col justify-center">
           <Reveal transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.04 }}>
             <p className="mb-8 inline-flex rounded-full border border-slate-600/80 bg-slate-900/72 px-5 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-slate-300">
-              Consultoria e execucao digital
+              Consultoria e execução digital
             </p>
           </Reveal>
           <Reveal delay={0.12}>
             <h1 className="max-w-5xl text-5xl leading-[0.94] text-shell sm:text-6xl lg:text-7xl">
-              Solucoes digitais para empresas que precisam de operacao confiavel.
+              Soluções digitais para empresas que precisam de operação confiável.
             </h1>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-8 max-w-3xl text-lg leading-relaxed text-slate-300 sm:text-xl">
-              Estruturamos sites e paginas institucionais com escopo claro, execucao tecnica e foco em resultado real.
+              Estruturamos sites e páginas institucionais com escopo claro, execução técnica e foco em resultado real.
             </p>
           </Reveal>
           <Reveal delay={0.28} className="mt-12">
@@ -128,8 +128,8 @@ export default async function HomePage() {
         <Container>
           <SectionHeading
             eyebrow="Modelo de trabalho"
-            title="Metodo profissional para reduzir retrabalho e aumentar previsibilidade."
-            description="A HINENI atua como parceiro tecnico e estrategico para empresas que valorizam processos claros e entrega consistente."
+            title="Método profissional para reduzir retrabalho e aumentar previsibilidade."
+            description="A HINENI atua como parceiro técnico e estratégico para empresas que valorizam processos claros e entrega consistente."
           />
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {workModel.map((item, index) => (
@@ -148,9 +148,9 @@ export default async function HomePage() {
         <Container>
           <Reveal>
             <SectionHeading
-              eyebrow="Compromissos tecnicos"
-              title="Cada entrega precisa sustentar comunicacao, operacao e crescimento."
-              description="Nao trabalhamos com paginas soltas. Trabalhamos com uma base digital que acompanhe o ritmo de evolucao da empresa."
+              eyebrow="Compromissos técnicos"
+              title="Cada entrega precisa sustentar comunicação, operação e crescimento."
+              description="Não trabalhamos com páginas soltas. Trabalhamos com uma base digital que acompanhe o ritmo de evolução da empresa."
             />
           </Reveal>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -191,16 +191,16 @@ export default async function HomePage() {
           <Reveal>
             <SectionHeading
               tone="dark"
-              eyebrow="Proximo passo"
-              title="Se voce precisa de um site que funcione como ativo de negocio, vamos conversar."
-              description="Entramos no projeto com escopo tecnico, cronograma realista e acompanhamento de ponta a ponta."
+              eyebrow="Próximo passo"
+              title="Se você precisa de um site que funcione como ativo de negócio, vamos conversar."
+              description="Entramos no projeto com escopo técnico, cronograma realista e acompanhamento de ponta a ponta."
               className="mb-0"
             />
           </Reveal>
           <Reveal delay={0.14}>
             <div className="premium-card-dark rounded-3xl p-8">
               <p className="text-sm leading-relaxed text-slate-300">
-                Comecamos por um diagnostico rapido para entender seu momento, definir prioridades e montar a melhor linha de execucao.
+                Começamos por um diagnóstico rápido para entender seu momento, definir prioridades e montar a melhor linha de execução.
               </p>
               <Link
                 href="/contato"

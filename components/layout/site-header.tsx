@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -34,9 +34,9 @@ export function SiteHeader() {
       <div className="soft-divider hidden bg-slate-950/80 text-slate-400 md:block">
         <Container className="flex h-9 items-center justify-between">
           <p className="text-[11px] uppercase tracking-[0.14em]">
-            Operacao digital para empresas em todo o Brasil
+            Operação digital para empresas em todo o Brasil
           </p>
-          <p className="text-[11px] uppercase tracking-[0.14em]">Retorno de contato em ate 1 dia util</p>
+          <p className="text-[11px] uppercase tracking-[0.14em]">Retorno de contato em até 1 dia útil</p>
         </Container>
       </div>
       <Container className="flex h-20 items-center justify-between gap-6">
@@ -82,7 +82,7 @@ export function SiteHeader() {
           href="/contato"
           className="hidden rounded-full border border-gold-accent/40 bg-gold-accent/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-100 hover:bg-gold-accent/20 sm:inline-flex"
         >
-          Agendar Diagnostico
+          Agendar diagnóstico
         </Link>
 
         <button
@@ -158,7 +158,7 @@ export function SiteHeader() {
                 onClick={() => setMobileOpen(false)}
                 className="mt-3 inline-flex w-full items-center justify-center rounded-xl border border-gold-accent/40 bg-gold-accent/10 px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-slate-100 hover:bg-gold-accent/20"
               >
-                Agendar Diagnostico
+                Agendar diagnóstico
               </Link>
             </motion.div>
           </>

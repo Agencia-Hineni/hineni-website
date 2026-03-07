@@ -8,29 +8,29 @@ import { createPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = createPageMetadata({
   title: "Sobre",
   description:
-    "Visao de trabalho, metodologia e compromissos tecnicos da HINENI na execucao de projetos digitais empresariais.",
+    "Visão de trabalho, metodologia e compromissos técnicos da HINENI na execução de projetos digitais empresariais.",
   path: "/sobre",
 });
 
 const pillars = [
   {
-    title: "Visao de negocio",
-    text: "Cada projeto parte de objetivos reais da empresa, sem depender de formulas prontas ou promessas genericas.",
+    title: "Visão de negócio",
+    text: "Cada projeto parte de objetivos reais da empresa, sem depender de fórmulas prontas ou promessas genéricas.",
   },
   {
-    title: "Rigor tecnico",
-    text: "Desenvolvimento com boas praticas de performance, acessibilidade e organizacao para manter qualidade no longo prazo.",
+    title: "Rigor técnico",
+    text: "Desenvolvimento com boas práticas de performance, acessibilidade e organização para manter qualidade no longo prazo.",
   },
   {
-    title: "Relacao de parceria",
-    text: "Trabalhamos com proximidade e transparencia para que o time cliente tenha clareza de cada decisao e etapa.",
+    title: "Relação de parceria",
+    text: "Trabalhamos com proximidade e transparência para que o time cliente tenha clareza de cada decisão e etapa.",
   },
 ];
 
 const commitments = [
   "Escopo e cronograma definidos em linguagem objetiva",
-  "Comunicacao constante sobre andamento e pendencias",
-  "Documentacao para facilitar operacao e evolucao interna",
+  "Comunicação constante sobre andamento e pendências",
+  "Documentação para facilitar operação e evolução interna",
 ];
 
 export default function SobrePage() {
@@ -41,16 +41,16 @@ export default function SobrePage() {
           <Reveal>
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-tech-blue">Sobre a HINENI</p>
             <h1 className="mt-5 max-w-4xl text-4xl leading-[1.06] text-deep-blue sm:text-5xl lg:text-6xl">
-              Solucoes digitais conduzidas com metodo, clareza e responsabilidade tecnica.
+              Soluções digitais conduzidas com método, clareza e responsabilidade técnica.
             </h1>
             <p className="mt-8 max-w-3xl text-lg leading-relaxed text-slate-600">
-              A HINENI atende empresas que precisam transformar o site em um ativo de comunicacao e operacao, nao apenas em vitrine.
+              A HINENI atende empresas que precisam transformar o site em um ativo de comunicação e operação, não apenas em vitrine.
             </p>
             <p className="mt-5 max-w-3xl text-base leading-relaxed text-slate-600">
-              Nossa abordagem combina diagnostico de contexto, execucao estruturada e acompanhamento de evolucao para manter o projeto util no dia a dia.
+              Nossa abordagem combina diagnóstico de contexto, execução estruturada e acompanhamento de evolução para manter o projeto útil no dia a dia.
             </p>
             <p className="mt-5 max-w-3xl text-base leading-relaxed text-slate-600">
-              O objetivo e entregar uma base digital solida, preparada para crescer junto com as demandas de marketing, comercial e atendimento.
+              O objetivo é entregar uma base digital sólida, preparada para crescer junto com as demandas de marketing, comercial e atendimento.
             </p>
           </Reveal>
 
@@ -58,7 +58,7 @@ export default function SobrePage() {
             <aside className="premium-card-dark rounded-3xl p-8 text-slate-200">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-300">Compromisso central</p>
               <p className="mt-4 text-lg leading-relaxed text-shell">
-                Construir estrutura digital que gere confianca e facilite decisao.
+                Construir estrutura digital que gere confiança e facilite decisão.
               </p>
               <div className="mt-8 space-y-3 border-t border-slate-700 pt-6 text-sm text-slate-300">
                 {commitments.map((item) => (
@@ -75,8 +75,8 @@ export default function SobrePage() {
           <SectionHeading
             tone="dark"
             eyebrow="Como atuamos"
-            title="Uma operacao organizada para reduzir risco e aumentar consistencia."
-            description="Do briefing ao pos-lancamento, o processo e orientado por checkpoints claros para garantir qualidade tecnica e alinhamento com o negocio."
+            title="Uma operação organizada para reduzir risco e aumentar consistência."
+            description="Do briefing ao pós-lançamento, o processo é orientado por checkpoints claros para garantir qualidade técnica e alinhamento com o negócio."
           />
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {pillars.map((pillar, index) => (

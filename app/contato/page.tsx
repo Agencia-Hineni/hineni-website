@@ -10,15 +10,15 @@ import { getSiteContent } from "@/lib/site-content";
 export const metadata: Metadata = createPageMetadata({
   title: "Contato",
   description:
-    "Entre em contato com a HINENI para avaliar escopo, prazos e melhor formato de execucao para seu projeto digital.",
+    "Entre em contato com a HINENI para avaliar escopo, prazos e melhor formato de execução para seu projeto digital.",
   path: "/contato",
 });
 
 const requirements = [
   "Objetivo principal do projeto",
-  "Prazo desejado para publicacao",
-  "Equipe envolvida nas aprovacoes",
-  "Referencias de sites ou materiais existentes",
+  "Prazo desejado para publicação",
+  "Equipe envolvida nas aprovações",
+  "Referências de sites ou materiais existentes",
 ];
 
 export default async function ContatoPage() {
@@ -30,8 +30,8 @@ export default async function ContatoPage() {
         <Reveal>
           <SectionHeading
             eyebrow="Contato"
-            title="Vamos avaliar seu cenario e definir o melhor escopo de execucao."
-            description="Preencha os dados ao lado para receber um retorno objetivo com orientacao inicial de estrutura, prazo e investimento."
+            title="Vamos avaliar seu cenário e definir o melhor escopo de execução."
+            description="Preencha os dados ao lado para receber um retorno objetivo com orientação inicial de estrutura, prazo e investimento."
             className="mb-0"
           />
           <div className="mt-8 grid gap-3 text-sm text-slate-600">
@@ -39,10 +39,10 @@ export default async function ContatoPage() {
               Atendimento: {content.contact.email}
             </p>
             <p className="rounded-xl border border-slate-200 bg-white/80 px-4 py-3">
-              Prazo de retorno: ate 1 dia util
+              Prazo de retorno: até 1 dia útil
             </p>
             <p className="rounded-xl border border-slate-200 bg-white/80 px-4 py-3">
-              Formato: reuniao online de alinhamento
+              Formato: reunião online de alinhamento
             </p>
             <p className="rounded-xl border border-slate-200 bg-white/80 px-4 py-3">
               Instagram: {content.contact.instagram}
@@ -51,7 +51,7 @@ export default async function ContatoPage() {
 
           <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-6">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-tech-blue">
-              Para agilizar o diagnostico
+              Para agilizar o diagnóstico
             </p>
             <ul className="mt-4 space-y-2 text-sm text-slate-600">
               {requirements.map((item) => (

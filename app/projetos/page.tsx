@@ -10,7 +10,7 @@ import { createPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = createPageMetadata({
   title: "Projetos",
   description:
-    "Portfolio institucional da HINENI com estudos de caso objetivos e estrutura pronta para novos projetos.",
+    "Portfólio institucional da HINENI com estudos de caso objetivos e estrutura pronta para novos projetos.",
   path: "/projetos",
 });
 
@@ -19,19 +19,19 @@ const projects = [
     name: "Igreja TDA",
     segment: "Institucional",
     scope:
-      "Site institucional desenvolvido para fortalecer presenca digital, clareza de comunicacao e experiencia de navegacao da comunidade.",
+      "Site institucional desenvolvido para fortalecer presença digital, clareza de comunicação e experiência de navegação da comunidade.",
     status: "Projeto publicado",
     url: "https://igrejatda.com",
     challenge:
-      "Organizar conteudo institucional e canais de contato em uma estrutura clara, com leitura objetiva em desktop e mobile.",
+      "Organizar conteúdo institucional e canais de contato em uma estrutura clara, com leitura objetiva em desktop e mobile.",
     solution:
-      "Arquitetura de navegacao direta, layout responsivo e foco em comunicacao institucional para facilitar acesso as informacoes principais.",
+      "Arquitetura de navegação direta, layout responsivo e foco em comunicação institucional para facilitar acesso às informações principais.",
     highlights: [
-      "Estrutura institucional com navegacao objetiva",
+      "Estrutura institucional com navegação objetiva",
       "Responsividade para celular e computador",
-      "Integracao de contato para atendimento rapido",
+      "Integração de contato para atendimento rápido",
     ],
-    stack: ["Next.js", "Tailwind CSS", "Formularios"],
+    stack: ["Next.js", "Tailwind CSS", "Formulários"],
   },
 ];
 
@@ -43,8 +43,8 @@ export default function ProjetosPage() {
           <Reveal>
             <SectionHeading
               eyebrow="Projetos"
-              title="Estudos de caso com foco em contexto, decisao e entrega."
-              description="Cada case mostra o problema, a linha de execucao adotada e os principais entregaveis para o negocio."
+              title="Estudos de caso com foco em contexto, decisão e entrega."
+              description="Cada case mostra o problema, a linha de execução adotada e os principais entregáveis para o negócio."
             />
           </Reveal>
         </Container>
@@ -95,7 +95,7 @@ export default function ProjetosPage() {
                         <p className="mt-2 text-sm leading-relaxed text-slate-300">{project.challenge}</p>
                       </div>
                       <div>
-                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Solucao</p>
+                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Solução</p>
                         <p className="mt-2 text-sm leading-relaxed text-slate-300">{project.solution}</p>
                       </div>
                     </div>
