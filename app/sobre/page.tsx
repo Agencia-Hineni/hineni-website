@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Reveal } from "@/components/animations/reveal";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -8,23 +8,29 @@ import { createPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = createPageMetadata({
   title: "Sobre",
   description:
-    "Conheça a visão, estrutura e metodologia da HINENI na construção de projetos digitais empresariais.",
+    "Visao de trabalho, metodologia e compromissos tecnicos da HINENI na execucao de projetos digitais empresariais.",
   path: "/sobre",
 });
 
 const pillars = [
   {
-    title: "Visão Estratégica",
-    text: "Cada solução é desenhada para consolidar presença digital e fortalecer percepção de valor da empresa no mercado.",
+    title: "Visao de negocio",
+    text: "Cada projeto parte de objetivos reais da empresa, sem depender de formulas prontas ou promessas genericas.",
   },
   {
-    title: "Estrutura Técnica",
-    text: "Arquitetura limpa, segura e escalável para suportar expansão de conteúdos, serviços e oportunidades comerciais.",
+    title: "Rigor tecnico",
+    text: "Desenvolvimento com boas praticas de performance, acessibilidade e organizacao para manter qualidade no longo prazo.",
   },
   {
-    title: "Metodologia Clara",
-    text: "Processo orientado por diagnóstico, planejamento, execução e evolução contínua para garantir consistência nos resultados.",
+    title: "Relacao de parceria",
+    text: "Trabalhamos com proximidade e transparencia para que o time cliente tenha clareza de cada decisao e etapa.",
   },
+];
+
+const commitments = [
+  "Escopo e cronograma definidos em linguagem objetiva",
+  "Comunicacao constante sobre andamento e pendencias",
+  "Documentacao para facilitar operacao e evolucao interna",
 ];
 
 export default function SobrePage() {
@@ -33,35 +39,31 @@ export default function SobrePage() {
       <section className={`bg-shell ${SECTION_CLASSES.standard}`}>
         <Container className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
           <Reveal>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-tech-blue">
-              Sobre a HINENI
-            </p>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-tech-blue">Sobre a HINENI</p>
             <h1 className="mt-5 max-w-4xl text-4xl leading-[1.06] text-deep-blue sm:text-5xl lg:text-6xl">
-              Estrutura, visão e execução para presença digital corporativa.
+              Solucoes digitais conduzidas com metodo, clareza e responsabilidade tecnica.
             </h1>
             <p className="mt-8 max-w-3xl text-lg leading-relaxed text-slate-600">
-              A HINENI desenvolve estruturas digitais estratégicas para empresas que buscam posicionamento sólido no ambiente online.
+              A HINENI atende empresas que precisam transformar o site em um ativo de comunicacao e operacao, nao apenas em vitrine.
             </p>
             <p className="mt-5 max-w-3xl text-base leading-relaxed text-slate-600">
-              Atuamos com rigor técnico e direção institucional para que cada projeto represente autoridade, confiança e maturidade empresarial.
+              Nossa abordagem combina diagnostico de contexto, execucao estruturada e acompanhamento de evolucao para manter o projeto util no dia a dia.
             </p>
             <p className="mt-5 max-w-3xl text-base leading-relaxed text-slate-600">
-              Nossa missão é ajudar empresas e organizações a desenvolverem uma presença digital sólida, com design moderno, funcionalidade, desempenho e experiência positiva para seus usuários.
+              O objetivo e entregar uma base digital solida, preparada para crescer junto com as demandas de marketing, comercial e atendimento.
             </p>
           </Reveal>
 
           <Reveal delay={0.1}>
             <aside className="premium-card-dark rounded-3xl p-8 text-slate-200">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-300">
-                Compromisso central
-              </p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-300">Compromisso central</p>
               <p className="mt-4 text-lg leading-relaxed text-shell">
-                Transformar presença digital em infraestrutura estratégica de crescimento.
+                Construir estrutura digital que gere confianca e facilite decisao.
               </p>
               <div className="mt-8 space-y-3 border-t border-slate-700 pt-6 text-sm text-slate-300">
-                <p>Diagnóstico orientado por negócio</p>
-                <p>Direção visual com padrão corporativo</p>
-                <p>Engenharia para performance e escala</p>
+                {commitments.map((item) => (
+                  <p key={item}>{item}</p>
+                ))}
               </div>
             </aside>
           </Reveal>
@@ -72,9 +74,9 @@ export default function SobrePage() {
         <Container>
           <SectionHeading
             tone="dark"
-            eyebrow="Metodologia institucional"
-            title="Uma operação estruturada do briefing à evolução contínua."
-            description="Nosso processo evita improviso e reduz ruído de execução, garantindo previsibilidade para equipes de marketing, comercial e direção."
+            eyebrow="Como atuamos"
+            title="Uma operacao organizada para reduzir risco e aumentar consistencia."
+            description="Do briefing ao pos-lancamento, o processo e orientado por checkpoints claros para garantir qualidade tecnica e alinhamento com o negocio."
           />
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {pillars.map((pillar, index) => (

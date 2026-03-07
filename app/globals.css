@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --shell: #f8fafc;
+  --shell: #f6f8fc;
+  --shell-muted: #eef2f9;
   --ink: #0b0f19;
   --deep-blue: #0f172a;
   --tech-blue: #1e3a8a;
-  --gold-accent: #b89442;
+  --gold-accent: #b78d2d;
   --foreground: #0f172a;
   --transition-standard: 280ms cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -22,11 +23,13 @@
 }
 
 body {
-  background: radial-gradient(circle at 0% 0%, rgba(30, 58, 138, 0.08), transparent 46%),
-    radial-gradient(circle at 100% 100%, rgba(11, 15, 25, 0.06), transparent 42%),
+  background: radial-gradient(circle at 0% 0%, rgba(30, 58, 138, 0.1), transparent 44%),
+    radial-gradient(circle at 90% 88%, rgba(11, 15, 25, 0.08), transparent 46%),
+    linear-gradient(180deg, var(--shell), var(--shell-muted) 58%, var(--shell)),
     var(--shell);
   color: var(--foreground);
   min-height: 100vh;
+  line-height: 1.55;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -77,14 +80,15 @@ textarea:focus-visible {
 }
 
 .premium-card-light {
-  border: 1px solid rgba(148, 163, 184, 0.34);
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.07);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.94), rgba(248, 250, 252, 0.9));
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(8px);
 }
 
 .premium-card-dark {
-  border: 1px solid rgba(100, 116, 139, 0.45);
-  background: rgba(11, 15, 25, 0.7);
+  border: 1px solid rgba(100, 116, 139, 0.42);
+  background: linear-gradient(165deg, rgba(11, 15, 25, 0.8), rgba(15, 23, 42, 0.75));
   box-shadow: 0 20px 36px rgba(2, 6, 23, 0.38);
 }
 
@@ -100,10 +104,12 @@ textarea:focus-visible {
 }
 
 .premium-card-light:hover {
-  box-shadow: 0 22px 44px rgba(15, 23, 42, 0.14);
+  border-color: rgba(71, 85, 105, 0.34);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
 }
 
 .premium-card-dark:hover {
+  border-color: rgba(148, 163, 184, 0.55);
   box-shadow: 0 24px 48px rgba(2, 6, 23, 0.48);
 }
 
@@ -124,4 +130,37 @@ textarea:focus-visible {
 
 .skip-link:focus {
   top: 0.75rem;
+}
+
+.section-shell {
+  position: relative;
+}
+
+.section-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(30, 58, 138, 0.06), transparent 45%),
+    radial-gradient(circle at 88% 22%, rgba(15, 23, 42, 0.06), transparent 35%);
+  pointer-events: none;
+}
+
+.section-shell > * {
+  position: relative;
+}
+
+.soft-divider {
+  border-top: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.data-pill {
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+  padding: 0.6rem 0.95rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #334155;
 }

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { Reveal } from "@/components/animations/reveal";
@@ -10,41 +10,49 @@ import { createPageMetadata } from "@/lib/seo";
 import { getSiteContent } from "@/lib/site-content";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Estrutura Digital para Empresas que Pensam Grande",
+  title: "Sites Profissionais para Operacao Empresarial",
   description:
-    "Desenvolvimento web estratégico com foco em autoridade e performance para empresas que buscam posicionamento digital de alto padrão.",
+    "Solucoes digitais para empresas que precisam de presenca online confiavel, com escopo claro e evolucao continua.",
   path: "/",
 });
 
 const pillars = [
   {
-    title: "Arquitetura Institucional",
-    text: "Projetos concebidos para fortalecer credibilidade, presença de mercado e comunicação corporativa.",
+    title: "Diagnostico Objetivo",
+    text: "Antes de desenhar telas, mapeamos objetivo comercial, publico, estrutura de conteudo e prioridades de negocio.",
   },
   {
-    title: "Tecnologia de Alta Performance",
-    text: "Aplicação de boas práticas técnicas para entrega rápida, segura e escalável desde o lançamento.",
+    title: "Execucao Tecnica",
+    text: "Projeto, desenvolvimento e publicacao com padrao profissional de performance, acessibilidade e organizacao do codigo.",
   },
   {
-    title: "Estratégia de Posicionamento",
-    text: "Estruturas digitais alinhadas com decisões comerciais, marketing e metas de crescimento da empresa.",
+    title: "Evolucao Continua",
+    text: "Seu site entra em producao pronto para melhorias constantes sem retrabalho de arquitetura ou perda de consistencia.",
   },
 ];
 
-const differentiators = [
+const workModel = [
   {
-    title: "Planejamento Executivo",
-    text: "Cada projeto nasce de diagnóstico estratégico, com visão de médio e longo prazo para o ambiente digital.",
+    title: "Escopo definido desde o inicio",
+    text: "Entregaveis, prazo e responsabilidades alinhados para evitar ruido durante o projeto.",
   },
   {
-    title: "Padrão Visual Premium",
-    text: "Direção visual contemporânea com equilíbrio entre impacto, sofisticação e clareza institucional.",
+    title: "Comunicacao de acompanhamento",
+    text: "Atualizacoes diretas de status, pendencias e proximas etapas com linguagem de negocio.",
   },
   {
-    title: "Entrega Orientada a Resultado",
-    text: "Estruturas prontas para performance real em SEO, conversão e experiência de navegação em múltiplos dispositivos.",
+    title: "Decisoes baseadas em contexto real",
+    text: "Cada recomendacao considera maturidade da empresa, momento comercial e capacidade de operacao interna.",
   },
 ];
+
+const commitments = [
+  "Arquitetura de paginas orientada para clareza de leitura e confianca institucional",
+  "Base tecnica preparada para SEO, rastreamento de eventos e futuras integracoes",
+  "Experiencia consistente em desktop e mobile para publico e equipe comercial",
+];
+
+const trustSignals = ["Escopo validado", "Cronograma objetivo", "Acompanhamento semanal"];
 
 export default async function HomePage() {
   const content = await getSiteContent();
@@ -78,24 +86,32 @@ export default async function HomePage() {
         <Container className="relative flex min-h-[100svh] flex-col justify-center">
           <Reveal transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.04 }}>
             <p className="mb-8 inline-flex rounded-full border border-slate-600/80 bg-slate-900/72 px-5 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-slate-300">
-              Arquitetura digital empresarial
+              Consultoria e execucao digital
             </p>
           </Reveal>
           <Reveal delay={0.12}>
             <h1 className="max-w-5xl text-5xl leading-[0.94] text-shell sm:text-6xl lg:text-7xl">
-              Estrutura Digital para Empresas que Pensam Grande.
+              Solucoes digitais para empresas que precisam de operacao confiavel.
             </h1>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-8 max-w-3xl text-lg leading-relaxed text-slate-300 sm:text-xl">
-              Desenvolvimento web estratégico com foco em autoridade e performance.
+              Estruturamos sites e paginas institucionais com escopo claro, execucao tecnica e foco em resultado real.
             </p>
           </Reveal>
           <Reveal delay={0.28} className="mt-12">
             <HeroActions />
           </Reveal>
 
-          <div className="mt-16 grid gap-5 md:grid-cols-3">
+          <div className="mt-10 flex flex-wrap gap-3">
+            {trustSignals.map((signal) => (
+              <span key={signal} className="data-pill">
+                {signal}
+              </span>
+            ))}
+          </div>
+
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
             {pillars.map((pillar, index) => (
               <Reveal key={pillar.title} delay={0.36 + index * 0.08}>
                 <article className="premium-card-dark h-full rounded-2xl p-6 backdrop-blur-sm">
@@ -108,15 +124,15 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      <section className={`bg-shell ${SECTION_CLASSES.standard}`}>
+      <section className={`section-shell bg-shell ${SECTION_CLASSES.standard}`}>
         <Container>
           <SectionHeading
-            eyebrow="Posicionamento sólido"
-            title="Decisões digitais orientadas por estrutura e rigor técnico."
-            description="A HINENI atua na interseção entre negócio, design e engenharia para construir presença digital consistente, confiável e escalável."
+            eyebrow="Modelo de trabalho"
+            title="Metodo profissional para reduzir retrabalho e aumentar previsibilidade."
+            description="A HINENI atua como parceiro tecnico e estrategico para empresas que valorizam processos claros e entrega consistente."
           />
           <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {differentiators.map((item, index) => (
+            {workModel.map((item, index) => (
               <Reveal key={item.title} delay={index * 0.08}>
                 <article className="premium-card-light h-full rounded-2xl p-6">
                   <h3 className="text-lg font-semibold text-deep-blue">{item.title}</h3>
@@ -128,11 +144,32 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      <section className={`bg-shell ${SECTION_CLASSES.compact}`}>
+      <section className={`section-shell soft-divider bg-shell ${SECTION_CLASSES.compact}`}>
         <Container>
           <Reveal>
             <SectionHeading
-              eyebrow="Atendimento local"
+              eyebrow="Compromissos tecnicos"
+              title="Cada entrega precisa sustentar comunicacao, operacao e crescimento."
+              description="Nao trabalhamos com paginas soltas. Trabalhamos com uma base digital que acompanhe o ritmo de evolucao da empresa."
+            />
+          </Reveal>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {commitments.map((item, index) => (
+              <Reveal key={item} delay={index * 0.06}>
+                <article className="premium-card-light rounded-2xl px-6 py-5">
+                  <p className="text-sm font-medium leading-relaxed text-slate-700">{item}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className={`section-shell soft-divider bg-shell ${SECTION_CLASSES.compact}`}>
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Atendimento"
               title={content.localSeo.headline}
               description={content.localSeo.description}
             />
@@ -154,22 +191,22 @@ export default async function HomePage() {
           <Reveal>
             <SectionHeading
               tone="dark"
-              eyebrow="Escala e consistência"
-              title="Cada entrega é desenhada para sustentar crescimento de marca."
-              description="Seu site deixa de ser apenas uma vitrine e passa a operar como infraestrutura comercial, institucional e estratégica da empresa."
+              eyebrow="Proximo passo"
+              title="Se voce precisa de um site que funcione como ativo de negocio, vamos conversar."
+              description="Entramos no projeto com escopo tecnico, cronograma realista e acompanhamento de ponta a ponta."
               className="mb-0"
             />
           </Reveal>
           <Reveal delay={0.14}>
             <div className="premium-card-dark rounded-3xl p-8">
               <p className="text-sm leading-relaxed text-slate-300">
-                Estruturas prontas para receber novos produtos, campanhas e estudos de caso sem perder clareza visual nem performance.
+                Comecamos por um diagnostico rapido para entender seu momento, definir prioridades e montar a melhor linha de execucao.
               </p>
               <Link
-                href="/servicos"
+                href="/contato"
                 className="mt-7 inline-flex items-center text-sm font-semibold uppercase tracking-[0.16em] text-gold-accent hover:text-shell"
               >
-                Conhecer serviços
+                Falar com especialista
               </Link>
             </div>
           </Reveal>

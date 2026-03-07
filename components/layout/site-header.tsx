@@ -31,6 +31,14 @@ export function SiteHeader() {
           : "border-slate-800/60 bg-[#0B0F19]/72 backdrop-blur-xl",
       )}
     >
+      <div className="soft-divider hidden bg-slate-950/80 text-slate-400 md:block">
+        <Container className="flex h-9 items-center justify-between">
+          <p className="text-[11px] uppercase tracking-[0.14em]">
+            Operacao digital para empresas em todo o Brasil
+          </p>
+          <p className="text-[11px] uppercase tracking-[0.14em]">Retorno de contato em ate 1 dia util</p>
+        </Container>
+      </div>
       <Container className="flex h-20 items-center justify-between gap-6">
         <Link href="/" className="inline-flex items-center gap-3">
           <span className="inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-slate-700 bg-slate-900">
@@ -48,7 +56,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 rounded-full border border-slate-800/90 bg-slate-950/70 p-1 md:flex">
+        <nav className="hidden items-center gap-1 rounded-full border border-slate-700/80 bg-slate-950/75 p-1 md:flex">
           {NAV_LINKS.map((item) => {
             const active =
               pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
@@ -60,7 +68,7 @@ export function SiteHeader() {
                 className={cn(
                   "rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em]",
                   active
-                    ? "bg-slate-900 text-shell"
+                    ? "bg-slate-900 text-shell shadow-[0_8px_20px_rgba(2,6,23,0.35)]"
                     : "text-slate-300 hover:bg-slate-900/70 hover:text-shell",
                 )}
               >
@@ -74,7 +82,7 @@ export function SiteHeader() {
           href="/contato"
           className="hidden rounded-full border border-gold-accent/40 bg-gold-accent/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-100 hover:bg-gold-accent/20 sm:inline-flex"
         >
-          Solicitar Proposta
+          Agendar Diagnostico
         </Link>
 
         <button
@@ -150,7 +158,7 @@ export function SiteHeader() {
                 onClick={() => setMobileOpen(false)}
                 className="mt-3 inline-flex w-full items-center justify-center rounded-xl border border-gold-accent/40 bg-gold-accent/10 px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-slate-100 hover:bg-gold-accent/20"
               >
-                Solicitar Proposta
+                Agendar Diagnostico
               </Link>
             </motion.div>
           </>

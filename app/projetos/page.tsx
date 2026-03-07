@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/animations/reveal";
@@ -10,7 +10,7 @@ import { createPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = createPageMetadata({
   title: "Projetos",
   description:
-    "Portfólio institucional da HINENI com estrutura pronta para evolução em estudos de caso completos.",
+    "Portfolio institucional da HINENI com estudos de caso objetivos e estrutura pronta para novos projetos.",
   path: "/projetos",
 });
 
@@ -19,31 +19,32 @@ const projects = [
     name: "Igreja TDA",
     segment: "Institucional",
     scope:
-      "Site institucional desenvolvido para fortalecer presença digital, clareza de comunicação e experiência de navegação da comunidade.",
+      "Site institucional desenvolvido para fortalecer presenca digital, clareza de comunicacao e experiencia de navegacao da comunidade.",
     status: "Projeto publicado",
     url: "https://igrejatda.com",
     challenge:
-      "Organizar conteúdo institucional e canais de contato em uma estrutura clara, com leitura objetiva em desktop e mobile.",
+      "Organizar conteudo institucional e canais de contato em uma estrutura clara, com leitura objetiva em desktop e mobile.",
     solution:
-      "Arquitetura de navegação direta, layout responsivo e foco em comunicação institucional para facilitar acesso às informações principais.",
+      "Arquitetura de navegacao direta, layout responsivo e foco em comunicacao institucional para facilitar acesso as informacoes principais.",
     highlights: [
-      "Estrutura institucional com navegação objetiva",
+      "Estrutura institucional com navegacao objetiva",
       "Responsividade para celular e computador",
-      "Integração de contato para atendimento rápido",
+      "Integracao de contato para atendimento rapido",
     ],
+    stack: ["Next.js", "Tailwind CSS", "Formularios"],
   },
 ];
 
 export default function ProjetosPage() {
   return (
     <>
-      <section className={`bg-shell ${SECTION_CLASSES.compact}`}>
+      <section className={`section-shell bg-shell ${SECTION_CLASSES.compact}`}>
         <Container>
           <Reveal>
             <SectionHeading
               eyebrow="Projetos"
-              title="Portfólio em evolução contínua para estudos de caso detalhados."
-              description="Esta estrutura foi desenhada para receber novos cases com profundidade estratégica, indicadores e resultados mensuráveis."
+              title="Estudos de caso com foco em contexto, decisao e entrega."
+              description="Cada case mostra o problema, a linha de execucao adotada e os principais entregaveis para o negocio."
             />
           </Reveal>
         </Container>
@@ -60,7 +61,7 @@ export default function ProjetosPage() {
                       src="/branding/tda-cover.png"
                       alt="Capa do projeto Igreja TDA"
                       fill
-                      className="object-cover object-center opacity-45"
+                      className="object-cover object-center opacity-45 transition-transform duration-500 hover:scale-[1.03]"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F19] via-[#0B0F19]/35 to-transparent" />
                     <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between gap-3">
@@ -72,33 +73,44 @@ export default function ProjetosPage() {
                       </span>
                     </div>
                   </div>
+
                   <div className="p-7">
                     <h2 className="text-2xl leading-snug text-shell">{project.name}</h2>
                     <p className="mt-4 text-sm leading-relaxed text-slate-300">{project.scope}</p>
+
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {project.stack.map((item) => (
+                        <span
+                          key={item}
+                          className="rounded-full border border-slate-600/70 bg-slate-900/55 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-300"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+
                     <div className="mt-7 grid gap-6 sm:grid-cols-2">
                       <div>
-                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
-                          Desafio
-                        </p>
+                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Desafio</p>
                         <p className="mt-2 text-sm leading-relaxed text-slate-300">{project.challenge}</p>
                       </div>
                       <div>
-                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
-                          Solução
-                        </p>
+                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Solucao</p>
                         <p className="mt-2 text-sm leading-relaxed text-slate-300">{project.solution}</p>
                       </div>
                     </div>
+
                     <div className="mt-7 border-t border-slate-700 pt-6">
                       <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
                         Entregas principais
                       </p>
                       <ul className="mt-3 space-y-2 text-sm text-slate-300">
                         {project.highlights.map((item) => (
-                          <li key={item}>• {item}</li>
+                          <li key={item}>- {item}</li>
                         ))}
                       </ul>
                     </div>
+
                     <Link
                       href={project.url}
                       target="_blank"
@@ -112,6 +124,7 @@ export default function ProjetosPage() {
               </Reveal>
             ))}
           </div>
+
           <Reveal delay={0.12} className="mt-6">
             <p className="text-xs uppercase tracking-[0.16em] text-slate-400">
               Novo estudo de caso pode ser adicionado nesta mesma estrutura.

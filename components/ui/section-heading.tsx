@@ -35,10 +35,16 @@ export function SectionHeading({
 
   return (
     <div className={cn("max-w-4xl", isCenter && "mx-auto text-center", className)}>
-      <p className={cn("text-xs font-semibold uppercase tracking-[0.24em]", styles.eyebrow)}>
+      <p
+        className={cn(
+          "inline-flex rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em]",
+          tone === "dark" ? "border-slate-600/70 bg-slate-900/30" : "border-slate-300 bg-white/70",
+          styles.eyebrow,
+        )}
+      >
         {eyebrow}
       </p>
-      <h2 className={cn("mt-5 text-3xl leading-[1.08] sm:text-4xl lg:text-5xl", styles.title)}>{title}</h2>
+      <h2 className={cn("mt-5 text-3xl leading-[1.02] sm:text-4xl lg:text-5xl", styles.title)}>{title}</h2>
       <p className={cn("mt-6 max-w-3xl text-base leading-relaxed sm:text-lg", styles.description)}>
         {description}
       </p>
