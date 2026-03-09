@@ -92,21 +92,21 @@ export default async function ServicosPage() {
           <div className="grid gap-6 md:grid-cols-3">
             {services.map((service, index) => (
               <Reveal key={service.title} delay={index * 0.08}>
-                <article className="premium-card-light h-full rounded-3xl p-8">
-                  <span className="inline-flex rounded-full border border-slate-300 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+                <article className="premium-card-light card-service h-full rounded-3xl p-8">
+                  <span className="text-eyebrow inline-flex rounded-full border border-slate-300 px-3 py-1 text-slate-500">
                     Escopo {String(index + 1).padStart(2, "0")}
                   </span>
                   <h2 className="text-xl leading-snug text-deep-blue">{service.title}</h2>
-                  <p className="mt-4 text-sm leading-relaxed text-slate-600">{service.text}</p>
-                  <p className="mt-5 text-xs font-semibold uppercase tracking-[0.14em] text-tech-blue">
+                  <p className="text-body-soft mt-4 text-sm text-slate-600">{service.text}</p>
+                  <p className="text-eyebrow mt-5 text-tech-blue">
                     Ideal para
                   </p>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{service.idealFor}</p>
+                  <p className="text-body-soft mt-2 text-sm text-slate-600">{service.idealFor}</p>
                   <div className="mt-6 border-t border-slate-200 pt-5">
-                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-tech-blue">
+                    <p className="text-eyebrow text-tech-blue">
                       Entregáveis base
                     </p>
-                    <ul className="mt-3 space-y-2 text-sm text-slate-600">
+                    <ul className="text-body-soft mt-3 space-y-2 text-sm text-slate-600">
                       {service.deliverables.map((item) => (
                         <li key={item}>- {item}</li>
                       ))}

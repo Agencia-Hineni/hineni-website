@@ -27,11 +27,16 @@ export function SiteHeader() {
       className={cn(
         "sticky top-0 z-50 border-b transition-all duration-300",
         scrolled
-          ? "border-slate-700/85 bg-[#0B0F19]/90 shadow-[0_20px_50px_rgba(2,6,23,0.45)] backdrop-blur-2xl"
-          : "border-slate-800/60 bg-[#0B0F19]/72 backdrop-blur-xl",
+          ? "border-slate-700/85 bg-[#0B0F19]/92 shadow-[0_20px_50px_rgba(2,6,23,0.45)] backdrop-blur-2xl"
+          : "border-slate-800/65 bg-[#0B0F19]/78 backdrop-blur-xl",
       )}
     >
-      <div className="soft-divider hidden bg-slate-950/80 text-slate-400 md:block">
+      <div
+        className={cn(
+          "soft-divider hidden text-slate-400 md:block",
+          scrolled ? "bg-slate-950/82" : "bg-slate-950/68",
+        )}
+      >
         <Container className="flex h-9 items-center justify-between">
           <p className="text-[11px] uppercase tracking-[0.14em]">
             Operação digital para empresas em todo o Brasil
@@ -56,7 +61,14 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 rounded-full border border-slate-700/80 bg-slate-950/75 p-1 md:flex">
+        <nav
+          className={cn(
+            "hidden items-center gap-1 rounded-full border p-1 md:flex",
+            scrolled
+              ? "border-slate-700/80 bg-slate-950/78"
+              : "border-slate-700/70 bg-slate-950/70",
+          )}
+        >
           {NAV_LINKS.map((item) => {
             const active =
               pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
@@ -80,7 +92,12 @@ export function SiteHeader() {
 
         <Link
           href="/contato"
-          className="hidden rounded-full border border-gold-accent/40 bg-gold-accent/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-100 hover:bg-gold-accent/20 sm:inline-flex"
+          className={cn(
+            "hidden rounded-full border px-5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-100 sm:inline-flex",
+            scrolled
+              ? "border-gold-accent/40 bg-gold-accent/10 hover:bg-gold-accent/20"
+              : "border-gold-accent/45 bg-gold-accent/12 hover:bg-gold-accent/20",
+          )}
         >
           Agendar diagnóstico
         </Link>

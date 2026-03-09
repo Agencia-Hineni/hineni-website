@@ -35,7 +35,7 @@ export function LinkButton({
     <Link
       {...props}
       className={cn(
-        "inline-flex items-center justify-center rounded-full font-semibold uppercase transition-transform hover:-translate-y-[1px] active:translate-y-0",
+        "cta-button inline-flex items-center justify-center rounded-full font-semibold uppercase transition-transform hover:-translate-y-[1px] active:translate-y-0",
         variants[variant],
         sizes[size],
         className,

@@ -55,7 +55,7 @@ export default function ProjetosPage() {
           <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
             {projects.map((project, index) => (
               <Reveal key={project.name} delay={index * 0.08}>
-                <article className="premium-card-dark overflow-hidden rounded-3xl text-slate-200">
+                <article className="premium-card-dark card-case overflow-hidden rounded-3xl text-slate-200">
                   <div className="relative aspect-[16/9] w-full">
                     <Image
                       src="/branding/tda-cover.png"
@@ -67,7 +67,7 @@ export default function ProjetosPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F19] via-[#0B0F19]/35 to-transparent" />
                     <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between gap-3">
-                      <p className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-300">
+                      <p className="text-eyebrow text-slate-300">
                         {project.segment}
                       </p>
                       <span className="rounded-full border border-gold-accent/45 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-gold-accent">
@@ -78,7 +78,7 @@ export default function ProjetosPage() {
 
                   <div className="p-7">
                     <h2 className="text-2xl leading-snug text-shell">{project.name}</h2>
-                    <p className="mt-4 text-sm leading-relaxed text-slate-300">{project.scope}</p>
+                    <p className="text-body-soft mt-4 text-sm text-slate-300">{project.scope}</p>
 
                     <div className="mt-6 flex flex-wrap gap-2">
                       {project.stack.map((item) => (
@@ -93,17 +93,17 @@ export default function ProjetosPage() {
 
                     <div className="mt-7 grid gap-6 sm:grid-cols-2">
                       <div>
-                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Desafio</p>
-                        <p className="mt-2 text-sm leading-relaxed text-slate-300">{project.challenge}</p>
+                        <p className="text-eyebrow text-slate-400">Desafio</p>
+                        <p className="text-body-soft mt-2 text-sm text-slate-300">{project.challenge}</p>
                       </div>
                       <div>
-                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Solução</p>
-                        <p className="mt-2 text-sm leading-relaxed text-slate-300">{project.solution}</p>
+                        <p className="text-eyebrow text-slate-400">Solução</p>
+                        <p className="text-body-soft mt-2 text-sm text-slate-300">{project.solution}</p>
                       </div>
                     </div>
 
                     <div className="mt-7 border-t border-slate-700 pt-6">
-                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+                      <p className="text-eyebrow text-slate-400">
                         Entregas principais
                       </p>
                       <ul className="mt-3 space-y-2 text-sm text-slate-300">

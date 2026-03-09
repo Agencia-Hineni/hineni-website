@@ -34,7 +34,7 @@ export function Button({
     <button
       type={type}
       className={cn(
-        "inline-flex items-center justify-center rounded-full font-semibold uppercase transition-transform hover:-translate-y-[1px] active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-70",
+        "cta-button inline-flex items-center justify-center rounded-full font-semibold uppercase transition-transform hover:-translate-y-[1px] active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-70",
         variants[variant],
         sizes[size],
         className,

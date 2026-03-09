@@ -13,7 +13,7 @@ export function Reveal({
   children,
   className,
   delay = 0,
-  y = 22,
+  y = 30,
   transition,
   ...props
 }: RevealProps) {
@@ -28,10 +28,10 @@ export function Reveal({
       className={cn(className)}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.25 }}
+      viewport={{ once: true, amount: 0.18 }}
       transition={
         transition ?? {
-          duration: 0.55,
+          duration: 0.68,
           ease: [0.22, 1, 0.36, 1],
           delay,
         }

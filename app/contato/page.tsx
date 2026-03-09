@@ -35,16 +35,16 @@ export default async function ContatoPage() {
             className="mb-0"
           />
           <div className="mt-8 grid gap-3 text-sm text-slate-600">
-            <p className="rounded-xl border border-slate-200 bg-white/80 px-4 py-3">
+            <p className="card-contact rounded-xl px-4 py-3">
               Atendimento: {content.contact.email}
             </p>
-            <p className="rounded-xl border border-slate-200 bg-white/80 px-4 py-3">
+            <p className="card-contact rounded-xl px-4 py-3">
               Prazo de retorno: até 1 dia útil
             </p>
-            <p className="rounded-xl border border-slate-200 bg-white/80 px-4 py-3">
+            <p className="card-contact rounded-xl px-4 py-3">
               Formato: reunião online de alinhamento
             </p>
-            <p className="rounded-xl border border-slate-200 bg-white/80 px-4 py-3">
+            <p className="card-contact rounded-xl px-4 py-3">
               Instagram: {content.contact.instagram}
             </p>
           </div>
