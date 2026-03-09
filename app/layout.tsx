@@ -1,23 +1,10 @@
 ﻿import type { Metadata } from "next";
-import { DM_Sans, Sora } from "next/font/google";
 import Script from "next/script";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SITE_CONFIG } from "@/lib/constants";
 import { siteMetadata } from "@/lib/seo";
 import "./globals.css";
-
-const bodyFont = DM_Sans({
-  variable: "--font-body",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const displayFont = Sora({
-  variable: "--font-heading",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 export const metadata: Metadata = siteMetadata;
 
@@ -38,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={`${bodyFont.variable} ${displayFont.variable}`}>
+    <html lang="pt-BR">
       <body className="bg-shell font-sans text-slate-900 antialiased">
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-17997502951"

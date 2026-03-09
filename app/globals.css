@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 :root {
+  --font-body: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-heading: "Trebuchet MS", "Avenir Next", "Segoe UI", sans-serif;
   --shell: #f6f8fc;
   --shell-muted: #eef2f9;
   --ink: #0b0f19;
