@@ -79,10 +79,12 @@ export default async function HomePage() {
           alt="Banner institucional da HINENI"
           fill
           priority
+          sizes="100vw"
+          quality={75}
           className="object-cover object-center opacity-40"
         />
-        <div className="surface-grid absolute inset-0 opacity-[0.13]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_18%,rgba(30,58,138,0.35),transparent_58%),radial-gradient(circle_at_14%_78%,rgba(184,148,66,0.08),transparent_42%)]" />
+        <div className="surface-grid absolute inset-0 hidden opacity-[0.13] md:block" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_18%,rgba(30,58,138,0.35),transparent_58%)] md:bg-[radial-gradient(circle_at_85%_18%,rgba(30,58,138,0.35),transparent_58%),radial-gradient(circle_at_14%_78%,rgba(184,148,66,0.08),transparent_42%)]" />
         <Container className="relative flex min-h-[100svh] flex-col justify-center">
           <Reveal transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.04 }}>
             <p className="mb-8 inline-flex rounded-full border border-slate-600/80 bg-slate-900/72 px-5 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-slate-300">

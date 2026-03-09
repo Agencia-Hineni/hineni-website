@@ -1,7 +1,7 @@
 "use client";
 
 import type { HTMLMotionProps } from "framer-motion";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 type RevealProps = HTMLMotionProps<"div"> & {
@@ -17,6 +17,12 @@ export function Reveal({
   transition,
   ...props
 }: RevealProps) {
+  const prefersReducedMotion = useReducedMotion();
+
+  if (prefersReducedMotion) {
+    return <div className={cn(className)}>{children}</div>;
+  }
+
   return (
     <motion.div
       className={cn(className)}

@@ -61,6 +61,8 @@ export default function ProjetosPage() {
                       src="/branding/tda-cover.png"
                       alt="Capa do projeto Igreja TDA"
                       fill
+                      sizes="(max-width: 768px) 100vw, 66vw"
+                      quality={68}
                       className="object-cover object-center opacity-45 transition-transform duration-500 hover:scale-[1.03]"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F19] via-[#0B0F19]/35 to-transparent" />
