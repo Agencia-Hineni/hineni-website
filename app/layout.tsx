@@ -3,14 +3,12 @@ import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
-import { GA_MEASUREMENT_ID, getGoogleTagId, GOOGLE_ADS_ID } from "@/lib/analytics";
+import { GA_MEASUREMENT_ID, GOOGLE_ADS_ID } from "@/lib/analytics";
 import { SITE_CONFIG } from "@/lib/constants";
 import { siteMetadata } from "@/lib/seo";
 import "./globals.css";
 
 export const metadata: Metadata = siteMetadata;
-
-const googleTagId = getGoogleTagId();
 
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -45,7 +43,7 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className="bg-shell font-sans text-slate-900 antialiased">
         <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`}
+          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}
           strategy="afterInteractive"
         />
         <Script id="google-gtag-bootstrap" strategy="afterInteractive">
