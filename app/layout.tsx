@@ -1,12 +1,16 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { GA_MEASUREMENT_ID, getGoogleTagId, GOOGLE_ADS_ID } from "@/lib/analytics";
 import { SITE_CONFIG } from "@/lib/constants";
 import { siteMetadata } from "@/lib/seo";
 import "./globals.css";
 
 export const metadata: Metadata = siteMetadata;
+
+const googleTagId = getGoogleTagId();
 
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -19,6 +23,19 @@ const organizationSchema = {
   slogan: SITE_CONFIG.tagline,
 };
 
+const gtagBootstrap = `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = gtag;
+  gtag('js', new Date());
+  gtag('config', '${GOOGLE_ADS_ID}');
+  ${
+    GA_MEASUREMENT_ID
+      ? `gtag('config', '${GA_MEASUREMENT_ID}', { page_path: window.location.pathname });`
+      : ""
+  }
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,20 +45,15 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className="bg-shell font-sans text-slate-900 antialiased">
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-17997502951"
+          src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`}
           strategy="afterInteractive"
         />
-        <Script id="google-ads-gtag" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'AW-17997502951');
-          `}
+        <Script id="google-gtag-bootstrap" strategy="afterInteractive">
+          {gtagBootstrap}
         </Script>
 
         <a href="#conteudo-principal" className="skip-link">
-          Ir para o conteúdo principal
+          Ir para o conteudo principal
         </a>
         <script
           type="application/ld+json"
@@ -54,6 +66,7 @@ export default function RootLayout({
           </main>
           <SiteFooter />
         </div>
+        <Analytics />
       </body>
     </html>
   );

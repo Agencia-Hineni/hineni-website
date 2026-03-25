@@ -69,7 +69,7 @@ const projects: Project[] = [
       "Base visual e técnica pronta para expansão da loja",
     ],
     stack: ["E-commerce", "Catálogo", "UX Mobile"],
-    imageSrc: "/branding/drophouse-cover.webp",
+    imageSrc: "/branding/drophouse-cover.png",
     imageAlt: "Capa do projeto DropHouse",
     accentClass:
       "bg-[radial-gradient(circle_at_82%_18%,rgba(30,58,138,0.35),transparent_26%),radial-gradient(circle_at_24%_78%,rgba(184,148,66,0.18),transparent_32%),linear-gradient(180deg,rgba(8,13,24,0.16),rgba(8,13,24,0.92))]",

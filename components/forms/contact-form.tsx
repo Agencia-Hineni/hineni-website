@@ -1,6 +1,7 @@
-﻿"use client";
+"use client";
 
 import { FormEvent, useState } from "react";
+import { trackLeadSubmission } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import { SelectField, TextArea, TextInput } from "@/components/ui/field";
 
@@ -49,7 +50,8 @@ export function ContactForm() {
       }
 
       setStatus("success");
-      setMessage(data.message ?? "Solicitação enviada com sucesso.");
+      setMessage(data.message ?? "Solicitacao enviada com sucesso.");
+      trackLeadSubmission(form.servico);
       setForm(initialState);
     } catch {
       setStatus("error");
@@ -120,7 +122,7 @@ export function ContactForm() {
       </div>
 
       <label className="mt-5 block text-sm text-slate-700">
-        Serviço de interesse
+        Servico de interesse
         <SelectField
           required
           name="servico"
@@ -129,11 +131,11 @@ export function ContactForm() {
           className="mt-2"
         >
           <option value="" disabled>
-            Selecione uma opção
+            Selecione uma opcao
           </option>
           <option>Sites Institucionais Empresariais</option>
-          <option>Landing Pages Estratégicas</option>
-          <option>Estrutura Digital para Negócios</option>
+          <option>Landing Pages Estrategicas</option>
+          <option>Estrutura Digital para Negocios</option>
         </SelectField>
       </label>
 
@@ -151,13 +153,17 @@ export function ContactForm() {
       </label>
 
       <Button type="submit" disabled={status === "loading"} className="mt-7">
-        {status === "loading" ? "Enviando..." : "Enviar Solicitação"}
+        {status === "loading" ? "Enviando..." : "Enviar Solicitacao"}
       </Button>
 
       {message ? (
         <p
           className={`mt-4 text-sm ${
-            status === "success" ? "text-emerald-700" : status === "error" ? "text-red-700" : "text-slate-600"
+            status === "success"
+              ? "text-emerald-700"
+              : status === "error"
+                ? "text-red-700"
+                : "text-slate-600"
           }`}
         >
           {message}
