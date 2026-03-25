@@ -40,21 +40,21 @@ const fallbackContent: SiteContent = {
   plans: [
     {
       name: "Plano Essencial",
-      implementation: "R$ 1.899,90",
+      implementation: "12x de R$ 159,00 (total de R$ 1.899,90)",
       monthly: "R$ 299,00/mês",
       contract: "Contrato de 12 meses",
       featured: false,
     },
     {
       name: "Plano Profissional",
-      implementation: "R$ 2.899,90",
+      implementation: "12x de R$ 249,00 (total de R$ 2.899,90)",
       monthly: "R$ 399,00/mês",
       contract: "Contrato de 12 meses",
       featured: true,
     },
     {
       name: "Plano Premium",
-      implementation: "R$ 4.499,89 até R$ 8.999,98",
+      implementation: "A partir de 12x de R$ 375,00 (total entre R$ 4.499,89 e R$ 8.999,98)",
       monthly: "R$ 899,00/mês",
       contract: "Mensalidade recorrente",
       featured: false,

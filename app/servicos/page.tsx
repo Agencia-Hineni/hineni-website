@@ -69,6 +69,19 @@ const principles = [
   "Base preparada para SEO, analytics e crescimento contínuo",
 ];
 
+function splitImplementationLabel(value: string) {
+  const match = value.match(/^(.*?)(\s*\((.*)\))$/);
+
+  if (!match) {
+    return { highlight: value, detail: "" };
+  }
+
+  return {
+    highlight: match[1].trim(),
+    detail: match[3].trim(),
+  };
+}
+
 export default async function ServicosPage() {
   const content = await getSiteContent();
 
@@ -153,6 +166,10 @@ export default async function ServicosPage() {
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {content.plans.map((plan, index) => (
               <Reveal key={plan.name} delay={index * 0.08}>
+                {(() => {
+                  const implementation = splitImplementationLabel(plan.implementation);
+
+                  return (
                 <article
                   className={`h-full rounded-3xl p-8 text-slate-200 ${
                     plan.featured
@@ -170,16 +187,23 @@ export default async function ServicosPage() {
                   </p>
                   <div className="mt-6 border-t border-slate-700 pt-5">
                     <p className="text-xs uppercase tracking-[0.14em] text-slate-400">Implementação</p>
-                    <p className="mt-2 text-xl font-semibold text-shell">{plan.implementation}</p>
+                    <p className="mt-3 text-3xl font-semibold leading-none text-shell">
+                      {implementation.highlight}
+                    </p>
+                    {implementation.detail ? (
+                      <p className="mt-3 text-sm leading-relaxed text-slate-400">{implementation.detail}</p>
+                    ) : null}
                   </div>
-                  <div className="mt-6 border-t border-slate-700 pt-5">
-                    <p className="text-xs uppercase tracking-[0.14em] text-slate-400">Mensalidade</p>
+                  <div className="mt-6 rounded-2xl border border-slate-700/80 bg-slate-950/35 px-5 py-4">
+                    <p className="text-xs uppercase tracking-[0.14em] text-slate-400">Mensalidade de suporte</p>
                     <p className="mt-2 text-lg font-semibold text-shell">{plan.monthly}</p>
                     <p className="mt-2 text-xs uppercase tracking-[0.14em] text-slate-400">
                       {plan.contract}
                     </p>
                   </div>
                 </article>
+                  );
+                })()}
               </Reveal>
             ))}
           </div>
