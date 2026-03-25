@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/animations/reveal";
@@ -10,28 +10,69 @@ import { createPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = createPageMetadata({
   title: "Projetos",
   description:
-    "Portfólio institucional da HINENI com estudos de caso objetivos e estrutura pronta para novos projetos.",
+    "Projetos desenvolvidos pela HINENI com foco em clareza de operacao, posicionamento de marca e experiencia de navegacao.",
   path: "/projetos",
 });
 
-const projects = [
+type Project = {
+  name: string;
+  category: string;
+  status: string;
+  url: string;
+  summary: string;
+  context: string;
+  solution: string;
+  results: string[];
+  stack: string[];
+  imageSrc: string;
+  imageAlt: string;
+  accentClass: string;
+};
+
+const projects: Project[] = [
   {
     name: "Igreja TDA",
-    segment: "Institucional",
-    scope:
-      "Site institucional desenvolvido para fortalecer presença digital, clareza de comunicação e experiência de navegação da comunidade.",
+    category: "Institucional",
     status: "Projeto publicado",
     url: "https://igrejatda.com",
-    challenge:
-      "Organizar conteúdo institucional e canais de contato em uma estrutura clara, com leitura objetiva em desktop e mobile.",
+    summary:
+      "Plataforma institucional criada para organizar comunicacao, fortalecer presenca digital e facilitar o acesso rapido as informacoes principais da comunidade.",
+    context:
+      "O projeto precisava reunir agenda, contatos, informacoes institucionais e canais de apoio em uma navegacao simples, com leitura clara no desktop e no celular.",
     solution:
-      "Arquitetura de navegação direta, layout responsivo e foco em comunicação institucional para facilitar acesso às informações principais.",
-    highlights: [
-      "Estrutura institucional com navegação objetiva",
-      "Responsividade para celular e computador",
-      "Integração de contato para atendimento rápido",
+      "Estruturamos a arquitetura de conteudo, refinamos a hierarquia visual e desenvolvemos uma navegacao objetiva para reduzir atrito e melhorar a experiencia de acesso.",
+    results: [
+      "Navegacao institucional mais clara e direta",
+      "Experiencia responsiva para celular e computador",
+      "Contato e acesso as informacoes principais em menos cliques",
     ],
-    stack: ["Next.js", "Tailwind CSS", "Formulários"],
+    stack: ["Next.js", "Tailwind CSS", "Formularios"],
+    imageSrc: "/branding/tda-cover.png",
+    imageAlt: "Capa do projeto Igreja TDA",
+    accentClass:
+      "bg-[radial-gradient(circle_at_18%_22%,rgba(184,148,66,0.2),transparent_28%),linear-gradient(180deg,rgba(11,15,25,0.1),rgba(11,15,25,0.88))]",
+  },
+  {
+    name: "DropHouse",
+    category: "E-commerce",
+    status: "Projeto publicado",
+    url: "https://drophouse.shop",
+    summary:
+      "E-commerce desenvolvido para apresentar catalogo, facilitar a jornada de compra e sustentar uma operacao digital com identidade visual forte e navegacao fluida.",
+    context:
+      "A marca precisava de uma estrutura que combinasse apelo visual, organizacao de produtos e uma experiencia de compra simples para mobile e desktop.",
+    solution:
+      "Construimos uma loja com foco em clareza de vitrine, leitura rapida dos produtos e uma interface preparada para apoiar crescimento comercial e campanhas.",
+    results: [
+      "Estrutura de e-commerce pensada para conversao",
+      "Catalogo organizado para navegacao mais fluida",
+      "Base visual e tecnica pronta para expansao da loja",
+    ],
+    stack: ["E-commerce", "Catalogo", "UX Mobile"],
+    imageSrc: "/branding/drophouse-cover.png",
+    imageAlt: "Capa do projeto DropHouse",
+    accentClass:
+      "bg-[radial-gradient(circle_at_82%_18%,rgba(30,58,138,0.35),transparent_26%),radial-gradient(circle_at_24%_78%,rgba(184,148,66,0.18),transparent_32%),linear-gradient(180deg,rgba(8,13,24,0.16),rgba(8,13,24,0.92))]",
   },
 ];
 
@@ -43,8 +84,8 @@ export default function ProjetosPage() {
           <Reveal>
             <SectionHeading
               eyebrow="Projetos"
-              title="Estudos de caso com foco em contexto, decisão e entrega."
-              description="Cada case mostra o problema, a linha de execução adotada e os principais entregáveis para o negócio."
+              title="Cases construidos para resolver operacao, comunicacao e experiencia."
+              description="Cada projeto nasce de um contexto especifico. O objetivo nao e apenas publicar um site bonito, mas entregar uma estrutura digital que funcione no dia a dia."
             />
           </Reveal>
         </Container>
@@ -52,33 +93,33 @@ export default function ProjetosPage() {
 
       <section className={`bg-deep-blue ${SECTION_CLASSES.standard}`}>
         <Container>
-          <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="grid gap-8 lg:grid-cols-2">
             {projects.map((project, index) => (
               <Reveal key={project.name} delay={index * 0.08}>
-                <article className="premium-card-dark card-case overflow-hidden rounded-3xl text-slate-200">
-                  <div className="relative aspect-[16/9] w-full">
+                <article className="premium-card-dark card-case flex h-full flex-col overflow-hidden rounded-3xl text-slate-200">
+                  <div className="relative aspect-[16/10] w-full overflow-hidden">
                     <Image
-                      src="/branding/tda-cover.png"
-                      alt="Capa do projeto Igreja TDA"
+                      src={project.imageSrc}
+                      alt={project.imageAlt}
                       fill
-                      sizes="(max-width: 768px) 100vw, 66vw"
+                      sizes="(max-width: 768px) 100vw, 50vw"
                       quality={68}
                       className="object-cover object-center opacity-45 transition-transform duration-500 hover:scale-[1.03]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F19] via-[#0B0F19]/35 to-transparent" />
+                    <div className={`absolute inset-0 ${project.accentClass}`} />
                     <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between gap-3">
-                      <p className="text-eyebrow text-slate-300">
-                        {project.segment}
-                      </p>
+                      <p className="text-eyebrow text-slate-300">{project.category}</p>
                       <span className="rounded-full border border-gold-accent/45 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-gold-accent">
                         {project.status}
                       </span>
                     </div>
                   </div>
 
-                  <div className="p-7">
-                    <h2 className="text-2xl leading-snug text-shell">{project.name}</h2>
-                    <p className="text-body-soft mt-4 text-sm text-slate-300">{project.scope}</p>
+                  <div className="flex flex-1 flex-col p-7">
+                    <div>
+                      <h2 className="text-2xl leading-snug text-shell">{project.name}</h2>
+                      <p className="text-body-soft mt-4 text-sm text-slate-300">{project.summary}</p>
+                    </div>
 
                     <div className="mt-6 flex flex-wrap gap-2">
                       {project.stack.map((item) => (
@@ -93,21 +134,19 @@ export default function ProjetosPage() {
 
                     <div className="mt-7 grid gap-6 sm:grid-cols-2">
                       <div>
-                        <p className="text-eyebrow text-slate-400">Desafio</p>
-                        <p className="text-body-soft mt-2 text-sm text-slate-300">{project.challenge}</p>
+                        <p className="text-eyebrow text-slate-400">Contexto</p>
+                        <p className="text-body-soft mt-2 text-sm text-slate-300">{project.context}</p>
                       </div>
                       <div>
-                        <p className="text-eyebrow text-slate-400">Solução</p>
+                        <p className="text-eyebrow text-slate-400">Solucao</p>
                         <p className="text-body-soft mt-2 text-sm text-slate-300">{project.solution}</p>
                       </div>
                     </div>
 
                     <div className="mt-7 border-t border-slate-700 pt-6">
-                      <p className="text-eyebrow text-slate-400">
-                        Entregas principais
-                      </p>
+                      <p className="text-eyebrow text-slate-400">Entregas principais</p>
                       <ul className="mt-3 space-y-2 text-sm text-slate-300">
-                        {project.highlights.map((item) => (
+                        {project.results.map((item) => (
                           <li key={item}>- {item}</li>
                         ))}
                       </ul>
@@ -126,12 +165,6 @@ export default function ProjetosPage() {
               </Reveal>
             ))}
           </div>
-
-          <Reveal delay={0.12} className="mt-6">
-            <p className="text-xs uppercase tracking-[0.16em] text-slate-400">
-              Novo estudo de caso pode ser adicionado nesta mesma estrutura.
-            </p>
-          </Reveal>
         </Container>
       </section>
     </>

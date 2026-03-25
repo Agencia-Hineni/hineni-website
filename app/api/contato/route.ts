@@ -74,6 +74,31 @@ function isValidEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
+function getErrorDetails(error: unknown) {
+  if (error && typeof error === "object") {
+    const maybeError = error as {
+      message?: string;
+      code?: string;
+      response?: string;
+      command?: string;
+    };
+
+    return {
+      message: maybeError.message ?? "Unknown error",
+      code: maybeError.code ?? "UNKNOWN",
+      response: maybeError.response ?? "",
+      command: maybeError.command ?? "",
+    };
+  }
+
+  return {
+    message: String(error),
+    code: "UNKNOWN",
+    response: "",
+    command: "",
+  };
+}
+
 export async function POST(req: NextRequest) {
   try {
     const ip = getClientIp(req);
@@ -156,7 +181,10 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({ ok: true, message: "Solicitação enviada com sucesso." });
-  } catch {
+  } catch (error) {
+    const details = getErrorDetails(error);
+    console.error("[contact_api] send failed", details);
+
     return NextResponse.json(
       { ok: false, message: "Falha no envio. Tente novamente." },
       { status: 500 },
