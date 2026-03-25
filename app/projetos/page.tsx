@@ -10,7 +10,7 @@ import { createPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = createPageMetadata({
   title: "Projetos",
   description:
-    "Projetos desenvolvidos pela HINENI com foco em clareza de operacao, posicionamento de marca e experiencia de navegacao.",
+    "Projetos desenvolvidos pela HINENI com foco em clareza de operação, posicionamento de marca e experiência de navegação.",
   path: "/projetos",
 });
 
@@ -36,17 +36,17 @@ const projects: Project[] = [
     status: "Projeto publicado",
     url: "https://igrejatda.com",
     summary:
-      "Plataforma institucional criada para organizar comunicacao, fortalecer presenca digital e facilitar o acesso rapido as informacoes principais da comunidade.",
+      "Plataforma institucional criada para organizar comunicação, fortalecer presença digital e facilitar o acesso rápido às informações principais da comunidade.",
     context:
-      "O projeto precisava reunir agenda, contatos, informacoes institucionais e canais de apoio em uma navegacao simples, com leitura clara no desktop e no celular.",
+      "O projeto precisava reunir agenda, contatos, informações institucionais e canais de apoio em uma navegação simples, com leitura clara no desktop e no celular.",
     solution:
-      "Estruturamos a arquitetura de conteudo, refinamos a hierarquia visual e desenvolvemos uma navegacao objetiva para reduzir atrito e melhorar a experiencia de acesso.",
+      "Estruturamos a arquitetura de conteúdo, refinamos a hierarquia visual e desenvolvemos uma navegação objetiva para reduzir atrito e melhorar a experiência de acesso.",
     results: [
-      "Navegacao institucional mais clara e direta",
-      "Experiencia responsiva para celular e computador",
-      "Contato e acesso as informacoes principais em menos cliques",
+      "Navegação institucional mais clara e direta",
+      "Experiência responsiva para celular e computador",
+      "Contato e acesso às informações principais em menos cliques",
     ],
-    stack: ["Next.js", "Tailwind CSS", "Formularios"],
+    stack: ["Next.js", "Tailwind CSS", "Formulários"],
     imageSrc: "/branding/tda-cover.png",
     imageAlt: "Capa do projeto Igreja TDA",
     accentClass:
@@ -58,17 +58,17 @@ const projects: Project[] = [
     status: "Projeto publicado",
     url: "https://drophouse.shop",
     summary:
-      "E-commerce desenvolvido para apresentar catalogo, facilitar a jornada de compra e sustentar uma operacao digital com identidade visual forte e navegacao fluida.",
+      "E-commerce desenvolvido para apresentar catálogo, facilitar a jornada de compra e sustentar uma operação digital com identidade visual forte e navegação fluida.",
     context:
-      "A marca precisava de uma estrutura que combinasse apelo visual, organizacao de produtos e uma experiencia de compra simples para mobile e desktop.",
+      "A marca precisava de uma estrutura que combinasse apelo visual, organização de produtos e uma experiência de compra simples para mobile e desktop.",
     solution:
-      "Construimos uma loja com foco em clareza de vitrine, leitura rapida dos produtos e uma interface preparada para apoiar crescimento comercial e campanhas.",
+      "Construímos uma loja com foco em clareza de vitrine, leitura rápida dos produtos e uma interface preparada para apoiar crescimento comercial e campanhas.",
     results: [
-      "Estrutura de e-commerce pensada para conversao",
-      "Catalogo organizado para navegacao mais fluida",
-      "Base visual e tecnica pronta para expansao da loja",
+      "Estrutura de e-commerce pensada para conversão",
+      "Catálogo organizado para navegação mais fluida",
+      "Base visual e técnica pronta para expansão da loja",
     ],
-    stack: ["E-commerce", "Catalogo", "UX Mobile"],
+    stack: ["E-commerce", "Catálogo", "UX Mobile"],
     imageSrc: "/branding/drophouse-cover.webp",
     imageAlt: "Capa do projeto DropHouse",
     accentClass:
@@ -84,8 +84,8 @@ export default function ProjetosPage() {
           <Reveal>
             <SectionHeading
               eyebrow="Projetos"
-              title="Cases construidos para resolver operacao, comunicacao e experiencia."
-              description="Cada projeto nasce de um contexto especifico. O objetivo nao e apenas publicar um site bonito, mas entregar uma estrutura digital que funcione no dia a dia."
+              title="Cases construídos para resolver operação, comunicação e experiência."
+              description="Cada projeto nasce de um contexto específico. O objetivo não é apenas publicar um site bonito, mas entregar uma estrutura digital que funcione no dia a dia."
             />
           </Reveal>
         </Container>
@@ -138,7 +138,7 @@ export default function ProjetosPage() {
                         <p className="text-body-soft mt-2 text-sm text-slate-300">{project.context}</p>
                       </div>
                       <div>
-                        <p className="text-eyebrow text-slate-400">Solucao</p>
+                        <p className="text-eyebrow text-slate-400">Solução</p>
                         <p className="text-body-soft mt-2 text-sm text-slate-300">{project.solution}</p>
                       </div>
                     </div>
