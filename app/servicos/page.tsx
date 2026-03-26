@@ -96,6 +96,21 @@ const planBenefits = [
   "Acompanhamento estrategico da evolucao",
 ];
 
+const planIncludes: Record<string, string[]> = {
+  "Plano Essencial": ["Criacao de site", "Estruturacao digital base"],
+  "Plano Profissional": [
+    "Criacao de site",
+    "Estruturacao digital",
+    "Gestao de Instagram",
+  ],
+  "Plano Premium": [
+    "Criacao de site",
+    "Estruturacao digital",
+    "Gestao de Instagram",
+    "Trafego pago",
+  ],
+};
+
 function splitImplementationLabel(value: string) {
   const match = value.match(/^(.*?)(\s*\((.*)\))$/);
 
@@ -206,6 +221,7 @@ export default async function ServicosPage() {
               <Reveal key={plan.name} delay={index * 0.08}>
                 {(() => {
                   const implementation = formatImplementation(plan.implementation);
+                  const includedItems = planIncludes[plan.name] ?? ["Escopo personalizado sob diagnostico"];
 
                   return (
                     <article
@@ -251,6 +267,18 @@ export default async function ServicosPage() {
                         <p className="mt-2 text-xs uppercase tracking-[0.14em] text-slate-400">
                           {plan.contract}
                         </p>
+                      </div>
+
+                      <div className="mt-6 rounded-[1.5rem] border border-slate-700/80 bg-slate-950/22 px-5 py-5">
+                        <p className="text-xs uppercase tracking-[0.14em] text-gold-accent">Este plano inclui</p>
+                        <div className="mt-4 space-y-3">
+                          {includedItems.map((item) => (
+                            <div key={item} className="flex items-start gap-3 text-sm leading-relaxed text-slate-200">
+                              <span className="mt-1.5 h-2 w-2 rounded-full bg-gold-accent" />
+                              <span>{item}</span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
 
                       <div className="mt-6 space-y-3 border-t border-slate-700/80 pt-6">
