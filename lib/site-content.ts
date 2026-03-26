@@ -54,7 +54,7 @@ const fallbackContent: SiteContent = {
     },
     {
       name: "Plano Premium",
-      implementation: "A partir de 12x de R$ 375,00 (total entre R$ 4.499,89 e R$ 8.999,98)",
+      implementation: "A partir de R$ 4.499,89",
       monthly: "R$ 899,00/mês",
       contract: "Mensalidade recorrente",
       featured: false,

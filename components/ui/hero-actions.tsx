@@ -13,12 +13,12 @@ export function HeroActions() {
           Falar com especialista
         </LinkButton>
         <LinkButton
-          href="/servicos"
+          href="/contato"
           variant="ghost"
           size="lg"
           className="cta-button hover:border-gold-accent/60 hover:text-shell"
         >
-          Ver escopos
+          Solicitar diagnostico
         </LinkButton>
       </div>
     );
@@ -37,12 +37,12 @@ export function HeroActions() {
       </motion.div>
       <motion.div whileHover={{ y: -2, scale: 1.008 }} whileTap={{ y: 0, scale: 0.992 }}>
         <LinkButton
-          href="/servicos"
+          href="/contato"
           variant="ghost"
           size="lg"
           className="cta-button hover:border-gold-accent/60 hover:text-shell"
         >
-          Ver escopos
+          Solicitar diagnostico
         </LinkButton>
       </motion.div>
     </div>

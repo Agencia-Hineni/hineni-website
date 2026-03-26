@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { HeroParallax } from "@/components/animations/hero-parallax";
@@ -11,49 +11,87 @@ import { createPageMetadata } from "@/lib/seo";
 import { getSiteContent } from "@/lib/site-content";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Sites Profissionais para Operação Empresarial",
+  title: "Tecnologia, Marketing e Estrutura Digital para Empresas",
   description:
-    "Soluções digitais para empresas que precisam de presença online confiável, com escopo claro e evolução contínua.",
+    "A HINENI estrutura, posiciona e impulsiona empresas atraves de tecnologia, marketing e estrategia digital.",
   path: "/",
 });
 
-const pillars = [
+const services = [
   {
-    title: "Diagnóstico Objetivo",
-    text: "Antes de desenhar telas, mapeamos objetivo comercial, público, estrutura de conteúdo e prioridades de negócio.",
+    title: "Criacao de Sites",
+    text: "Estrutura digital profissional com foco em posicionamento e conversao.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-6 w-6">
+        <rect x="3" y="5" width="18" height="14" rx="2" />
+        <path d="M3 9h18" />
+        <path d="M7 15h4" />
+      </svg>
+    ),
   },
   {
-    title: "Execução Técnica",
-    text: "Projeto, desenvolvimento e publicação com padrão profissional de performance, acessibilidade e organização do código.",
+    title: "Gestao de Instagram",
+    text: "Planejamento estrategico, crescimento e posicionamento de marca.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-6 w-6">
+        <rect x="4" y="4" width="16" height="16" rx="4" />
+        <circle cx="12" cy="12" r="3.5" />
+        <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none" />
+      </svg>
+    ),
   },
   {
-    title: "Evolução Contínua",
-    text: "Seu site entra em produção pronto para melhorias constantes sem retrabalho de arquitetura ou perda de consistência.",
+    title: "Trafego Pago",
+    text: "Anuncios estrategicos para geracao de clientes qualificados.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-6 w-6">
+        <path d="m5 16 4-4 3 3 7-7" />
+        <path d="M14 8h5v5" />
+        <path d="M4 20h16" />
+      </svg>
+    ),
+  },
+  {
+    title: "Estruturacao Digital",
+    text: "Organizacao completa da presenca digital da empresa.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-6 w-6">
+        <rect x="4" y="4" width="6" height="6" rx="1.5" />
+        <rect x="14" y="4" width="6" height="6" rx="1.5" />
+        <rect x="9" y="14" width="6" height="6" rx="1.5" />
+        <path d="M10 7h4" />
+        <path d="M12 10v4" />
+      </svg>
+    ),
   },
 ];
 
 const workModel = [
   {
-    title: "Escopo definido desde o início",
-    text: "Entregáveis, prazo e responsabilidades alinhados para evitar ruído durante o projeto.",
+    title: "Diagnostico Estrategico",
+    text: "Mapeamos o momento da empresa, prioridades comerciais e gargalos para definir a linha certa de crescimento.",
   },
   {
-    title: "Comunicação de acompanhamento",
-    text: "Atualizações diretas de status, pendências e próximas etapas com linguagem de negócio.",
+    title: "Estruturacao Digital",
+    text: "Organizamos canais, ativos e mensagens para construir uma base profissional, coerente e pronta para escalar.",
   },
   {
-    title: "Decisões baseadas em contexto real",
-    text: "Cada recomendação considera maturidade da empresa, momento comercial e capacidade de operação interna.",
+    title: "Implementacao Tecnica",
+    text: "Executamos site, automacoes, campanhas e ajustes tecnicos com clareza de escopo e foco em performance.",
+  },
+  {
+    title: "Crescimento e Otimizacao",
+    text: "Acompanhamos a evolucao da operacao digital para melhorar resultados, refinar estrategia e ampliar consistencia.",
   },
 ];
 
 const commitments = [
-  "Arquitetura de páginas orientada para clareza de leitura e confiança institucional",
-  "Base técnica preparada para SEO, rastreamento de eventos e futuras integrações",
-  "Experiência consistente em desktop e mobile para público e equipe comercial",
+  "Sites, redes sociais e campanhas trabalhando com a mesma direcao estrategica",
+  "Presenca digital organizada para sustentar autoridade, conversao e operacao",
+  "Base tecnica preparada para marketing, acompanhamento e crescimento continuo",
 ];
 
-const trustSignals = ["Escopo validado", "Cronograma objetivo", "Acompanhamento semanal"];
+const trustSignals = ["Tecnologia aplicada", "Posicionamento premium", "Crescimento com consistencia"];
 
 export default async function HomePage() {
   const content = await getSiteContent();
@@ -88,17 +126,17 @@ export default async function HomePage() {
         <Container className="relative flex min-h-[100svh] flex-col justify-center">
           <Reveal transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.04 }}>
             <p className="mb-8 inline-flex rounded-full border border-slate-600/80 bg-slate-900/72 px-5 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-slate-300">
-              Consultoria e execução digital
+              Estruturacao digital para empresas em expansao
             </p>
           </Reveal>
           <Reveal delay={0.12}>
             <h1 className="max-w-5xl text-5xl leading-[0.94] text-shell sm:text-6xl lg:text-7xl">
-              Soluções digitais para empresas que precisam de operação confiável.
+              Tecnologia, marketing e estrutura digital para empresas que querem crescer com consistencia.
             </h1>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-8 max-w-3xl text-lg leading-relaxed text-slate-300 sm:text-xl">
-              Estruturamos sites e páginas institucionais com escopo claro, execução técnica e foco em resultado real.
+              A HINENI estrutura, posiciona e impulsiona empresas atraves de tecnologia, marketing e estrategia digital.
             </p>
           </Reveal>
           <Reveal delay={0.28} className="mt-12">
@@ -113,12 +151,15 @@ export default async function HomePage() {
             ))}
           </div>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
-            {pillars.map((pillar, index) => (
-              <Reveal key={pillar.title} delay={0.36 + index * 0.08}>
+          <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {services.map((service, index) => (
+              <Reveal key={service.title} delay={0.36 + index * 0.08}>
                 <article className="premium-card-dark h-full rounded-2xl p-6 backdrop-blur-sm">
-                  <h2 className="text-lg font-semibold text-shell">{pillar.title}</h2>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-300">{pillar.text}</p>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-gold-accent/30 bg-gold-accent/10 text-gold-accent">
+                    {service.icon}
+                  </div>
+                  <h2 className="mt-5 text-lg font-semibold text-shell">{service.title}</h2>
+                  <p className="mt-3 text-sm leading-relaxed text-slate-300">{service.text}</p>
                 </article>
               </Reveal>
             ))}
@@ -129,11 +170,11 @@ export default async function HomePage() {
       <section className={`section-shell bg-shell ${SECTION_CLASSES.standard}`}>
         <Container>
           <SectionHeading
-            eyebrow="Modelo de trabalho"
-            title="Método profissional para reduzir retrabalho e aumentar previsibilidade."
-            description="A HINENI atua como parceiro técnico e estratégico para empresas que valorizam processos claros e entrega consistente."
+            eyebrow="Como trabalhamos"
+            title="Metodo profissional para estruturar, implementar e acelerar a operacao digital."
+            description="Conduzimos cada projeto com visao estrategica e execucao tecnica para transformar a presenca digital em uma base real de crescimento."
           />
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {workModel.map((item, index) => (
               <Reveal key={item.title} delay={index * 0.08}>
                 <article className="premium-card-light h-full rounded-2xl p-6">
@@ -150,9 +191,9 @@ export default async function HomePage() {
         <Container>
           <Reveal>
             <SectionHeading
-              eyebrow="Compromissos técnicos"
-              title="Cada entrega precisa sustentar comunicação, operação e crescimento."
-              description="Não trabalhamos com páginas soltas. Trabalhamos com uma base digital que acompanhe o ritmo de evolução da empresa."
+              eyebrow="Compromissos tecnicos"
+              title="Cada entrega precisa sustentar posicionamento, operacao e crescimento."
+              description="Nao atuamos apenas com ativos isolados. Construimos uma estrutura digital que acompanhe a evolucao da empresa com clareza e consistencia."
             />
           </Reveal>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -193,22 +234,22 @@ export default async function HomePage() {
           <Reveal>
             <SectionHeading
               tone="dark"
-              eyebrow="Próximo passo"
-              title="Se você precisa de um site que funcione como ativo de negócio, vamos conversar."
-              description="Entramos no projeto com escopo técnico, cronograma realista e acompanhamento de ponta a ponta."
+              eyebrow="Diagnostico"
+              title="Torne sua empresa mais profissional, organizada e preparada para crescer."
+              description="Comecamos com um diagnostico estrategico para identificar prioridades, alinhar tecnologia e marketing e definir a melhor estrutura para o proximo ciclo da empresa."
               className="mb-0"
             />
           </Reveal>
           <Reveal delay={0.14}>
             <div className="premium-card-dark rounded-3xl p-8">
               <p className="text-sm leading-relaxed text-slate-300">
-                Começamos por um diagnóstico rápido para entender seu momento, definir prioridades e montar a melhor linha de execução.
+                Receba uma leitura objetiva da sua presenca digital e descubra os proximos passos para posicionar, organizar e impulsionar sua empresa.
               </p>
               <Link
                 href="/contato"
                 className="mt-7 inline-flex items-center text-sm font-semibold uppercase tracking-[0.16em] text-gold-accent hover:text-shell"
               >
-                Falar com especialista
+                Solicitar diagnostico gratuito
               </Link>
             </div>
           </Reveal>

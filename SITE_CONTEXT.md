@@ -1,13 +1,20 @@
-# HINENI - Contexto do Projeto
+# HINENI - Contexto Atual do Projeto
 
-Este arquivo existe para facilitar a retomada do projeto em um novo chat ou por outra pessoa, sem depender do contexto da conversa anterior.
+Este arquivo serve como handoff para abrir um novo chat sem perder contexto.
 
 ## Visao Geral
 
 - Projeto: site institucional da agencia HINENI
 - Stack: Next.js 16, React 19, TypeScript, Tailwind CSS v4, Framer Motion
 - Hospedagem: Vercel
-- Objetivo do site: apresentar a agencia com posicionamento profissional, captar leads pelo formulario e mostrar projetos/cases
+- Objetivo atual do site:
+  - apresentar a agencia com posicionamento profissional
+  - captar leads pelo formulario
+  - mostrar projetos/cases
+  - comunicar que a HINENI atua com:
+    - criacao de sites
+    - gestao de redes sociais
+    - trafego pago
 
 ## Estrutura Principal
 
@@ -18,19 +25,39 @@ Este arquivo existe para facilitar a retomada do projeto em um novo chat ou por 
 - Contato: `app/contato/page.tsx`
 - Admin: `app/admin/page.tsx`
 
-## Arquivos Importantes
+## Arquivos Mais Importantes
 
 - Layout global: `app/layout.tsx`
 - Estilos globais: `app/globals.css`
 - Transicao entre paginas: `app/template.tsx`
 - Header: `components/layout/site-header.tsx`
 - Footer: `components/layout/site-footer.tsx`
-- Formulario de contato: `components/forms/contact-form.tsx`
+- Formulario: `components/forms/contact-form.tsx`
 - API de contato: `app/api/contato/route.ts`
+- Analytics helper: `lib/analytics.ts`
+- Bootstrap da conversao Ads: `components/analytics/ads-conversion-bootstrap.tsx`
 - Conteudo editavel do site: `data/site-content.json`
 - Fallback do conteudo: `lib/site-content.ts`
 - SEO e metadata: `lib/seo.ts`
-- Configuracoes gerais do site: `lib/constants.ts`
+- Configuracoes gerais: `lib/constants.ts`
+
+## Posicionamento Atual do Site
+
+O site nao fala mais apenas de desenvolvimento web.
+
+A mensagem atual da marca foi ampliada para deixar claro que a HINENI oferece:
+
+- sites institucionais
+- landing pages
+- gestao de redes sociais
+- trafego pago
+- evolucao e manutencao tecnica
+
+Arquivos onde isso foi implementado:
+
+- `app/page.tsx`
+- `app/servicos/page.tsx`
+- `app/sobre/page.tsx`
 
 ## Conteudo Dinamico
 
@@ -44,7 +71,11 @@ Hoje esse JSON controla:
 - SEO local
 - planos/precos
 
-O arquivo `lib/site-content.ts` le esse JSON e tambem tem um fallback interno caso o arquivo falhe.
+O arquivo `lib/site-content.ts` le esse JSON e tambem tem fallback interno.
+
+Observacao:
+
+- `data/site-content.json` e `lib/site-content.ts` foram regravados em UTF-8 limpo para remover texto quebrado por encoding.
 
 ## Painel Admin
 
@@ -59,14 +90,15 @@ Arquivos relacionados:
 - `app/api/admin/content/route.ts`
 - `app/api/admin/content/history/route.ts`
 
-O admin usa o header `x-admin-token` e valida contra:
+O admin usa:
 
-- `process.env.ADMIN_PASSWORD`
+- header `x-admin-token`
+- validacao contra `process.env.ADMIN_PASSWORD`
 
 Importante:
 
-- Nao deixar senhas hardcoded no codigo.
-- A senha real do admin deve ficar apenas nas envs.
+- nao guardar senha fixa no codigo
+- a senha real deve ficar apenas nas envs
 
 ## Formulario de Contato
 
@@ -74,10 +106,11 @@ Fluxo:
 
 1. Usuario envia o formulario em `components/forms/contact-form.tsx`
 2. O front faz POST para `/api/contato`
-3. A rota `app/api/contato/route.ts` valida campos
-4. A rota tenta enviar email via SMTP usando Nodemailer
+3. A rota `app/api/contato/route.ts` valida os dados
+4. A rota tenta enviar email via SMTP com Nodemailer
+5. Em caso de sucesso, o front dispara o evento de lead para analytics / Ads
 
-Campos exigidos:
+Campos obrigatorios:
 
 - nome
 - empresa
@@ -93,60 +126,96 @@ Campo anti-spam:
 
 - `website` (honeypot)
 
-## Variaveis de Ambiente Necessarias
+## SMTP / Email
 
-Sem estas variaveis o envio de email nao funciona:
+Variaveis obrigatorias para o envio funcionar:
 
 - `SMTP_HOST`
 - `SMTP_PORT`
 - `SMTP_USER`
 - `SMTP_PASS`
 - `CONTACT_TO`
-- `ADMIN_PASSWORD`
-
-Opcional para rate limit persistente:
-
-- `UPSTASH_REDIS_REST_URL`
-- `UPSTASH_REDIS_REST_TOKEN`
 
 Observacoes importantes:
 
-- Se a Vercel estiver sem envs, a API responde com erro de configuracao incompleta.
-- Se `SMTP_PASS` estiver errado, o servidor SMTP responde com erro de autenticacao.
-- O projeto ja teve um problema real porque a Vercel estava com as envs zeradas.
+- O projeto ja teve erro real porque a Vercel estava com as envs zeradas.
+- Quando isso acontece, a API responde com mensagem de configuracao incompleta.
+- Tambem ja foi confirmado erro real de autenticacao SMTP quando a senha estava incorreta.
+- A rota de contato hoje tem logging de erro mais util no servidor.
 
-## Rate Limit
+## Rate Limit do Formulario
 
-O formulario tem rate limit na rota de contato.
+Arquivo:
 
-Comportamento atual:
+- `app/api/contato/route.ts`
 
-- tenta usar Upstash Redis se estiver configurado
-- se nao estiver, cai para um `Map` em memoria
+Comportamento:
+
+- tenta usar Upstash Redis se configurado
+- se nao estiver configurado, cai para `Map` em memoria
 
 Limite atual:
 
 - janela: 60 segundos
 - maximo: 5 requests por IP
 
+Env opcionais:
+
+- `UPSTASH_REDIS_REST_URL`
+- `UPSTASH_REDIS_REST_TOKEN`
+
 Observacao:
 
-- Em memoria funciona, mas nao e ideal para ambiente serverless em escala.
-- Se quiser maior robustez, o ideal e configurar Upstash.
+- o fallback em memoria nao e ideal para ambiente serverless com maior escala
 
-## SEO e Scripts
+## Analytics e Google Ads
 
-Ja configurado:
+Integracoes atuais:
 
-- metadata base no `lib/seo.ts`
-- schema organization/local business
-- sitemap
-- robots
-- Google Ads tag global no `app/layout.tsx`
+- Vercel Analytics no layout global
+- Google Ads tag global carregada em `app/layout.tsx`
+- helper de analytics em `lib/analytics.ts`
+- bootstrap da funcao de conversao do Ads em `components/analytics/ads-conversion-bootstrap.tsx`
 
 ID atual do Google Ads:
 
 - `AW-17997502951`
+
+Snippet de conversao atualmente conectado ao formulario:
+
+- `AW-17997502951/WHg2CL26yY8cEOez8IVD`
+
+Comportamento atual:
+
+- a tag base do Ads e carregada globalmente
+- no envio bem-sucedido do formulario:
+  - dispara `generate_lead`
+  - dispara `gtag_report_conversion()` com o `send_to` acima
+
+Arquivos principais:
+
+- `app/layout.tsx`
+- `lib/analytics.ts`
+- `components/analytics/ads-conversion-bootstrap.tsx`
+- `components/forms/contact-form.tsx`
+
+Env de analytics documentadas:
+
+- `NEXT_PUBLIC_GA_MEASUREMENT_ID`
+- `NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL`
+
+Observacao:
+
+- o projeto foi ajustado para o script do Google Ads carregar sempre com o ID `AW-17997502951`, porque isso estava atrapalhando a deteccao da tag.
+
+## SEO e Metadados
+
+Ja configurado:
+
+- metadata base em `lib/seo.ts`
+- schema organization / local business
+- sitemap
+- robots
 
 ## Estilo e UI
 
@@ -156,14 +225,16 @@ Direcao visual atual:
 - fundo claro nas secoes principais
 - blocos escuros em hero, planos e projetos
 - azul escuro + dourado como acento
-- animacoes suaves de scroll e transicao de pagina
+- cards com hierarquia visual bem marcada
+- motion suave em scroll e troca de pagina
 
-Arquivos centrais de UI:
+Arquivos principais:
 
 - `app/globals.css`
 - `components/ui/button.tsx`
 - `components/ui/link-button.tsx`
 - `components/ui/section-heading.tsx`
+- `components/layout/site-header.tsx`
 
 Animacoes:
 
@@ -171,10 +242,11 @@ Animacoes:
 - `components/animations/hero-parallax.tsx`
 - `app/template.tsx`
 
-Observacao:
+Observacoes:
 
-- As animacoes dos botoes foram suavizadas de proposito.
-- O foco de motion hoje esta em scroll e mudanca de pagina.
+- as animacoes de botao foram suavizadas
+- o foco de motion hoje esta em scroll e mudanca de pagina
+- o header chegou a ficar ilegive l no topo em uma iteracao anterior e depois foi corrigido
 
 ## Projetos / Cases
 
@@ -190,39 +262,54 @@ Cases atuais:
 Assets atuais:
 
 - `public/branding/tda-cover.png`
-- `public/branding/drophouse-cover.webp`
 - `public/branding/drophouse-cover.png`
+- `public/branding/drophouse-cover.webp`
 
-Observacao importante:
+Observacoes importantes:
 
-- A capa da DropHouse foi gerada a partir de screenshot real do site.
-- A versao `webp` foi criada para reduzir peso e evitar problema de imagem quebrada.
-- A pagina de projetos foi reescrita para ter copy mais forte e estrutura mais profissional.
+- a pagina de projetos foi reescrita para ficar mais profissional
+- a DropHouse foi adicionada como case de e-commerce
+- a capa da DropHouse foi gerada a partir de screenshot real do site
+- a versao usada no projeto e a `webp`, porque a `png` estava pesada e podia quebrar mais facilmente
 
-## Planos e Precos
+## Servicos e Escopos
 
-Os planos aparecem na pagina:
+Pagina:
 
 - `app/servicos/page.tsx`
 
-Dados vindos de:
+Servicos atuais comunicados no site:
+
+- Site Institucional Empresarial
+- Landing Page de Captacao
+- Gestao de Redes Sociais
+- Trafego Pago
+- Evolucao e Manutencao Tecnica
+
+## Planos e Precos
+
+Dados:
 
 - `data/site-content.json`
+
+Fallback:
+
+- `lib/site-content.ts`
 
 Decisao comercial atual:
 
 - mostrar entrada facilitada em 12x
-- manter o valor total explicito junto da parcela
+- manter valor total explicito para transparencia
 
-Exemplo do formato atual:
+Exemplo:
 
 - `12x de R$ 249,00 (total de R$ 2.899,90)`
 
-O visual dos cards de planos foi ajustado para:
+Visual atual:
 
-- destacar a parcela
-- deixar o total como informacao secundaria
-- separar a mensalidade em outro bloco
+- a parcela fica em destaque
+- o total aparece como informacao secundaria
+- a mensalidade fica em um bloco separado
 
 ## Build e Deploy
 
@@ -232,19 +319,23 @@ Scripts:
 - build: `npm run build`
 - lint: `npm run lint`
 
-Problemas que ja aconteceram:
+Problemas reais que ja aconteceram:
 
 1. Build falhava com `next/font/google`
-   - Motivo: tentava baixar fontes remotas em build time
-   - Solucao: remover `next/font/google` e usar stacks locais no CSS
+   - causa: fonte remota em build time
+   - solucao: remover `next/font/google` e usar stacks locais
 
-2. Build falhava com tipagem no `Reveal`
-   - Motivo: tipo de `children` incompatível em um branch
-   - Solucao: corrigido em `components/animations/reveal.tsx`
+2. Build falhava por tipagem do `Reveal`
+   - causa: tipo de `children` incompatível
+   - solucao: corrigido em `components/animations/reveal.tsx`
 
 3. Formulario falhava em producao
-   - Motivo: envs SMTP ausentes na Vercel
-   - Solucao: preencher envs corretamente
+   - causa: envs SMTP faltando na Vercel
+   - solucao: preencher envs corretamente
+
+4. Google Ads nao reconhecia a tag
+   - causa: o loader podia nao usar o ID do Ads como principal
+   - solucao: layout ajustado para carregar sempre com `AW-17997502951`
 
 ## Performance
 
@@ -258,46 +349,57 @@ Ajustes ja feitos:
 
 Pontos que ainda valem melhoria:
 
-- `public/branding/tda-cover.png` ainda esta pesado e pode virar `webp`
-- revisar compressao de outros assets grandes
+- `public/branding/tda-cover.png` ainda pode ser convertido para `webp`
+- revisar outros assets grandes
 
-## Ortografia e Texto
+## Ortografia e Encoding
 
-Ao longo do projeto houve varios momentos com texto sem acento ou encoding quebrado.
+Ja houve varios problemas de texto:
 
-Hoje os principais textos ja foram corrigidos, mas se aparecer algo estranho:
+- acentuacao perdida
+- caracteres quebrados por encoding
 
-- revisar primeiro `app/projetos/page.tsx`
-- revisar `lib/site-content.ts`
-- revisar `data/site-content.json`
+Arquivos que mais deram esse tipo de problema:
+
+- `data/site-content.json`
+- `lib/site-content.ts`
+- `app/projetos/page.tsx`
+
+Estado atual:
+
+- esses pontos principais foram corrigidos e regravados
 
 ## Se For Retomar Em Outro Chat
 
-Resumo rapido do estado atual:
+Resumo rapido:
 
-- site institucional da HINENI esta funcional
-- formulario voltou a funcionar depois de corrigir envs SMTP na Vercel
-- pagina de projetos foi refeita e hoje tem Igreja TDA e DropHouse
-- Google Ads ja esta integrado
-- admin existe e depende de `ADMIN_PASSWORD`
-- planos mostram preco parcelado com valor total explicito
-- visual esta num ponto premium/tecnico com motion suave
+- o site esta funcional
+- o formulario voltou a funcionar depois de corrigir envs SMTP na Vercel
+- Google Ads esta integrado e a conversao de lead do formulario foi ligada ao snippet fornecido
+- o posicionamento do site agora inclui site, redes sociais e trafego pago
+- a pagina de projetos foi refeita e hoje tem Igreja TDA e DropHouse
+- os planos mostram 12x com valor total explicito
+- a base visual esta em um ponto premium tecnico com motion suave
 
 Checklist de retomada:
 
 1. Ler este arquivo
-2. Ler `app/projetos/page.tsx`
+2. Ler `app/page.tsx`
 3. Ler `app/servicos/page.tsx`
-4. Ler `app/api/contato/route.ts`
-5. Conferir se as envs da Vercel continuam preenchidas
+4. Ler `app/projetos/page.tsx`
+5. Ler `components/forms/contact-form.tsx`
+6. Ler `app/api/contato/route.ts`
+7. Conferir envs da Vercel
 
-## Arquivos que Merecem Prioridade Em Qualquer Nova Task
+## Arquivos que Merecem Prioridade em Qualquer Nova Task
 
 - `app/page.tsx`
 - `app/servicos/page.tsx`
 - `app/projetos/page.tsx`
 - `app/contato/page.tsx`
+- `components/forms/contact-form.tsx`
 - `app/api/contato/route.ts`
+- `lib/analytics.ts`
+- `app/layout.tsx`
 - `data/site-content.json`
 - `app/globals.css`
-

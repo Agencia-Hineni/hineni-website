@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { Reveal } from "@/components/animations/reveal";
 import { Container } from "@/components/ui/container";
+import { LinkButton } from "@/components/ui/link-button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SECTION_CLASSES } from "@/lib/constants";
 import { createPageMetadata } from "@/lib/seo";
@@ -10,7 +11,7 @@ import { getSiteContent } from "@/lib/site-content";
 export const metadata: Metadata = createPageMetadata({
   title: "Serviços",
   description:
-    "Escopos digitais da HINENI para empresas que precisam de site institucional, páginas de conversão e base técnica de evolução.",
+    "Escopos digitais da HINENI para empresas que precisam de site institucional, redes sociais, trafego pago e base tecnica de evolucao.",
   path: "/servicos",
 });
 
@@ -43,6 +44,26 @@ const services: Service[] = [
     ],
   },
   {
+    title: "Gestao de Redes Sociais",
+    text: "Planejamento e execucao de conteudo para redes sociais com foco em consistencia de marca, clareza de mensagem e frequencia de publicacao.",
+    idealFor: "Empresas que precisam fortalecer presenca digital e manter comunicacao ativa com o publico.",
+    deliverables: [
+      "Planejamento editorial e calendario de conteudo",
+      "Direcao de copy e posicionamento nas redes",
+      "Acompanhamento da consistencia visual e comunicacional",
+    ],
+  },
+  {
+    title: "Trafego Pago",
+    text: "Estruturacao e gestao de campanhas para gerar alcance, captar demanda qualificada e apoiar metas comerciais com leitura de dados.",
+    idealFor: "Empresas que querem acelerar aquisicao com campanhas mais objetivas e melhor rastreamento.",
+    deliverables: [
+      "Planejamento de campanhas e segmentacao",
+      "Acompanhamento de criativos, anuncios e verba",
+      "Leitura de resultados e ajustes de performance",
+    ],
+  },
+  {
     title: "Evolução e Manutenção Técnica",
     text: "Ciclo de melhorias para manter o site atualizado, com governança de conteúdo e base pronta para novos movimentos.",
     idealFor: "Empresas que querem escalar sem reconstruir o projeto a cada nova demanda.",
@@ -69,6 +90,12 @@ const principles = [
   "Base preparada para SEO, analytics e crescimento contínuo",
 ];
 
+const planBenefits = [
+  "Diagnostico inicial para definir prioridades",
+  "Escopo claro antes da implementacao",
+  "Acompanhamento estrategico da evolucao",
+];
+
 function splitImplementationLabel(value: string) {
   const match = value.match(/^(.*?)(\s*\((.*)\))$/);
 
@@ -79,6 +106,17 @@ function splitImplementationLabel(value: string) {
   return {
     highlight: match[1].trim(),
     detail: match[3].trim(),
+  };
+}
+
+function formatImplementation(value: string) {
+  const { highlight, detail } = splitImplementationLabel(value);
+  const totalMatch = detail.match(/^total\s+(.*)$/i);
+  const normalizedTotal = (totalMatch ? totalMatch[1].trim() : detail || highlight).replace(/^de\s+/i, "");
+
+  return {
+    installment: highlight,
+    total: normalizedTotal,
   };
 }
 
@@ -94,7 +132,7 @@ export default async function ServicosPage() {
               tone="dark"
               eyebrow="Serviços"
               title="Soluções digitais com escopo claro e execução profissional."
-              description="Cada projeto é conduzido com método, acompanhamento e foco em resultado aplicável no dia a dia da empresa."
+              description="Atuamos com sites, redes sociais, trafego pago e evolucao tecnica para empresas que precisam de uma operacao digital mais completa."
             />
           </Reveal>
         </Container>
@@ -102,7 +140,7 @@ export default async function ServicosPage() {
 
       <section className={`section-shell bg-shell ${SECTION_CLASSES.standard}`}>
         <Container>
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {services.map((service, index) => (
               <Reveal key={service.title} delay={index * 0.08}>
                 <article className="premium-card-light card-service h-full rounded-3xl p-8">
@@ -167,41 +205,77 @@ export default async function ServicosPage() {
             {content.plans.map((plan, index) => (
               <Reveal key={plan.name} delay={index * 0.08}>
                 {(() => {
-                  const implementation = splitImplementationLabel(plan.implementation);
+                  const implementation = formatImplementation(plan.implementation);
 
                   return (
-                <article
-                  className={`h-full rounded-3xl p-8 text-slate-200 ${
-                    plan.featured
-                      ? "border border-gold-accent/45 bg-[linear-gradient(165deg,rgba(11,15,25,0.9),rgba(30,58,138,0.36))] shadow-[0_26px_52px_rgba(2,6,23,0.5)]"
-                      : "premium-card-dark"
-                  }`}
-                >
-                  {plan.featured ? (
-                    <span className="inline-flex rounded-full border border-gold-accent/45 bg-gold-accent/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-gold-accent">
-                      Recomendado
-                    </span>
-                  ) : null}
-                  <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                    {plan.name}
-                  </p>
-                  <div className="mt-6 border-t border-slate-700 pt-5">
-                    <p className="text-xs uppercase tracking-[0.14em] text-slate-400">Implementação</p>
-                    <p className="mt-3 text-3xl font-semibold leading-none text-shell">
-                      {implementation.highlight}
-                    </p>
-                    {implementation.detail ? (
-                      <p className="mt-3 text-sm leading-relaxed text-slate-400">{implementation.detail}</p>
-                    ) : null}
-                  </div>
-                  <div className="mt-6 rounded-2xl border border-slate-700/80 bg-slate-950/35 px-5 py-4">
-                    <p className="text-xs uppercase tracking-[0.14em] text-slate-400">Mensalidade de suporte</p>
-                    <p className="mt-2 text-lg font-semibold text-shell">{plan.monthly}</p>
-                    <p className="mt-2 text-xs uppercase tracking-[0.14em] text-slate-400">
-                      {plan.contract}
-                    </p>
-                  </div>
-                </article>
+                    <article
+                      className={`relative flex h-full flex-col overflow-hidden rounded-[2rem] p-8 text-slate-200 ${
+                        plan.featured
+                          ? "border border-gold-accent/45 bg-[radial-gradient(circle_at_top,rgba(183,141,45,0.18),transparent_34%),linear-gradient(165deg,rgba(11,15,25,0.96),rgba(30,58,138,0.4))] shadow-[0_28px_58px_rgba(2,6,23,0.56)]"
+                          : "premium-card-dark"
+                      }`}
+                    >
+                      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+                            {plan.featured ? "Plano em destaque" : "Plano sob medida"}
+                          </p>
+                          <h3 className="mt-3 text-2xl text-shell">{plan.name}</h3>
+                        </div>
+                        {plan.featured ? (
+                          <span className="inline-flex rounded-full border border-gold-accent/45 bg-gold-accent/12 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-gold-accent">
+                            Recomendado
+                          </span>
+                        ) : null}
+                      </div>
+
+                      <div className="mt-8 rounded-[1.75rem] border border-white/10 bg-slate-950/28 p-6">
+                        <p className="text-xs uppercase tracking-[0.14em] text-slate-400">Valor total</p>
+                        <p className="mt-3 text-4xl font-semibold leading-tight text-shell">
+                          {implementation.total}
+                        </p>
+                        <div className="mt-4 rounded-2xl border border-gold-accent/20 bg-gold-accent/8 px-4 py-3">
+                          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-gold-accent">
+                            Parcelado em ate 12x no cartao
+                          </p>
+                          <p className="mt-2 text-base font-medium leading-relaxed text-slate-200">
+                            {implementation.installment}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="mt-5 rounded-[1.5rem] border border-slate-700/80 bg-slate-950/36 px-5 py-4">
+                        <p className="text-xs uppercase tracking-[0.14em] text-slate-400">Mensalidade de suporte</p>
+                        <p className="mt-2 text-xl font-semibold text-shell">{plan.monthly}</p>
+                        <p className="mt-2 text-xs uppercase tracking-[0.14em] text-slate-400">
+                          {plan.contract}
+                        </p>
+                      </div>
+
+                      <div className="mt-6 space-y-3 border-t border-slate-700/80 pt-6">
+                        {planBenefits.map((benefit) => (
+                          <div key={benefit} className="flex items-start gap-3 text-sm leading-relaxed text-slate-300">
+                            <span className="mt-1.5 h-2 w-2 rounded-full bg-gold-accent" />
+                            <span>{benefit}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="mt-8">
+                        <LinkButton
+                          href="/contato"
+                          variant={plan.featured ? "secondary" : "primary"}
+                          size="lg"
+                          className={`w-full ${plan.featured ? "shadow-[0_18px_34px_rgba(183,141,45,0.16)]" : ""}`}
+                        >
+                          Solicitar diagnostico
+                        </LinkButton>
+                        <p className="mt-3 text-center text-xs leading-relaxed text-slate-400">
+                          Conversamos sobre seu momento e indicamos o melhor plano para crescimento.
+                        </p>
+                      </div>
+                    </article>
                   );
                 })()}
               </Reveal>
