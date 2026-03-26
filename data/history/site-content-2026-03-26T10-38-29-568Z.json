@@ -15,22 +15,22 @@
   "plans": [
     {
       "name": "Plano Essencial",
-      "implementation": "(total de R$ 1.797)",
-      "monthly": "R$ 327/mês",
+      "implementation": "12x no cartão (total de R$ 1.799,90)",
+      "monthly": "R$ 299,00/mês",
       "contract": "Contrato de 12 meses",
       "featured": false
     },
     {
       "name": "Plano Profissional",
-      "implementation": "(total de R$ 2.597)",
-      "monthly": "R$ 697/mês",
+      "implementation": "12x de R$ 249,00 (total de R$ 2.899,90)",
+      "monthly": "R$ 399,00/mês",
       "contract": "Contrato de 12 meses",
       "featured": true
     },
     {
       "name": "Plano Premium",
-      "implementation": "(apartir de R$ 4.027)",
-      "monthly": "R$ 1.297/mês",
+      "implementation": "A partir de R$ 4.499,89",
+      "monthly": "R$ 899,00/mês",
       "contract": "Mensalidade recorrente",
       "featured": false
     }
