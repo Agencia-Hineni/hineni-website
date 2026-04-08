@@ -121,7 +121,7 @@ export default async function HomePage() {
           unoptimized
           sizes="100vw"
           quality={75}
-          className="object-cover object-center opacity-40"
+          className="object-cover object-[62%_center] opacity-58 sm:object-center sm:opacity-40"
         />
         <HeroParallax />
         <Container className="relative flex min-h-[100svh] flex-col justify-center">
