@@ -118,6 +118,7 @@ export default async function HomePage() {
           alt="Banner institucional da HINENI"
           fill
           priority
+          unoptimized
           sizes="100vw"
           quality={75}
           className="object-cover object-center opacity-40"
