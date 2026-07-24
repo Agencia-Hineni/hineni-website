@@ -156,9 +156,12 @@ export default function ProjetosPage() {
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-7 inline-flex rounded-full border border-gold-accent/40 bg-gold-accent/10 px-5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-gold-accent hover:bg-gold-accent/18 hover:text-shell"
+                      className="group mt-7 inline-flex w-fit items-center gap-2 rounded-full border border-gold-accent/40 px-5 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-gold-accent transition-colors hover:border-gold-accent/70 hover:bg-gold-accent/10"
                     >
                       Visitar projeto
+                      <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
+                        →
+                      </span>
                     </Link>
                   </div>
                 </article>

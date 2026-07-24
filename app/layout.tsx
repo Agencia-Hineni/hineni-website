@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Inter, Manrope } from "next/font/google";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import { AdsConversionBootstrap } from "@/components/analytics/ads-conversion-bootstrap";
@@ -8,6 +9,18 @@ import { GA_MEASUREMENT_ID, GOOGLE_ADS_ID } from "@/lib/analytics";
 import { SITE_CONFIG } from "@/lib/constants";
 import { siteMetadata } from "@/lib/seo";
 import "./globals.css";
+
+const bodyFont = Inter({
+  subsets: ["latin"],
+  variable: "--font-body-family",
+  display: "swap",
+});
+
+const headingFont = Manrope({
+  subsets: ["latin"],
+  variable: "--font-heading-family",
+  display: "swap",
+});
 
 export const metadata: Metadata = siteMetadata;
 
@@ -41,7 +54,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" className={`${bodyFont.variable} ${headingFont.variable}`}>
       <body className="bg-shell font-sans text-slate-900 antialiased">
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}

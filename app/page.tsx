@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { HeroParallax } from "@/components/animations/hero-parallax";
 import { Reveal } from "@/components/animations/reveal";
+import { ScrollCue } from "@/components/animations/scroll-cue";
 import { Container } from "@/components/ui/container";
 import { HeroActions } from "@/components/ui/hero-actions";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -112,7 +113,7 @@ export default async function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
       />
-      <section className={`hero-depth relative overflow-hidden text-slate-100 ${SECTION_CLASSES.hero}`}>
+      <section className="hero-depth relative overflow-hidden text-slate-100">
         <Image
           src="/branding/banner-principal.webp"
           alt="Banner institucional da HINENI"
@@ -124,19 +125,19 @@ export default async function HomePage() {
           className="object-cover object-[62%_center] opacity-58 sm:object-center sm:opacity-40"
         />
         <HeroParallax />
-        <Container className="relative flex min-h-[100svh] flex-col justify-center">
+        <Container className="relative flex min-h-[100svh] flex-col justify-center py-16">
           <Reveal transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.04 }}>
             <p className="mb-8 inline-flex rounded-full border border-slate-600/80 bg-slate-900/72 px-5 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-slate-300">
               Estruturacao digital para empresas em expansao
             </p>
           </Reveal>
           <Reveal delay={0.12}>
-            <h1 className="max-w-5xl text-5xl leading-[0.94] text-shell sm:text-6xl lg:text-7xl">
+            <h1 className="max-w-4xl text-5xl leading-[0.96] text-shell sm:text-6xl lg:text-7xl">
               Tecnologia, marketing e estrutura digital para empresas que querem crescer com consistencia.
             </h1>
           </Reveal>
           <Reveal delay={0.2}>
-            <p className="mt-8 max-w-3xl text-lg leading-relaxed text-slate-300 sm:text-xl">
+            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-slate-300 sm:text-xl">
               A HINENI estrutura, posiciona e impulsiona empresas atraves de tecnologia, marketing e estrategia digital.
             </p>
           </Reveal>
@@ -144,23 +145,33 @@ export default async function HomePage() {
             <HeroActions />
           </Reveal>
 
-          <div className="mt-10 flex flex-wrap gap-3">
+          <Reveal delay={0.4} className="mt-14 flex flex-wrap gap-3">
             {trustSignals.map((signal) => (
               <span key={signal} className="data-pill">
                 {signal}
               </span>
             ))}
-          </div>
+          </Reveal>
+        </Container>
+        <ScrollCue />
+      </section>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+      <section className={`section-shell bg-shell ${SECTION_CLASSES.standard}`}>
+        <Container>
+          <SectionHeading
+            eyebrow="O que fazemos"
+            title="Quatro frentes para estruturar sua presenca digital."
+            description="Da criacao do site a gestao de trafego, cada frente segue o mesmo padrao tecnico e estrategico."
+          />
+          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {services.map((service, index) => (
-              <Reveal key={service.title} delay={0.36 + index * 0.08}>
-                <article className="premium-card-dark h-full rounded-2xl p-6 backdrop-blur-sm">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-gold-accent/30 bg-gold-accent/10 text-gold-accent">
+              <Reveal key={service.title} delay={index * 0.06}>
+                <article className="premium-card-light card-service h-full rounded-2xl p-6">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-gold-accent/25 bg-gold-accent/8 text-gold-accent">
                     {service.icon}
                   </div>
-                  <h2 className="mt-5 text-lg font-semibold text-shell">{service.title}</h2>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-300">{service.text}</p>
+                  <h2 className="mt-5 text-lg font-semibold text-deep-blue">{service.title}</h2>
+                  <p className="mt-3 text-sm leading-relaxed text-slate-600">{service.text}</p>
                 </article>
               </Reveal>
             ))}
@@ -168,20 +179,21 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      <section className={`section-shell bg-shell ${SECTION_CLASSES.standard}`}>
+      <section className={`section-shell soft-divider bg-shell ${SECTION_CLASSES.standard}`}>
         <Container>
           <SectionHeading
             eyebrow="Como trabalhamos"
             title="Metodo profissional para estruturar, implementar e acelerar a operacao digital."
             description="Conduzimos cada projeto com visao estrategica e execucao tecnica para transformar a presenca digital em uma base real de crescimento."
           />
-          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-14 grid gap-x-10 gap-y-10 md:grid-cols-2">
             {workModel.map((item, index) => (
-              <Reveal key={item.title} delay={index * 0.08}>
-                <article className="premium-card-light h-full rounded-2xl p-6">
-                  <h3 className="text-lg font-semibold text-deep-blue">{item.title}</h3>
-                  <p className="mt-3 max-w-sm text-sm leading-relaxed text-slate-600">{item.text}</p>
-                </article>
+              <Reveal key={item.title} delay={index * 0.06} className="flat-row">
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-accent">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-2 text-lg font-semibold text-deep-blue">{item.title}</h3>
+                <p className="mt-2 max-w-sm text-sm leading-relaxed text-slate-600">{item.text}</p>
               </Reveal>
             ))}
           </div>
@@ -189,44 +201,36 @@ export default async function HomePage() {
       </section>
 
       <section className={`section-shell soft-divider bg-shell ${SECTION_CLASSES.compact}`}>
-        <Container>
+        <Container className="grid gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-start">
           <Reveal>
             <SectionHeading
               eyebrow="Compromissos tecnicos"
               title="Cada entrega precisa sustentar posicionamento, operacao e crescimento."
               description="Nao atuamos apenas com ativos isolados. Construimos uma estrutura digital que acompanhe a evolucao da empresa com clareza e consistencia."
+              className="mb-0"
             />
+            <div className="mt-8 space-y-4">
+              {commitments.map((item) => (
+                <div key={item} className="flex items-start gap-3 text-sm leading-relaxed text-slate-700">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-accent" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
           </Reveal>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {commitments.map((item, index) => (
-              <Reveal key={item} delay={index * 0.06}>
-                <article className="premium-card-light rounded-2xl px-6 py-5">
-                  <p className="text-sm font-medium leading-relaxed text-slate-700">{item}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </section>
-
-      <section className={`section-shell soft-divider bg-shell ${SECTION_CLASSES.compact}`}>
-        <Container>
-          <Reveal>
-            <SectionHeading
-              eyebrow="Atendimento"
-              title={content.localSeo.headline}
-              description={content.localSeo.description}
-            />
+          <Reveal delay={0.1}>
+            <div className="premium-card-light rounded-2xl p-7">
+              <p className="text-eyebrow text-tech-blue">{content.localSeo.headline}</p>
+              <p className="mt-3 text-sm leading-relaxed text-slate-600">{content.localSeo.description}</p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {content.localSeo.cities.map((city) => (
+                  <span key={city} className="data-pill">
+                    {city}
+                  </span>
+                ))}
+              </div>
+            </div>
           </Reveal>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {content.localSeo.cities.map((city, index) => (
-              <Reveal key={city} delay={index * 0.06}>
-                <article className="premium-card-light rounded-2xl px-6 py-5">
-                  <p className="text-sm font-medium text-slate-700">{city}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
         </Container>
       </section>
 
@@ -248,7 +252,7 @@ export default async function HomePage() {
               </p>
               <Link
                 href="/contato"
-                className="mt-7 inline-flex items-center text-sm font-semibold uppercase tracking-[0.16em] text-gold-accent hover:text-shell"
+                className="link-underline mt-7 inline-flex items-center text-sm font-semibold uppercase tracking-[0.16em] text-gold-accent hover:text-shell"
               >
                 Solicitar diagnostico gratuito
               </Link>

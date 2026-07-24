@@ -43,14 +43,11 @@ export default function SobrePage() {
             <h1 className="mt-5 max-w-4xl text-4xl leading-[1.06] text-deep-blue sm:text-5xl lg:text-6xl">
               Solucoes digitais conduzidas com metodo, clareza e responsabilidade tecnica.
             </h1>
-            <p className="mt-8 max-w-3xl text-lg leading-relaxed text-slate-600">
+            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-slate-600">
               A HINENI atende empresas que precisam transformar site, redes sociais e campanhas em uma operacao digital mais coerente e eficiente.
             </p>
-            <p className="mt-5 max-w-3xl text-base leading-relaxed text-slate-600">
-              Nossa abordagem combina diagnostico de contexto, execucao estruturada e acompanhamento continuo para manter o projeto util no dia a dia.
-            </p>
-            <p className="mt-5 max-w-3xl text-base leading-relaxed text-slate-600">
-              O objetivo e entregar uma base digital solida, preparada para crescer junto com as demandas de marketing, comercial e atendimento.
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-600">
+              Combinamos diagnostico de contexto, execucao estruturada e acompanhamento continuo — entregando uma base digital solida, pronta para crescer junto com marketing, comercial e atendimento.
             </p>
           </Reveal>
 

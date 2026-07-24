@@ -34,28 +34,35 @@ export default async function ContatoPage() {
             description="Preencha os dados ao lado para receber um retorno objetivo com orientação inicial de estrutura, prazo e investimento."
             className="mb-0"
           />
-          <div className="mt-8 grid gap-3 text-sm text-slate-600">
-            <p className="card-contact rounded-xl px-4 py-3">
-              Atendimento: {content.contact.email}
-            </p>
-            <p className="card-contact rounded-xl px-4 py-3">
-              Prazo de retorno: até 1 dia útil
-            </p>
-            <p className="card-contact rounded-xl px-4 py-3">
-              Formato: reunião online de alinhamento
-            </p>
-            <p className="card-contact rounded-xl px-4 py-3">
-              Instagram: {content.contact.instagram}
-            </p>
-          </div>
+          <dl className="mt-8 divide-y divide-slate-200 border-t border-slate-200 text-sm">
+            <div className="flex items-center justify-between gap-4 py-3">
+              <dt className="text-slate-400">Atendimento</dt>
+              <dd className="font-medium text-slate-700">{content.contact.email}</dd>
+            </div>
+            <div className="flex items-center justify-between gap-4 py-3">
+              <dt className="text-slate-400">Prazo de retorno</dt>
+              <dd className="font-medium text-slate-700">Até 1 dia útil</dd>
+            </div>
+            <div className="flex items-center justify-between gap-4 py-3">
+              <dt className="text-slate-400">Formato</dt>
+              <dd className="font-medium text-slate-700">Reunião online</dd>
+            </div>
+            <div className="flex items-center justify-between gap-4 py-3">
+              <dt className="text-slate-400">Instagram</dt>
+              <dd className="font-medium text-slate-700">{content.contact.instagram}</dd>
+            </div>
+          </dl>
 
-          <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-6">
+          <div className="premium-card-light mt-8 rounded-2xl p-6">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-tech-blue">
               Para agilizar o diagnóstico
             </p>
-            <ul className="mt-4 space-y-2 text-sm text-slate-600">
+            <ul className="mt-4 space-y-2.5 text-sm text-slate-600">
               {requirements.map((item) => (
-                <li key={item}>- {item}</li>
+                <li key={item} className="flex items-start gap-3">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-accent" />
+                  <span>{item}</span>
+                </li>
               ))}
             </ul>
           </div>

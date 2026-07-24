@@ -1,5 +1,6 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { Container } from "@/components/ui/container";
+import { LinkButton } from "@/components/ui/link-button";
 import { NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
 
 const quickLinks = NAV_LINKS.filter((link) => link.href !== "/");
@@ -8,20 +9,17 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-slate-800 bg-ink text-slate-300">
-      <Container className="grid gap-10 py-12 md:grid-cols-[1fr_auto] md:items-end">
+    <footer className="border-t border-slate-800/80 bg-ink text-slate-300">
+      <Container className="grid gap-10 py-14 md:grid-cols-[1fr_auto] md:items-end">
         <div>
           <p className="text-sm font-semibold tracking-[0.25em] text-shell">HINENI</p>
           <p className="mt-4 max-w-lg text-sm leading-relaxed text-slate-400">
             Estruturas digitais para empresas que precisam de comunicação clara, operação confiável e evolução contínua.
           </p>
           <p className="mt-5 text-xs uppercase tracking-[0.18em] text-slate-500">{SITE_CONFIG.contactEmail}</p>
-          <Link
-            href="/contato"
-            className="mt-5 inline-flex rounded-full border border-gold-accent/40 bg-gold-accent/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-gold-accent hover:bg-gold-accent/20 hover:text-shell"
-          >
+          <LinkButton href="/contato" variant="ghost" size="sm" className="mt-6">
             Agendar diagnóstico
-          </Link>
+          </LinkButton>
         </div>
 
         <div className="flex flex-wrap gap-2">
@@ -29,15 +27,15 @@ export function SiteFooter() {
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-full border border-slate-700 px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-slate-300 transition-colors hover:border-slate-500 hover:text-shell"
+              className="rounded-full border border-slate-800 px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-slate-400 transition-colors hover:border-slate-600 hover:text-shell"
             >
               {item.label}
             </Link>
           ))}
         </div>
       </Container>
-      <Container className="border-t border-slate-800 py-5">
-        <p className="text-xs uppercase tracking-[0.15em] text-slate-500">
+      <Container className="border-t border-slate-800/80 py-5">
+        <p className="text-xs uppercase tracking-[0.15em] text-slate-600">
           {year} HINENI. Soluções digitais empresariais.
         </p>
       </Container>

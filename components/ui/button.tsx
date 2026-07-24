@@ -11,10 +11,10 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "border border-transparent bg-tech-blue text-shell shadow-[0_14px_30px_rgba(30,58,138,0.26)] hover:bg-[#2749ad]",
+    "border border-transparent bg-tech-blue text-shell shadow-[0_14px_30px_rgba(30,58,138,0.22)] hover:bg-[#2749ad]",
   secondary:
-    "border border-gold-accent/40 bg-gold-accent/10 text-slate-100 hover:bg-gold-accent/20",
-  ghost: "border border-slate-500/80 bg-slate-900/45 text-slate-100 hover:bg-slate-900/80",
+    "border border-gold-accent/45 bg-transparent text-slate-100 hover:border-gold-accent/70 hover:bg-gold-accent/10",
+  ghost: "border border-slate-600/70 bg-transparent text-slate-200 hover:border-slate-400 hover:bg-slate-900/50",
 };
 
 const sizes: Record<ButtonSize, string> = {

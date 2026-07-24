@@ -185,27 +185,6 @@ export default async function ServicosPage() {
         </Container>
       </section>
 
-      <section className={`section-shell soft-divider bg-shell ${SECTION_CLASSES.compact}`}>
-        <Container>
-          <Reveal>
-            <SectionHeading
-              eyebrow="Diretrizes de execução"
-              title="Padrão de trabalho para manter qualidade e previsibilidade."
-              description="A operação é estruturada para que o projeto avance com segurança técnica e alinhamento com o time da empresa."
-            />
-          </Reveal>
-          <div className="mt-10 grid gap-4 md:grid-cols-2">
-            {principles.map((item, index) => (
-              <Reveal key={item} delay={index * 0.06}>
-                <article className="premium-card-light rounded-2xl px-6 py-5">
-                  <p className="text-sm font-medium leading-relaxed text-slate-700">{item}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </section>
-
       <section className={`soft-divider bg-deep-blue ${SECTION_CLASSES.compact}`}>
         <Container>
           <Reveal>
@@ -216,7 +195,7 @@ export default async function ServicosPage() {
               description="Escolha um ponto de partida e evolua a estrutura conforme a demanda do negócio."
             />
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {content.plans.map((plan, index) => (
               <Reveal key={plan.name} delay={index * 0.08}>
                 {(() => {
@@ -225,7 +204,7 @@ export default async function ServicosPage() {
 
                   return (
                     <article
-                      className={`relative flex h-full flex-col overflow-hidden rounded-[2rem] p-8 text-slate-200 ${
+                      className={`relative flex h-full flex-col overflow-hidden rounded-[2rem] p-6 text-slate-200 sm:p-8 ${
                         plan.featured
                           ? "border border-gold-accent/45 bg-[radial-gradient(circle_at_top,rgba(183,141,45,0.18),transparent_34%),linear-gradient(165deg,rgba(11,15,25,0.96),rgba(30,58,138,0.4))] shadow-[0_28px_58px_rgba(2,6,23,0.56)]"
                           : "premium-card-dark"
@@ -322,24 +301,35 @@ export default async function ServicosPage() {
               description="A condução segue um fluxo simples e transparente para facilitar decisão, aprovação e implantação."
               className="mb-0"
             />
-          </Reveal>
-          <Reveal delay={0.1}>
-            <ol className="space-y-4">
-              {process.map((step) => (
-                <li
-                  key={step}
-                  className="premium-card-dark rounded-2xl px-5 py-4 text-sm leading-relaxed text-slate-200"
-                >
-                  {step}
-                </li>
+            <div className="mt-8 space-y-3 border-t border-slate-800 pt-6">
+              {principles.map((item) => (
+                <div key={item} className="flex items-start gap-3 text-sm leading-relaxed text-slate-300">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-accent" />
+                  <span>{item}</span>
+                </div>
               ))}
-            </ol>
+            </div>
             <Link
               href="/contato"
-              className="mt-8 inline-flex rounded-full border border-gold-accent/45 bg-gold-accent/10 px-6 py-3 text-xs font-semibold uppercase tracking-[0.17em] text-slate-100 transition-colors hover:bg-gold-accent/20"
+              className="link-underline mt-8 inline-flex items-center text-xs font-semibold uppercase tracking-[0.17em] text-gold-accent hover:text-shell"
             >
               Solicitar proposta
             </Link>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <ol className="space-y-4">
+              {process.map((step, index) => (
+                <li
+                  key={step}
+                  className="premium-card-dark flex items-start gap-4 rounded-2xl px-5 py-4 text-sm leading-relaxed text-slate-200"
+                >
+                  <span className="text-xs font-semibold text-gold-accent">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span>{step}</span>
+                </li>
+              ))}
+            </ol>
           </Reveal>
         </Container>
       </section>
