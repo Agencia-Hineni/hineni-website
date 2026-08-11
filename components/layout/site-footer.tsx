@@ -16,7 +16,7 @@ export function SiteFooter() {
           <p className="mt-4 max-w-lg text-sm leading-relaxed text-slate-400">
             Estruturas digitais para empresas que precisam de comunicação clara, operação confiável e evolução contínua.
           </p>
-          <p className="mt-5 text-xs uppercase tracking-[0.18em] text-slate-500">{SITE_CONFIG.contactEmail}</p>
+          <p className="mt-5 text-xs uppercase tracking-[0.18em] text-slate-400">{SITE_CONFIG.contactEmail}</p>
           <LinkButton href="/contato" variant="ghost" size="sm" className="mt-6">
             Agendar diagnóstico
           </LinkButton>
@@ -35,10 +35,10 @@ export function SiteFooter() {
         </div>
       </Container>
       <Container className="flex flex-col gap-2 border-t border-slate-800/80 py-5 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-xs uppercase tracking-[0.15em] text-slate-600">
+        <p className="text-xs uppercase tracking-[0.15em] text-slate-400">
           {year} HINENI. Soluções digitais empresariais.
         </p>
-        <p className="text-xs uppercase tracking-[0.15em] text-slate-600">CNPJ {SITE_CONFIG.cnpj}</p>
+        <p className="text-xs uppercase tracking-[0.15em] text-slate-400">CNPJ {SITE_CONFIG.cnpj}</p>
       </Container>
     </footer>
   );
