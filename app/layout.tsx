@@ -31,6 +31,7 @@ const organizationSchema = {
   url: SITE_CONFIG.siteUrl,
   logo: `${SITE_CONFIG.siteUrl}/branding/favicon-final-51.png`,
   email: SITE_CONFIG.contactEmail,
+  taxID: SITE_CONFIG.cnpj,
   sameAs: [SITE_CONFIG.instagram],
   slogan: SITE_CONFIG.tagline,
 };

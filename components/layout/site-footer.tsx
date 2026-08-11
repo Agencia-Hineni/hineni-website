@@ -34,10 +34,11 @@ export function SiteFooter() {
           ))}
         </div>
       </Container>
-      <Container className="border-t border-slate-800/80 py-5">
+      <Container className="flex flex-col gap-2 border-t border-slate-800/80 py-5 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs uppercase tracking-[0.15em] text-slate-600">
           {year} HINENI. Soluções digitais empresariais.
         </p>
+        <p className="text-xs uppercase tracking-[0.15em] text-slate-600">CNPJ {SITE_CONFIG.cnpj}</p>
       </Container>
     </footer>
   );

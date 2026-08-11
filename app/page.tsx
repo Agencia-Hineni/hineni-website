@@ -7,7 +7,7 @@ import { ScrollCue } from "@/components/animations/scroll-cue";
 import { Container } from "@/components/ui/container";
 import { HeroActions } from "@/components/ui/hero-actions";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { SECTION_CLASSES } from "@/lib/constants";
+import { SECTION_CLASSES, SITE_CONFIG } from "@/lib/constants";
 import { createPageMetadata } from "@/lib/seo";
 import { getSiteContent } from "@/lib/site-content";
 
@@ -104,6 +104,7 @@ export default async function HomePage() {
     areaServed: content.localSeo.cities.map((city) => ({ "@type": "City", name: city })),
     description: content.localSeo.description,
     email: content.contact.email,
+    taxID: SITE_CONFIG.cnpj,
     url: "https://hineni.com.br",
   };
 

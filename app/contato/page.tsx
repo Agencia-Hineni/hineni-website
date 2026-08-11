@@ -3,7 +3,7 @@ import { Reveal } from "@/components/animations/reveal";
 import { ContactForm } from "@/components/forms/contact-form";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { SECTION_CLASSES } from "@/lib/constants";
+import { SECTION_CLASSES, SITE_CONFIG } from "@/lib/constants";
 import { createPageMetadata } from "@/lib/seo";
 import { getSiteContent } from "@/lib/site-content";
 
@@ -50,6 +50,10 @@ export default async function ContatoPage() {
             <div className="flex items-center justify-between gap-4 py-3">
               <dt className="text-slate-400">Instagram</dt>
               <dd className="font-medium text-slate-700">{content.contact.instagram}</dd>
+            </div>
+            <div className="flex items-center justify-between gap-4 py-3">
+              <dt className="text-slate-400">CNPJ</dt>
+              <dd className="font-medium text-slate-700">{SITE_CONFIG.cnpj}</dd>
             </div>
           </dl>
 

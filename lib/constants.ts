@@ -3,6 +3,7 @@
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://hineni.com.br",
   contactEmail: "atendimento@hineni.com.br",
   instagram: "https://instagram.com/hineni.digital",
+  cnpj: "65.519.046/0001-67",
   tagline: "Tecnologia, marketing e estrutura digital para empresas que querem crescer com consistencia",
   defaultTitle: "HINENI | Agencia de Estruturacao Digital e Crescimento",
   defaultDescription:
