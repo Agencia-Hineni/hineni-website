@@ -241,6 +241,20 @@ textarea:focus-visible {
   background-size: 100% 1px;
 }
 
+.reveal-motion {
+  opacity: 0;
+  transform: translateY(var(--reveal-y, 30px));
+  transition: opacity var(--reveal-duration, 680ms) var(--ease-premium) var(--reveal-delay, 0ms),
+    transform var(--reveal-duration, 680ms) var(--ease-premium) var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal-motion[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
+}
+
 @keyframes scroll-cue-dot {
   0% {
     transform: translateY(0);
@@ -263,6 +277,12 @@ textarea:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .reveal-motion {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
   .scroll-cue-dot {
     animation: none;
   }

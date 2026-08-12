@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/ui/container";
 import { LinkButton } from "@/components/ui/link-button";
 import { NAV_LINKS } from "@/lib/constants";
@@ -12,7 +11,6 @@ import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
   const pathname = usePathname();
-  const shouldReduceMotion = useReducedMotion();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -23,10 +21,6 @@ export function SiteHeader() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const pillTransition = shouldReduceMotion
-    ? { duration: 0 }
-    : { type: "spring" as const, stiffness: 380, damping: 32 };
 
   return (
     <header
@@ -63,17 +57,12 @@ export function SiteHeader() {
                 href={item.href}
                 className={cn(
                   "relative rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] transition-colors",
-                  active ? "text-shell" : "text-slate-400 hover:text-shell",
+                  active
+                    ? "bg-slate-800/80 text-shell"
+                    : "text-slate-400 hover:bg-slate-900/55 hover:text-shell",
                 )}
               >
-                {active ? (
-                  <motion.span
-                    layoutId="nav-active-pill"
-                    transition={pillTransition}
-                    className="absolute inset-0 rounded-full bg-slate-800/80"
-                  />
-                ) : null}
-                <span className="relative">{item.label}</span>
+                {item.label}
               </Link>
             );
           })}
@@ -113,59 +102,53 @@ export function SiteHeader() {
         </button>
       </Container>
 
-      <AnimatePresence>
-        {mobileOpen ? (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: shouldReduceMotion ? 0 : 0.2 }}
-              onClick={() => setMobileOpen(false)}
-              className="fixed inset-0 z-40 bg-[#020617]/55 backdrop-blur-[2px] md:hidden"
-            />
-            <motion.div
-              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: 24 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: 24 }}
-              transition={{ duration: shouldReduceMotion ? 0 : 0.24, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed right-4 top-[4.5rem] z-50 w-[calc(100%-2rem)] max-w-sm rounded-2xl border border-slate-700 bg-[#0B0F19]/97 p-4 shadow-[0_24px_50px_rgba(2,6,23,0.55)] md:hidden"
-            >
-              <nav className="flex flex-col gap-1">
-                {NAV_LINKS.map((item) => {
-                  const active =
-                    pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+      <div
+        onClick={() => setMobileOpen(false)}
+        className={cn(
+          "fixed inset-0 z-40 bg-[#020617]/55 backdrop-blur-[2px] transition-opacity duration-200 md:hidden",
+          mobileOpen ? "opacity-100" : "pointer-events-none opacity-0",
+        )}
+      />
+      <div
+        className={cn(
+          "fixed right-4 top-[4.5rem] z-50 w-[calc(100%-2rem)] max-w-sm rounded-2xl border border-slate-700 bg-[#0B0F19]/97 p-4 shadow-[0_24px_50px_rgba(2,6,23,0.55)] transition-[opacity,transform] duration-300 md:hidden",
+          mobileOpen
+            ? "translate-x-0 opacity-100"
+            : "pointer-events-none translate-x-6 opacity-0",
+        )}
+      >
+        <nav className="flex flex-col gap-1">
+          {NAV_LINKS.map((item) => {
+            const active =
+              pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
 
-                  return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onClick={() => setMobileOpen(false)}
-                      className={cn(
-                        "rounded-xl px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em]",
-                        active
-                          ? "bg-slate-800/80 text-shell"
-                          : "text-slate-400 hover:bg-slate-900/75 hover:text-shell",
-                      )}
-                    >
-                      {item.label}
-                    </Link>
-                  );
-                })}
-              </nav>
-              <LinkButton
-                href="/contato"
-                variant="secondary"
-                size="md"
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
                 onClick={() => setMobileOpen(false)}
-                className="mt-3 w-full"
+                className={cn(
+                  "rounded-xl px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em]",
+                  active
+                    ? "bg-slate-800/80 text-shell"
+                    : "text-slate-400 hover:bg-slate-900/75 hover:text-shell",
+                )}
               >
-                Falar com a Hineni
-              </LinkButton>
-            </motion.div>
-          </>
-        ) : null}
-      </AnimatePresence>
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
+        <LinkButton
+          href="/contato"
+          variant="secondary"
+          size="md"
+          onClick={() => setMobileOpen(false)}
+          className="mt-3 w-full"
+        >
+          Falar com a Hineni
+        </LinkButton>
+      </div>
     </header>
   );
 }

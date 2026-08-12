@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 type ScrollCueProps = {
@@ -9,25 +9,38 @@ type ScrollCueProps = {
 };
 
 export function ScrollCue({ className, label = "Role para explorar" }: ScrollCueProps) {
-  const shouldReduceMotion = useReducedMotion();
-  const { scrollY } = useScroll();
-  const opacity = useTransform(scrollY, [0, 160], [1, 0]);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    let frame = 0;
+
+    const onScroll = () => {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(() => {
+        setVisible(window.scrollY < 160);
+      });
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
 
   function handleClick() {
     window.scrollTo({ top: window.innerHeight * 0.86, behavior: "smooth" });
   }
 
   return (
-    <motion.button
+    <button
       type="button"
       onClick={handleClick}
       aria-label={label}
-      style={shouldReduceMotion ? undefined : { opacity }}
-      initial={shouldReduceMotion ? undefined : { opacity: 0, y: -8 }}
-      animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
       className={cn(
         "group absolute bottom-9 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 sm:flex",
+        visible ? "opacity-100" : "pointer-events-none opacity-0",
         className,
       )}
     >
@@ -35,13 +48,8 @@ export function ScrollCue({ className, label = "Role para explorar" }: ScrollCue
         {label}
       </span>
       <span className="flex h-9 w-6 items-start justify-center rounded-full border border-slate-500/70 p-1.5 transition-colors group-hover:border-slate-300">
-        <span
-          className={cn(
-            "h-1.5 w-1.5 rounded-full bg-gold-accent",
-            !shouldReduceMotion && "scroll-cue-dot",
-          )}
-        />
+        <span className="scroll-cue-dot h-1.5 w-1.5 rounded-full bg-gold-accent" />
       </span>
-    </motion.button>
+    </button>
   );
 }

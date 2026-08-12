@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
-import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import { AdsConversionBootstrap } from "@/components/analytics/ads-conversion-bootstrap";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
-import { GA_MEASUREMENT_ID, GOOGLE_ADS_ID } from "@/lib/analytics";
 import { SITE_CONFIG } from "@/lib/constants";
 import { siteMetadata } from "@/lib/seo";
 import "./globals.css";
@@ -36,19 +34,6 @@ const organizationSchema = {
   slogan: SITE_CONFIG.tagline,
 };
 
-const gtagBootstrap = `
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  window.gtag = gtag;
-  gtag('js', new Date());
-  gtag('config', '${GOOGLE_ADS_ID}');
-  ${
-    GA_MEASUREMENT_ID
-      ? `gtag('config', '${GA_MEASUREMENT_ID}', { page_path: window.location.pathname });`
-      : ""
-  }
-`;
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -57,14 +42,6 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${bodyFont.variable} ${headingFont.variable}`}>
       <body className="bg-shell font-sans text-slate-900 antialiased">
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="google-gtag-bootstrap" strategy="afterInteractive">
-          {gtagBootstrap}
-        </Script>
-
         <a href="#conteudo-principal" className="skip-link">
           Ir para o conteudo principal
         </a>
