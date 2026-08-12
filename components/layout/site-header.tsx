@@ -113,8 +113,8 @@ export function SiteHeader() {
         className={cn(
           "fixed right-4 top-[4.5rem] z-50 w-[calc(100%-2rem)] max-w-sm rounded-2xl border border-slate-700 bg-[#0B0F19]/97 p-4 shadow-[0_24px_50px_rgba(2,6,23,0.55)] transition-[opacity,transform] duration-300 md:hidden",
           mobileOpen
-            ? "translate-x-0 opacity-100"
-            : "pointer-events-none translate-x-6 opacity-0",
+            ? "translate-y-0 scale-100 opacity-100"
+            : "pointer-events-none translate-y-2 scale-[0.98] opacity-0",
         )}
       >
         <nav className="flex flex-col gap-1">
