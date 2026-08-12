@@ -268,16 +268,17 @@ Cases atuais:
 
 Assets atuais:
 
-- `public/branding/tda-cover.png`
-- `public/branding/drophouse-cover.png`
+- `public/branding/tda-cover.webp`
 - `public/branding/drophouse-cover.webp`
+
+Dados dos projetos vivem em `lib/projects.ts` (extraido de `app/projetos/page.tsx` em 2026-08-11, reaproveitado tambem numa secao de portfolio na Home).
 
 Observacoes importantes:
 
 - a pagina de projetos foi reescrita para ficar mais profissional
 - a DropHouse foi adicionada como case de e-commerce
 - a capa da DropHouse foi gerada a partir de screenshot real do site
-- a versao usada no projeto e a `webp`, porque a `png` estava pesada e podia quebrar mais facilmente
+- em 2026-08-11 os `.png` originais (`tda-cover.png` 2,15MB, `drophouse-cover.png` 900KB) foram convertidos pra `.webp` (via `sharp`, resize 1600px + quality 78) e os `.png` foram apagados — os originais eram screenshots gigantes que so foram notados como problema quando a secao de portfolio foi adicionada na Home e o PageSpeed mobile caiu de 92 pra 82. `tda-cover.webp` ficou com 38KB, `drophouse-cover.webp` com 28KB.
 
 ## Servicos e Escopos
 
@@ -349,8 +350,8 @@ Ajustes ja feitos:
 
 Pontos que ainda valem melhoria:
 
-- `public/branding/tda-cover.png` ainda pode ser convertido para `webp`
-- revisar outros assets grandes
+- `public/branding/banner-principal.png` (803KB) ainda existe so pra Open Graph/Twitter card (`lib/seo.ts`) — nao afeta o carregamento real da pagina (crawlers de rede social buscam separado), entao nao e prioridade
+- `public/branding/favicon-final-51.png` (405KB) e o arquivo fonte do logo no header, mas o `next/image` ja otimiza o tamanho servido de verdade (36x36px) — o arquivo fonte grande so importa pra build, nao pro usuario final
 
 ## Ortografia e Encoding
 

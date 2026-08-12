@@ -31,7 +31,7 @@ export const projects: Project[] = [
       "Contato e acesso às informações principais em menos cliques",
     ],
     stack: ["Next.js", "Tailwind CSS", "Formulários"],
-    imageSrc: "/branding/tda-cover.png",
+    imageSrc: "/branding/tda-cover.webp",
     imageAlt: "Capa do projeto Igreja TDA",
     accentClass:
       "bg-[radial-gradient(circle_at_18%_22%,rgba(184,148,66,0.2),transparent_28%),linear-gradient(180deg,rgba(11,15,25,0.1),rgba(11,15,25,0.88))]",
@@ -53,7 +53,7 @@ export const projects: Project[] = [
       "Base visual e técnica pronta para expansão da loja",
     ],
     stack: ["E-commerce", "Catálogo", "UX Mobile"],
-    imageSrc: "/branding/drophouse-cover.png",
+    imageSrc: "/branding/drophouse-cover.webp",
     imageAlt: "Capa do projeto DropHouse",
     accentClass:
       "bg-[radial-gradient(circle_at_82%_18%,rgba(30,58,138,0.35),transparent_26%),radial-gradient(circle_at_24%_78%,rgba(184,148,66,0.18),transparent_32%),linear-gradient(180deg,rgba(8,13,24,0.16),rgba(8,13,24,0.92))]",
