@@ -80,7 +80,7 @@ export function SiteHeader() {
         </nav>
 
         <LinkButton href="/contato" variant="secondary" size="sm" className="hidden sm:inline-flex">
-          Agendar diagnóstico
+          Falar com a Hineni
         </LinkButton>
 
         <button
@@ -160,7 +160,7 @@ export function SiteHeader() {
                 onClick={() => setMobileOpen(false)}
                 className="mt-3 w-full"
               >
-                Agendar diagnóstico
+                Falar com a Hineni
               </LinkButton>
             </motion.div>
           </>

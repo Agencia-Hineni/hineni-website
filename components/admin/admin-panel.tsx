@@ -7,7 +7,7 @@ import type { SiteContent } from "@/lib/site-content";
 const emptyContent: SiteContent = {
   contact: { email: "", instagram: "" },
   localSeo: { headline: "", description: "", cities: [] },
-  plans: [],
+  services: [],
 };
 
 function PanelSection({
@@ -151,8 +151,8 @@ export function AdminPanel() {
             <p className="mt-2 text-lg text-deep-blue">{loaded ? "Painel carregado" : "Aguardando acesso"}</p>
           </div>
           <div className="rounded-2xl border border-slate-200/70 bg-white/78 px-4 py-4">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Planos</p>
-            <p className="mt-2 text-lg text-deep-blue">{content.plans.length || 0} configurados</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Serviços</p>
+            <p className="mt-2 text-lg text-deep-blue">{content.services.length || 0} configurados</p>
           </div>
           <div className="rounded-2xl border border-slate-200/70 bg-white/78 px-4 py-4">
             <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Snapshots</p>
@@ -260,48 +260,34 @@ export function AdminPanel() {
           </PanelSection>
 
           <PanelSection
-            eyebrow="Planos"
-            title="Oferta comercial"
-            description="Revise nomes, valores e destaque comercial de cada plano diretamente no painel."
+            eyebrow="Serviços"
+            title="Catálogo e preços"
+            description="Revise nome, descrição e preço inicial de cada serviço exibido no site."
           >
             <div className="space-y-4">
-              {content.plans.map((plan, idx) => (
+              {content.services.map((service, idx) => (
                 <article
-                  key={`${plan.name}-${idx}`}
+                  key={`${service.name}-${idx}`}
                   className="rounded-[1.75rem] border border-slate-200/80 bg-[linear-gradient(165deg,rgba(255,255,255,0.95),rgba(248,250,252,0.9))] p-5 shadow-[0_12px_28px_rgba(15,23,42,0.06)]"
                 >
-                  <div className="flex flex-col gap-3 border-b border-slate-200/80 pb-4 sm:flex-row sm:items-center sm:justify-between">
-                    <div>
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-tech-blue">
-                        Plano {String(idx + 1).padStart(2, "0")}
-                      </p>
-                      <h3 className="mt-2 text-xl text-deep-blue">{plan.name || "Novo plano"}</h3>
-                    </div>
-                    <label className="inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-slate-600">
-                      <input
-                        type="checkbox"
-                        checked={plan.featured}
-                        onChange={(event) =>
-                          setContent((prev) => ({
-                            ...prev,
-                            plans: prev.plans.map((item, i) =>
-                              i === idx ? { ...item, featured: event.target.checked } : item,
-                            ),
-                          }))
-                        }
-                      />
-                      Plano destacado
-                    </label>
+                  <div className="border-b border-slate-200/80 pb-4">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-tech-blue">
+                      Serviço {String(idx + 1).padStart(2, "0")}
+                    </p>
+                    <h3 className="mt-2 text-xl text-deep-blue">{service.name || "Novo serviço"}</h3>
                   </div>
 
                   <div className="mt-5 grid gap-5 md:grid-cols-2">
-                    <Field label="Nome do plano">
+                    <Field
+                      label="Nome do serviço"
+                      hint="Precisa ser igual ao nome usado na página de Serviços."
+                    >
                       <input
-                        value={plan.name}
+                        value={service.name}
                         onChange={(event) =>
                           setContent((prev) => ({
                             ...prev,
-                            plans: prev.plans.map((item, i) =>
+                            services: prev.services.map((item, i) =>
                               i === idx ? { ...item, name: event.target.value } : item,
                             ),
                           }))
@@ -309,46 +295,36 @@ export function AdminPanel() {
                         className={inputClassName}
                       />
                     </Field>
-                    <Field label="Implementacao" hint="Use o formato que aparece no card do site.">
+                    <Field
+                      label="Preço inicial"
+                      hint="Ex: A partir de R$ 1.490, ou Projeto sob consulta para SaaS."
+                    >
                       <input
-                        value={plan.implementation}
+                        value={service.price}
                         onChange={(event) =>
                           setContent((prev) => ({
                             ...prev,
-                            plans: prev.plans.map((item, i) =>
-                              i === idx ? { ...item, implementation: event.target.value } : item,
+                            services: prev.services.map((item, i) =>
+                              i === idx ? { ...item, price: event.target.value } : item,
                             ),
                           }))
                         }
                         className={inputClassName}
                       />
                     </Field>
-                    <Field label="Mensalidade">
-                      <input
-                        value={plan.monthly}
+                    <Field label="Descrição" hint="Frase curta exibida no card do serviço.">
+                      <textarea
+                        value={service.description}
                         onChange={(event) =>
                           setContent((prev) => ({
                             ...prev,
-                            plans: prev.plans.map((item, i) =>
-                              i === idx ? { ...item, monthly: event.target.value } : item,
+                            services: prev.services.map((item, i) =>
+                              i === idx ? { ...item, description: event.target.value } : item,
                             ),
                           }))
                         }
-                        className={inputClassName}
-                      />
-                    </Field>
-                    <Field label="Contrato">
-                      <input
-                        value={plan.contract}
-                        onChange={(event) =>
-                          setContent((prev) => ({
-                            ...prev,
-                            plans: prev.plans.map((item, i) =>
-                              i === idx ? { ...item, contract: event.target.value } : item,
-                            ),
-                          }))
-                        }
-                        className={inputClassName}
+                        rows={3}
+                        className={`${inputClassName} min-h-[92px] resize-y md:col-span-2`}
                       />
                     </Field>
                   </div>

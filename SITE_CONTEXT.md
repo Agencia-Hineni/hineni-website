@@ -8,13 +8,14 @@ Este arquivo serve como handoff para abrir um novo chat sem perder contexto.
 - Stack: Next.js 16, React 19, TypeScript, Tailwind CSS v4, Framer Motion
 - Hospedagem: Vercel
 - Objetivo atual do site:
-  - apresentar a agencia com posicionamento profissional
+  - apresentar a HINENI como estudio de tecnologia (nao mais como agencia de marketing)
   - captar leads pelo formulario
   - mostrar projetos/cases
   - comunicar que a HINENI atua com:
-    - criacao de sites
-    - gestao de redes sociais
-    - trafego pago
+    - landing pages
+    - sites institucionais e premium
+    - sistemas web sob medida
+    - produtos SaaS
 
 ## Estrutura Principal
 
@@ -43,21 +44,27 @@ Este arquivo serve como handoff para abrir um novo chat sem perder contexto.
 
 ## Posicionamento Atual do Site
 
-O site nao fala mais apenas de desenvolvimento web.
+Em 2026-08-11 o site foi reposicionado de "agencia de marketing" (sites + gestao de Instagram + trafego pago) para "estudio de tecnologia" (sites + landing pages + sistemas web + SaaS). A dono pediu explicitamente pra remover qualquer coisa que posicionasse a HINENI como agencia de marketing.
 
-A mensagem atual da marca foi ampliada para deixar claro que a HINENI oferece:
+Brand line: "HINENI — Tecnologia e solucoes digitais para negocios."
 
-- sites institucionais
+A HINENI oferece hoje:
+
 - landing pages
-- gestao de redes sociais
-- trafego pago
-- evolucao e manutencao tecnica
+- sites institucionais
+- sites premium
+- sistemas web sob medida
+- SaaS / produtos digitais
+
+Gestao de Instagram e trafego pago **nao sao mais oferecidos** e foram removidos de toda a copy, metadata, dados estruturados e CTAs. O `contact.instagram` que ainda existe no CMS e so o canal de contato/handle da propria HINENI, nao um servico.
 
 Arquivos onde isso foi implementado:
 
 - `app/page.tsx`
 - `app/servicos/page.tsx`
 - `app/sobre/page.tsx`
+- `lib/constants.ts` (tagline/title/description/keywords)
+- `components/ui/hero-actions.tsx`, `components/layout/site-header.tsx`, `components/layout/site-footer.tsx` (CTA "Falar com a Hineni")
 
 ## Conteudo Dinamico
 
@@ -278,38 +285,30 @@ Pagina:
 
 - `app/servicos/page.tsx`
 
-Servicos atuais comunicados no site:
+Servicos atuais comunicados no site (5, cada um com um preco inicial unico, sem bundling em planos):
 
-- Site Institucional Empresarial
-- Landing Page de Captacao
-- Gestao de Redes Sociais
-- Trafego Pago
-- Evolucao e Manutencao Tecnica
+- Landing Pages
+- Sites Institucionais
+- Sites Premium
+- Sistemas Web
+- SaaS (sem preco fixo, mostra "Projeto sob consulta")
 
-## Planos e Precos
+## Precos dos Servicos
 
 Dados:
 
-- `data/site-content.json`
+- `data/site-content.json` (chave `services`, shape `{ name, description, price }`)
 
 Fallback:
 
-- `lib/site-content.ts`
+- `lib/site-content.ts` (tipo `ServiceOffering`)
 
-Decisao comercial atual:
+Decisao comercial atual (mudou em 2026-08-11, substituiu o modelo antigo de 3 planos empacotados com mensalidade + contrato de 12 meses):
 
-- mostrar entrada facilitada em 12x
-- manter valor total explicito para transparencia
-
-Exemplo:
-
-- `12x de R$ 249,00 (total de R$ 2.899,90)`
-
-Visual atual:
-
-- a parcela fica em destaque
-- o total aparece como informacao secundaria
-- a mensalidade fica em um bloco separado
+- cada servico tem um preco inicial "A partir de R$X" (exceto SaaS, "Projeto sob consulta")
+- sem mensalidade, sem contrato fixo, sem plano "destacado"
+- `app/servicos/page.tsx` renderiza os 5 servicos direto de `content.services` (busca por `name` — o nome no JSON precisa bater exatamente com o nome usado na pagina)
+- o painel `/admin` edita nome, descricao e preco de cada servico (campos: Nome do servico / Descricao / Preco inicial)
 
 ## Build e Deploy
 
@@ -323,7 +322,8 @@ Problemas reais que ja aconteceram:
 
 1. Build falhava com `next/font/google`
    - causa: fonte remota em build time
-   - solucao: remover `next/font/google` e usar stacks locais
+   - solucao original: remover `next/font/google` e usar stacks locais
+   - atualizacao 2026-08-11: `next/font/google` foi reintroduzido (Manrope + Inter, ver "Estilo e UI") pra melhorar a tipografia. `npm run build` local passou limpo, mas isso **ainda nao foi validado num build real da Vercel**. Se o deploy falhar por causa de fonte, esse e o primeiro lugar pra olhar.
 
 2. Build falhava por tipagem do `Reveal`
    - causa: tipo de `children` incompatível
@@ -375,11 +375,11 @@ Resumo rapido:
 
 - o site esta funcional
 - o formulario voltou a funcionar depois de corrigir envs SMTP na Vercel
-- Google Ads esta integrado e a conversao de lead do formulario foi ligada ao snippet fornecido
-- o posicionamento do site agora inclui site, redes sociais e trafego pago
-- a pagina de projetos foi refeita e hoje tem Igreja TDA e DropHouse
-- os planos mostram 12x com valor total explicito
-- a base visual esta em um ponto premium tecnico com motion suave
+- Google Ads esta integrado e a conversao de lead do formulario foi ligada ao snippet fornecido; em 2026-08-11 foi corrigido um bug de CSP em `proxy.ts` que bloqueava o script do GTM (script-src precisa incluir `https://www.googletagmanager.com`)
+- em 2026-08-11 o site foi reposicionado: nao e mais agencia de marketing (sem Instagram/trafego pago), agora e estudio de tecnologia com 5 servicos avulsos (Landing Pages, Sites Institucionais, Sites Premium, Sistemas Web, SaaS), ver "Posicionamento Atual do Site" acima
+- a pagina de projetos foi refeita e hoje tem Igreja TDA e DropHouse; os dados vivem em `lib/projects.ts` (extraido de `app/projetos/page.tsx`, reaproveitado tambem numa secao de portfolio na Home)
+- os precos agora sao "A partir de R$X" por servico avulso (nao mais 12x/mensalidade/plano empacotado), ver "Precos dos Servicos" acima
+- a base visual esta em um ponto premium tecnico com motion suave, com `next/font/google` (Manrope + Inter) adicionado em 2026-08-11 — build local verificado, mas ainda **nao confirmado num deploy real da Vercel**; se o build da Vercel falhar por causa disso, ver o problema historico #1 abaixo
 
 Checklist de retomada:
 

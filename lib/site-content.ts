@@ -2,12 +2,10 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import { unstable_noStore as noStore } from "next/cache";
 
-export type Plan = {
+export type ServiceOffering = {
   name: string;
-  implementation: string;
-  monthly: string;
-  contract: string;
-  featured: boolean;
+  description: string;
+  price: string;
 };
 
 export type SiteContent = {
@@ -20,7 +18,7 @@ export type SiteContent = {
     description: string;
     cities: string[];
   };
-  plans: Plan[];
+  services: ServiceOffering[];
 };
 
 const contentFilePath = path.join(process.cwd(), "data", "site-content.json");
@@ -37,27 +35,32 @@ const fallbackContent: SiteContent = {
       "A HINENI atende empresas em âmbito nacional, com operação digital e estrutura estratégica para posicionamento profissional em qualquer região do Brasil.",
     cities: ["Atendimento nacional", "Operação 100% digital", "Presença em todo o Brasil"],
   },
-  plans: [
+  services: [
     {
-      name: "Plano Essencial",
-      implementation: "12x de R$ 159,00 (total de R$ 1.899,90)",
-      monthly: "R$ 299,00/mês",
-      contract: "Contrato de 12 meses",
-      featured: false,
+      name: "Landing Pages",
+      description: "Páginas focadas em uma oferta, campanha, produto ou serviço.",
+      price: "A partir de R$ 1.490",
     },
     {
-      name: "Plano Profissional",
-      implementation: "12x de R$ 249,00 (total de R$ 2.899,90)",
-      monthly: "R$ 399,00/mês",
-      contract: "Contrato de 12 meses",
-      featured: true,
+      name: "Sites Institucionais",
+      description:
+        "Sites profissionais para empresas que precisam estabelecer ou fortalecer sua presença digital.",
+      price: "A partir de R$ 2.990",
     },
     {
-      name: "Plano Premium",
-      implementation: "A partir de R$ 4.499,89",
-      monthly: "R$ 899,00/mês",
-      contract: "Mensalidade recorrente",
-      featured: false,
+      name: "Sites Premium",
+      description: "Projetos mais personalizados, com maior nível de design, estrutura e funcionalidades.",
+      price: "A partir de R$ 4.990",
+    },
+    {
+      name: "Sistemas Web",
+      description: "Sistemas desenvolvidos sob medida para necessidades específicas de uma empresa.",
+      price: "A partir de R$ 7.990",
+    },
+    {
+      name: "SaaS",
+      description: "Desenvolvimento de produtos digitais e plataformas SaaS sob medida.",
+      price: "Projeto sob consulta",
     },
   ],
 };

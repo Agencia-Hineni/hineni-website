@@ -4,17 +4,17 @@
   contactEmail: "atendimento@hineni.com.br",
   instagram: "https://instagram.com/hineni.digital",
   cnpj: "65.519.046/0001-67",
-  tagline: "Tecnologia, marketing e estrutura digital para empresas que querem crescer com consistencia",
-  defaultTitle: "HINENI | Agencia de Estruturacao Digital e Crescimento",
+  tagline: "Tecnologia e solucoes digitais para negocios que querem evoluir",
+  defaultTitle: "HINENI | Tecnologia e Solucoes Digitais para Negocios",
   defaultDescription:
-    "A HINENI estrutura, posiciona e impulsiona empresas atraves de tecnologia, marketing e estrategia digital.",
+    "A HINENI cria sites, landing pages, sistemas e produtos digitais sob medida para empresas que querem evoluir atraves da tecnologia.",
   keywords: [
     "criacao de sites",
-    "agencia digital",
-    "gestao de instagram",
-    "trafego pago",
-    "estrutura digital",
-    "marketing digital",
+    "landing pages",
+    "sites institucionais",
+    "sistemas web sob medida",
+    "desenvolvimento saas",
+    "solucoes digitais sob medida",
   ],
 } as const;
 

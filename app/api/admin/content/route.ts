@@ -25,7 +25,7 @@ export async function PUT(req: NextRequest) {
   try {
     const body = (await req.json()) as SiteContent;
 
-    if (!body?.plans?.length || !body?.localSeo?.cities?.length || !body?.contact?.email) {
+    if (!body?.services?.length || !body?.localSeo?.cities?.length || !body?.contact?.email) {
       return NextResponse.json(
         { ok: false, message: "Conteúdo inválido. Verifique os campos obrigatórios." },
         { status: 400 },

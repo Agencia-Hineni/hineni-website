@@ -8,7 +8,7 @@ import { createPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = createPageMetadata({
   title: "Sobre",
   description:
-    "Visao de trabalho, metodologia e compromissos tecnicos da HINENI na execucao de sites, redes sociais e trafego pago.",
+    "Visao de trabalho, metodologia e compromissos tecnicos da HINENI no desenvolvimento de sites, sistemas e produtos digitais sob medida.",
   path: "/sobre",
 });
 
@@ -19,7 +19,7 @@ const pillars = [
   },
   {
     title: "Rigor técnico",
-    text: "Estruturamos site, conteudo e campanhas com organizacao suficiente para manter qualidade no longo prazo.",
+    text: "Estruturamos site, sistema e conteudo com organizacao suficiente para manter qualidade no longo prazo.",
   },
   {
     title: "Relação de parceria",
@@ -30,7 +30,7 @@ const pillars = [
 const commitments = [
   "Escopo e cronograma definidos em linguagem objetiva",
   "Comunicacao constante sobre andamento e pendencias",
-  "Planejamento integrado entre site, redes sociais e campanhas",
+  "Planejamento integrado entre site, sistema e produto digital",
 ];
 
 export default function SobrePage() {
@@ -44,10 +44,10 @@ export default function SobrePage() {
               Solucoes digitais conduzidas com metodo, clareza e responsabilidade tecnica.
             </h1>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-slate-600">
-              A HINENI atende empresas que precisam transformar site, redes sociais e campanhas em uma operacao digital mais coerente e eficiente.
+              A HINENI atende empresas que precisam transformar site, sistema e produto digital em uma operacao mais coerente e eficiente.
             </p>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-600">
-              Combinamos diagnostico de contexto, execucao estruturada e acompanhamento continuo — entregando uma base digital solida, pronta para crescer junto com marketing, comercial e atendimento.
+              Combinamos diagnostico de contexto, execucao estruturada e acompanhamento continuo — entregando uma base digital solida, pronta para crescer junto com o negocio, a operacao comercial e o atendimento.
             </p>
           </Reveal>
 

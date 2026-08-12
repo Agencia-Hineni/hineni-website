@@ -18,7 +18,7 @@ export function SiteFooter() {
           </p>
           <p className="mt-5 text-xs uppercase tracking-[0.18em] text-slate-400">{SITE_CONFIG.contactEmail}</p>
           <LinkButton href="/contato" variant="ghost" size="sm" className="mt-6">
-            Agendar diagnóstico
+            Falar com a Hineni
           </LinkButton>
         </div>
 

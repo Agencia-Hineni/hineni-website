@@ -133,9 +133,11 @@ export function ContactForm() {
           <option value="" disabled>
             Selecione uma opcao
           </option>
-          <option>Sites Institucionais Empresariais</option>
-          <option>Landing Pages Estrategicas</option>
-          <option>Estrutura Digital para Negocios</option>
+          <option>Landing Pages</option>
+          <option>Sites Institucionais</option>
+          <option>Sites Premium</option>
+          <option>Sistemas Web</option>
+          <option>SaaS</option>
         </SelectField>
       </label>
 

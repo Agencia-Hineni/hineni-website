@@ -12,27 +12,31 @@
       "Presença em todo o Brasil"
     ]
   },
-  "plans": [
+  "services": [
     {
-      "name": "Plano Essencial",
-      "implementation": "(total de R$ 1.797)",
-      "monthly": "R$ 327/mês",
-      "contract": "Contrato de 12 meses",
-      "featured": false
+      "name": "Landing Pages",
+      "description": "Páginas focadas em uma oferta, campanha, produto ou serviço.",
+      "price": "A partir de R$ 1.490"
     },
     {
-      "name": "Plano Profissional",
-      "implementation": "(total de R$ 2.597)",
-      "monthly": "R$ 697/mês",
-      "contract": "Contrato de 12 meses",
-      "featured": true
+      "name": "Sites Institucionais",
+      "description": "Sites profissionais para empresas que precisam estabelecer ou fortalecer sua presença digital.",
+      "price": "A partir de R$ 2.990"
     },
     {
-      "name": "Plano Premium",
-      "implementation": "(apartir de R$ 4.027)",
-      "monthly": "R$ 1.297/mês",
-      "contract": "Mensalidade recorrente",
-      "featured": false
+      "name": "Sites Premium",
+      "description": "Projetos mais personalizados, com maior nível de design, estrutura e funcionalidades.",
+      "price": "A partir de R$ 4.990"
+    },
+    {
+      "name": "Sistemas Web",
+      "description": "Sistemas desenvolvidos sob medida para necessidades específicas de uma empresa.",
+      "price": "A partir de R$ 7.990"
+    },
+    {
+      "name": "SaaS",
+      "description": "Desenvolvimento de produtos digitais e plataformas SaaS sob medida.",
+      "price": "Projeto sob consulta"
     }
   ]
 }

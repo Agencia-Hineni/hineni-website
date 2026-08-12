@@ -18,7 +18,7 @@ export default function AdminPage() {
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-tech-blue">Admin HINENI</p>
           <h1 className="mt-4 text-4xl text-deep-blue sm:text-5xl">Painel administrativo renovado.</h1>
           <p className="mt-4 max-w-3xl text-sm leading-relaxed text-slate-600 sm:text-base">
-            Edite planos, dados de contato e SEO local em uma interface mais organizada, mantendo o controle interno do site com acesso protegido por senha administrativa.
+            Edite serviços, dados de contato e SEO local em uma interface mais organizada, mantendo o controle interno do site com acesso protegido por senha administrativa.
           </p>
         </div>
         <AdminPanel />
