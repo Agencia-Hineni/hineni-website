@@ -30,6 +30,30 @@ const principles = [
   "Base preparada para SEO, analytics e crescimento contínuo",
 ];
 
+const continuityPlans = [
+  {
+    name: "Hineni Essencial",
+    price: "R$ 149",
+    description: "Para manter sua presença digital funcionando com suporte e manutenção básica.",
+    features: ["Infraestrutura", "SSL", "Backups", "Monitoramento básico", "Manutenção essencial", "Suporte básico"],
+    featured: false,
+  },
+  {
+    name: "Hineni Pro",
+    price: "R$ 299",
+    description: "Para quem quer, além da manutenção, pequenas evoluções e atendimento prioritário.",
+    features: ["Tudo do Hineni Essencial", "Pequenas alterações", "Manutenção preventiva", "Suporte prioritário"],
+    featured: true,
+  },
+  {
+    name: "Hineni Growth",
+    price: "R$ 599",
+    description: "Para quem busca evolução contínua da solução, com desenvolvimento e melhorias.",
+    features: ["Tudo do Hineni Pro", "Horas mensais de desenvolvimento", "Melhorias contínuas"],
+    featured: false,
+  },
+];
+
 export default async function ServicosPage() {
   const content = await getSiteContent();
 
@@ -72,6 +96,72 @@ export default async function ServicosPage() {
               </Reveal>
             ))}
           </div>
+        </Container>
+      </section>
+
+      <section className={`section-shell bg-shell ${SECTION_CLASSES.compact}`}>
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Continuidade"
+              title="Seu projeto não precisa parar depois do lançamento."
+              description="A Hineni oferece planos de continuidade para manter sua solução digital funcionando, receber suporte e evoluir conforme as necessidades do negócio."
+            />
+          </Reveal>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {continuityPlans.map((plan, index) => (
+              <Reveal key={plan.name} delay={index * 0.08}>
+                <article
+                  className={`premium-card-light card-service relative flex h-full flex-col rounded-3xl p-8 ${
+                    plan.featured ? "border-gold-accent/60" : ""
+                  }`}
+                >
+                  {plan.featured ? (
+                    <span className="text-eyebrow absolute -top-3 left-8 inline-flex w-fit rounded-full border border-gold-accent/60 bg-shell px-3 py-1 text-gold-accent">
+                      Recomendado
+                    </span>
+                  ) : null}
+
+                  <h3 className="text-xl leading-snug text-deep-blue">{plan.name}</h3>
+                  <p className="text-body-soft mt-3 text-sm text-slate-600">{plan.description}</p>
+
+                  <p className="mt-6 text-lg font-semibold text-deep-blue">
+                    {plan.price}
+                    <span className="text-sm font-normal text-slate-500">/mês</span>
+                  </p>
+
+                  <ul className="mt-6 flex-1 space-y-2.5 border-t border-slate-200 pt-5">
+                    {plan.features.map((feature) => (
+                      <li key={feature} className="flex items-start gap-2.5 text-sm text-slate-600">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          className="mt-0.5 h-4 w-4 shrink-0 text-tech-blue"
+                        >
+                          <path d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <LinkButton href="/contato" size="sm" className="mt-6 w-full justify-center">
+                    Falar com a Hineni
+                  </LinkButton>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={0.16}>
+            <p className="mt-8 max-w-2xl text-xs leading-relaxed text-slate-500">
+              Mensalidade não significa desenvolvimento ilimitado. Os planos de continuidade são uma estrutura
+              inicial da Hineni e podem ser ajustados conforme o projeto e as necessidades do cliente.
+            </p>
+          </Reveal>
         </Container>
       </section>
 
