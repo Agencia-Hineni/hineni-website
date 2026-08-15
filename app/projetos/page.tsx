@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/animations/reveal";
+import { ProspectMockup } from "@/components/prospect/prospect-mockup";
 import { Container } from "@/components/ui/container";
+import { LinkButton } from "@/components/ui/link-button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SECTION_CLASSES } from "@/lib/constants";
 import { projects } from "@/lib/projects";
@@ -32,7 +34,41 @@ export default function ProjetosPage() {
 
       <section className={`bg-deep-blue ${SECTION_CLASSES.standard}`}>
         <Container>
-          <div className="grid gap-8 lg:grid-cols-2">
+          <Reveal>
+            <article className="premium-card-dark card-case grid gap-8 rounded-3xl p-8 lg:grid-cols-[1fr_1fr] lg:items-center lg:p-10">
+              <div>
+                <div className="flex items-center gap-3">
+                  <p className="text-eyebrow text-slate-300">Produto próprio</p>
+                  <span className="rounded-full border border-gold-accent/45 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-gold-accent">
+                    Produto Hineni
+                  </span>
+                </div>
+                <h2 className="mt-4 text-2xl leading-snug text-shell">
+                  Hineni Prospect — SaaS de Prospecção Comercial
+                </h2>
+                <p className="text-body-soft mt-4 text-sm text-slate-300">
+                  Plataforma própria da Hineni para prospecção comercial com inteligência artificial, também
+                  usada como case técnico da nossa capacidade de construir e operar aplicações SaaS.
+                </p>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {["SaaS", "Inteligência Artificial", "Multi-tenant"].map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-full border border-slate-600/70 bg-slate-900/55 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-300"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+                <LinkButton href="/prospect" size="sm" className="mt-7">
+                  Conhecer o Prospect
+                </LinkButton>
+              </div>
+              <ProspectMockup />
+            </article>
+          </Reveal>
+
+          <div className="mt-8 grid gap-8 lg:grid-cols-2">
             {projects.map((project, index) => (
               <Reveal key={project.name} delay={index * 0.08}>
                 <article className="premium-card-dark card-case flex h-full flex-col overflow-hidden rounded-3xl text-slate-200">

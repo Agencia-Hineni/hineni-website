@@ -4,6 +4,7 @@ import Image from "next/image";
 import { HeroParallax } from "@/components/animations/hero-parallax";
 import { Reveal } from "@/components/animations/reveal";
 import { ScrollCue } from "@/components/animations/scroll-cue";
+import { ProspectMockup } from "@/components/prospect/prospect-mockup";
 import { Container } from "@/components/ui/container";
 import { HeroActions } from "@/components/ui/hero-actions";
 import { LinkButton } from "@/components/ui/link-button";
@@ -260,6 +261,26 @@ export default async function HomePage() {
                 ))}
               </div>
             </div>
+          </Reveal>
+        </Container>
+      </section>
+
+      <section className={`bg-ink ${SECTION_CLASSES.compact}`}>
+        <Container className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
+          <Reveal>
+            <SectionHeading
+              tone="dark"
+              eyebrow="Hineni Prospect"
+              title="Sua prospecção comercial, potencializada por inteligência artificial."
+              description="Uma plataforma desenvolvida para ajudar equipes comerciais a encontrar empresas, organizar oportunidades e acelerar o processo de prospecção."
+              className="mb-0"
+            />
+            <div className="mt-8">
+              <LinkButton href="/prospect">Conhecer o Hineni Prospect</LinkButton>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <ProspectMockup />
           </Reveal>
         </Container>
       </section>
