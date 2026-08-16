@@ -275,6 +275,9 @@ export default async function HomePage() {
               description="Uma plataforma desenvolvida para ajudar equipes comerciais a encontrar empresas, organizar oportunidades e acelerar o processo de prospecção."
               className="mb-0"
             />
+            <p className="mt-4 text-sm font-semibold text-gold-accent">
+              Usuários ilimitados. Pague pelo uso, não pelo tamanho da sua equipe.
+            </p>
             <div className="mt-8">
               <LinkButton href="/prospect">Conhecer o Hineni Prospect</LinkButton>
             </div>

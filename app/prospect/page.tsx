@@ -70,7 +70,7 @@ const technicalHighlights = [
   "Controle de acesso por função",
   "Validação no backend",
   "Isolamento de dados entre organizações",
-  "Controle de limites por plano",
+  "Controle de créditos e recursos por plano",
   "Backup automático",
   "Ambiente de produção",
   "Logs e gerenciamento do servidor",
@@ -92,7 +92,7 @@ const plans = [
   {
     name: "Business",
     description:
-      "Para operações comerciais maiores, com múltiplos usuários e necessidade de gestão completa da prospecção.",
+      "Para operações comerciais maiores, com maior volume de prospecção e necessidade de gestão completa do processo comercial.",
     featured: false,
   },
 ];
@@ -255,7 +255,17 @@ export default function ProspectPage() {
             title="Planos pensados para o tamanho da sua operação comercial."
             description="O acesso ao Hineni Prospect é ativado diretamente pela equipe da Hineni — o onboarding hoje é feito de forma manual, sem checkout ou cobrança automática dentro da plataforma."
           />
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+
+          <Reveal delay={0.06}>
+            <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-2xl border border-gold-accent/35 bg-gold-accent/8 px-6 py-4">
+              <span className="text-eyebrow text-gold-accent">Usuários ilimitados</span>
+              <span className="text-sm text-slate-700">
+                Adicione toda a sua equipe sem pagar por usuário — pague pelo uso, não pelo tamanho do time.
+              </span>
+            </div>
+          </Reveal>
+
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
             {plans.map((plan, index) => (
               <Reveal key={plan.name} delay={index * 0.08}>
                 <article
@@ -273,7 +283,7 @@ export default function ProspectPage() {
                   <p className="text-body-soft mt-3 flex-1 text-sm text-slate-600">{plan.description}</p>
 
                   <p className="mt-6 border-t border-slate-200 pt-5 text-xs leading-relaxed text-slate-500">
-                    Créditos, usuários e recursos ajustados ao plano contratado.
+                    Créditos e recursos ajustados ao plano contratado, com usuários ilimitados em todos os planos.
                   </p>
 
                   <LinkButton href="/contato" size="sm" className="mt-6 w-full justify-center">
