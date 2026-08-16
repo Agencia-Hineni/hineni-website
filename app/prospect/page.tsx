@@ -12,6 +12,13 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "O Hineni Prospect é a plataforma da HINENI para prospecção comercial com inteligência artificial, feita para equipes que precisam encontrar empresas, organizar oportunidades e acelerar vendas.",
   path: "/prospect",
+  keywords: [
+    "prospecção comercial",
+    "plataforma de prospecção",
+    "inteligência artificial",
+    "leads",
+    "equipes comerciais",
+  ],
 });
 
 const problems = [
@@ -27,6 +34,25 @@ const solutionPoints = [
   "Use inteligência artificial para acelerar sua prospecção",
   "Organize seu processo comercial do primeiro contato à oportunidade",
   "Aumente a produtividade do time com um fluxo de trabalho único",
+];
+
+const benefits = [
+  {
+    title: "Menos tempo procurando empresas",
+    text: "Concentre sua equipe no contato comercial, não na busca manual de oportunidades.",
+  },
+  {
+    title: "Mais oportunidades para abordar",
+    text: "Amplie o volume de empresas que sua equipe pode encontrar e prospectar.",
+  },
+  {
+    title: "Equipe organizada",
+    text: "Cada vendedor pode ter seu próprio acesso e atividade dentro da organização.",
+  },
+  {
+    title: "Usuários ilimitados",
+    text: "Adicione sua equipe sem pagar por usuário.",
+  },
 ];
 
 const features = [
@@ -70,7 +96,7 @@ const technicalHighlights = [
   "Controle de acesso por função",
   "Validação no backend",
   "Isolamento de dados entre organizações",
-  "Controle de créditos e recursos por plano",
+  "Controle de créditos e utilização",
   "Backup automático",
   "Ambiente de produção",
   "Logs e gerenciamento do servidor",
@@ -79,22 +105,37 @@ const technicalHighlights = [
 const plans = [
   {
     name: "Starter",
+    price: "R$ 149",
+    credits: "300 créditos/mês",
     description:
       "Para times que estão começando a prospectar com apoio de IA e querem validar o processo com uma operação enxuta.",
     featured: false,
   },
   {
     name: "Pro",
+    price: "R$ 229",
+    credits: "600 créditos/mês",
     description:
       "Para equipes comerciais em crescimento que precisam de mais volume de prospecção e mais controle sobre o time.",
     featured: true,
   },
   {
     name: "Business",
+    price: "R$ 349",
+    credits: "1.100 créditos/mês",
     description:
-      "Para operações comerciais maiores, com maior volume de prospecção e necessidade de gestão completa do processo comercial.",
+      "Para operações comerciais maiores, com maior volume de prospecção e necessidade de gestão avançada da equipe.",
     featured: false,
   },
+];
+
+const creditPacks = [
+  { credits: "+1.000", price: "R$ 249" },
+  { credits: "+2.500", price: "R$ 599" },
+  { credits: "+5.000", price: "R$ 1.149" },
+  { credits: "+10.000", price: "R$ 2.199" },
+  { credits: "+25.000", price: "R$ 5.499" },
+  { credits: "+50.000", price: "R$ 9.999" },
 ];
 
 export default function ProspectPage() {
@@ -180,7 +221,34 @@ export default function ProspectPage() {
         </Container>
       </section>
 
-      <section id="funcionalidades" className={`section-shell bg-shell ${SECTION_CLASSES.standard}`}>
+      <section className={`section-shell bg-shell ${SECTION_CLASSES.standard}`}>
+        <Container>
+          <SectionHeading
+            eyebrow="Benefícios"
+            title="O que muda no dia a dia da sua equipe comercial."
+            description="Mais do que funcionalidades, o Hineni Prospect muda a forma como sua equipe prospecta no dia a dia."
+          />
+          <div className="mt-12 grid gap-x-6 gap-y-5 sm:grid-cols-2">
+            {benefits.map((item) => (
+              <Reveal key={item.title}>
+                <div className="flex items-start gap-3 text-sm leading-relaxed text-slate-700">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-accent" />
+                  <span>
+                    <strong
+                      className={`font-semibold ${item.title === "Usuários ilimitados" ? "text-gold-accent" : "text-deep-blue"}`}
+                    >
+                      {item.title}.
+                    </strong>{" "}
+                    {item.text}
+                  </span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section id="funcionalidades" className={`section-shell soft-divider bg-shell ${SECTION_CLASSES.standard}`}>
         <Container>
           <SectionHeading
             eyebrow="Funcionalidades"
@@ -280,10 +348,41 @@ export default function ProspectPage() {
                   ) : null}
 
                   <h3 className="text-xl leading-snug text-deep-blue">{plan.name}</h3>
-                  <p className="text-body-soft mt-3 flex-1 text-sm text-slate-600">{plan.description}</p>
+                  <p className="mt-4 text-lg font-semibold text-deep-blue">
+                    {plan.price}
+                    <span className="text-sm font-normal text-slate-500">/mês</span>
+                  </p>
+                  <p className="text-body-soft mt-3 text-sm text-slate-600">{plan.description}</p>
 
-                  <p className="mt-6 border-t border-slate-200 pt-5 text-xs leading-relaxed text-slate-500">
-                    Créditos e recursos ajustados ao plano contratado, com usuários ilimitados em todos os planos.
+                  <ul className="mt-6 space-y-2.5 border-t border-slate-200 pt-5">
+                    <li className="flex items-start gap-2.5 text-sm text-slate-600">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        className="mt-0.5 h-4 w-4 shrink-0 text-tech-blue"
+                      >
+                        <path d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>{plan.credits}</span>
+                    </li>
+                    <li className="flex items-start gap-2.5 text-sm font-semibold text-gold-accent">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        className="mt-0.5 h-4 w-4 shrink-0"
+                      >
+                        <path d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Usuários ilimitados</span>
+                    </li>
+                  </ul>
+
+                  <p className="mt-5 flex-1 text-xs leading-relaxed text-slate-500">
+                    Créditos e recursos definidos pelo plano, com usuários ilimitados.
                   </p>
 
                   <LinkButton href="/contato" size="sm" className="mt-6 w-full justify-center">
@@ -293,6 +392,34 @@ export default function ProspectPage() {
               </Reveal>
             ))}
           </div>
+        </Container>
+      </section>
+
+      <section className={`section-shell soft-divider bg-shell ${SECTION_CLASSES.compact}`}>
+        <Container>
+          <SectionHeading
+            eyebrow="Créditos adicionais"
+            title="Precisa de mais créditos?"
+            description="Continue prospectando sem precisar mudar de plano. Adicione créditos à sua organização conforme sua necessidade."
+          />
+          <div className="mt-10 grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
+            {creditPacks.map((pack, index) => (
+              <Reveal key={pack.credits} delay={index * 0.04}>
+                <div className="premium-card-light rounded-2xl px-4 py-5 text-center">
+                  <p className="text-lg font-semibold text-deep-blue">{pack.credits}</p>
+                  <p className="mt-1 text-xs uppercase tracking-[0.1em] text-slate-500">créditos</p>
+                  <p className="mt-3 text-sm font-semibold text-tech-blue">{pack.price}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={0.1}>
+            <div className="mt-9 text-center">
+              <LinkButton href="/contato" size="md">
+                Solicitar créditos
+              </LinkButton>
+            </div>
+          </Reveal>
         </Container>
       </section>
 

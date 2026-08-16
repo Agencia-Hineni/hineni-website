@@ -153,12 +153,12 @@ export default async function HomePage() {
           </Reveal>
           <Reveal delay={0.12}>
             <h1 className="max-w-4xl text-5xl leading-[0.96] text-shell sm:text-6xl lg:text-7xl">
-              Tecnologia que transforma ideias em soluções digitais.
+              Tecnologia sob medida para empresas que querem crescer.
             </h1>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-slate-300 sm:text-xl">
-              Criamos sites, landing pages, sistemas e produtos digitais sob medida para empresas que querem evoluir sua presença e operação através da tecnologia.
+              Criamos sites, landing pages, sistemas e produtos digitais que transformam necessidades reais do negócio em soluções profissionais e escaláveis.
             </p>
           </Reveal>
           <Reveal delay={0.28} className="mt-12">

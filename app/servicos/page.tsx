@@ -30,6 +30,76 @@ const principles = [
   "Base preparada para SEO, analytics e crescimento contínuo",
 ];
 
+const serviceDeliverables: Record<string, string[]> = {
+  "Landing Pages": [
+    "Design personalizado",
+    "Página responsiva",
+    "SEO técnico básico",
+    "Publicação e SSL",
+    "Até 2 rodadas de ajustes",
+  ],
+  "Sites Institucionais": [
+    "Site responsivo",
+    "Até 5 páginas principais",
+    "Formulário e WhatsApp",
+    "SEO técnico básico",
+    "Até 2 rodadas de ajustes",
+  ],
+  "Sites Premium": [
+    "Design mais personalizado",
+    "Até 10 páginas/seções",
+    "Animações e interações",
+    "Otimização de performance",
+    "Até 3 rodadas de ajustes",
+  ],
+  "Sistemas Web": [
+    "Levantamento e definição de escopo",
+    "Frontend e backend sob medida",
+    "Banco de dados quando necessário",
+    "Autenticação quando necessária",
+    "Testes e documentação básica",
+  ],
+  SaaS: [
+    "Descoberta da ideia",
+    "Análise inicial de viabilidade",
+    "Definição do MVP",
+    "Infraestrutura e publicação",
+    "Suporte conforme contratação",
+  ],
+};
+
+const faqs = [
+  {
+    question: "Quanto custa um projeto?",
+    answer:
+      "Cada serviço tem um valor inicial de referência, apresentado nesta página. Projetos com escopo maior ou mais complexo podem ter o investimento ajustado conforme a necessidade.",
+  },
+  {
+    question: "Quanto tempo leva para desenvolver?",
+    answer:
+      "O prazo varia conforme o tipo e a complexidade do projeto, e é definido durante a etapa de diagnóstico e definição de escopo.",
+  },
+  {
+    question: "Vocês trabalham com empresas de qualquer lugar?",
+    answer: "Sim. A Hineni atende empresas de qualquer lugar do Brasil, de forma remota.",
+  },
+  {
+    question: "O que acontece depois da entrega?",
+    answer:
+      "Após a entrega, oferecemos planos de continuidade com infraestrutura, manutenção e suporte, conforme o serviço contratado.",
+  },
+  {
+    question: "Posso solicitar alterações?",
+    answer:
+      "Sim. Os serviços incluem rodadas de ajuste dentro do escopo contratado (até 2 ou 3 rodadas, conforme o serviço). Alterações fora do escopo original podem ser orçadas separadamente.",
+  },
+  {
+    question: "Vocês desenvolvem sistemas personalizados?",
+    answer:
+      "Sim. Além de sites e landing pages, desenvolvemos Sistemas Web e produtos SaaS sob medida para necessidades específicas do negócio.",
+  },
+];
+
 const continuityPlans = [
   {
     name: "Hineni Essencial",
@@ -84,7 +154,26 @@ export default async function ServicosPage() {
                   <h2 className="mt-4 text-xl leading-snug text-deep-blue">{service.name}</h2>
                   <p className="text-body-soft mt-4 text-sm text-slate-600">{service.description}</p>
 
-                  <div className="mt-6 border-t border-slate-200 pt-5">
+                  {serviceDeliverables[service.name] ? (
+                    <ul className="mt-5 space-y-2">
+                      {serviceDeliverables[service.name].map((item) => (
+                        <li key={item} className="flex items-start gap-2.5 text-xs text-slate-600">
+                          <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.8"
+                            className="mt-0.5 h-3.5 w-3.5 shrink-0 text-tech-blue"
+                          >
+                            <path d="M5 13l4 4L19 7" />
+                          </svg>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+
+                  <div className="mt-6 flex-1 border-t border-slate-200 pt-5">
                     <p className="text-eyebrow text-tech-blue">Investimento</p>
                     <p className="mt-2 text-lg font-semibold text-deep-blue">{service.price}</p>
                   </div>
@@ -205,6 +294,39 @@ export default async function ServicosPage() {
               ))}
             </ol>
           </Reveal>
+        </Container>
+      </section>
+
+      <section className={`section-shell bg-shell ${SECTION_CLASSES.standard}`}>
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Perguntas frequentes"
+              title="Ainda tem dúvidas sobre como funciona?"
+              description="Se sua dúvida não estiver aqui, é só falar direto com a Hineni."
+            />
+          </Reveal>
+          <div className="mt-10 space-y-3 lg:max-w-3xl">
+            {faqs.map((faq, index) => (
+              <Reveal key={faq.question} delay={index * 0.04}>
+                <details className="group premium-card-light rounded-2xl px-6 py-5">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-deep-blue [&::-webkit-details-marker]:hidden">
+                    {faq.question}
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      className="h-4 w-4 shrink-0 text-tech-blue transition-transform duration-300 group-open:rotate-45"
+                    >
+                      <path d="M12 5v14M5 12h14" />
+                    </svg>
+                  </summary>
+                  <p className="text-body-soft mt-4 text-sm text-slate-600">{faq.answer}</p>
+                </details>
+              </Reveal>
+            ))}
+          </div>
         </Container>
       </section>
     </>
