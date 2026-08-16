@@ -402,6 +402,13 @@ export default function ProspectPage() {
             title="Precisa de mais créditos?"
             description="Continue prospectando sem precisar mudar de plano. Adicione créditos à sua organização conforme sua necessidade."
           />
+
+          <Reveal delay={0.04}>
+            <p className="mt-4 max-w-2xl text-sm font-semibold text-gold-accent">
+              Usuários ilimitados. Créditos compartilhados por toda a empresa — qualquer usuário pode utilizá-los.
+            </p>
+          </Reveal>
+
           <div className="mt-10 grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
             {creditPacks.map((pack, index) => (
               <Reveal key={pack.credits} delay={index * 0.04}>
@@ -418,6 +425,16 @@ export default function ProspectPage() {
               <LinkButton href="/contato" size="md">
                 Solicitar créditos
               </LinkButton>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.16}>
+            <div className="mx-auto mt-10 max-w-xl rounded-2xl border border-slate-200 bg-white/70 px-6 py-5 text-center">
+              <p className="text-sm font-semibold text-deep-blue">Seus créditos acabaram?</p>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                Adicione um pacote de créditos para continuar prospectando ou fale com a Hineni para encontrar a
+                melhor opção para sua operação.
+              </p>
             </div>
           </Reveal>
         </Container>

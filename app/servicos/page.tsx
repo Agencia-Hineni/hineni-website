@@ -84,12 +84,17 @@ const faqs = [
     answer: "Sim. A Hineni atende empresas de qualquer lugar do Brasil, de forma remota.",
   },
   {
-    question: "O que acontece depois da entrega?",
+    question: "O que está incluído na mensalidade?",
     answer:
-      "Após a entrega, oferecemos planos de continuidade com infraestrutura, manutenção e suporte, conforme o serviço contratado.",
+      "Os planos de continuidade (Essencial, Pro e Growth) incluem infraestrutura, manutenção e suporte técnico, com recursos adicionais conforme o plano contratado — veja os detalhes de cada plano nesta página.",
   },
   {
-    question: "Posso solicitar alterações?",
+    question: "O que acontece se eu cancelar a mensalidade?",
+    answer:
+      "O cancelamento pode ser solicitado a qualquer momento. As condições específicas são alinhadas na proposta comercial ou contrato de cada cliente.",
+  },
+  {
+    question: "Posso solicitar alterações depois da entrega?",
     answer:
       "Sim. Os serviços incluem rodadas de ajuste dentro do escopo contratado (até 2 ou 3 rodadas, conforme o serviço). Alterações fora do escopo original podem ser orçadas separadamente.",
   },
@@ -97,6 +102,10 @@ const faqs = [
     question: "Vocês desenvolvem sistemas personalizados?",
     answer:
       "Sim. Além de sites e landing pages, desenvolvemos Sistemas Web e produtos SaaS sob medida para necessidades específicas do negócio.",
+  },
+  {
+    question: "O Prospect cobra por usuário?",
+    answer: "Não. Todos os planos possuem usuários ilimitados. O consumo é controlado por créditos.",
   },
 ];
 
@@ -118,9 +127,18 @@ const continuityPlans = [
   {
     name: "Hineni Growth",
     price: "R$ 599",
-    description: "Para quem busca evolução contínua da solução, com desenvolvimento e melhorias.",
-    features: ["Tudo do Hineni Pro", "Horas mensais de desenvolvimento", "Melhorias contínuas"],
+    description: "Para quem quer um banco de horas para alterações e novos desenvolvimentos sob demanda.",
+    features: ["Tudo do Hineni Pro", "Horas mensais de desenvolvimento", "Horas para melhorias solicitadas pelo cliente"],
     featured: false,
+  },
+];
+
+const paymentMethods = [
+  { name: "Pix", text: "Pagamento à vista." },
+  { name: "Transferência bancária", text: "Pagamento à vista." },
+  {
+    name: "Cartão de crédito",
+    text: "Disponível conforme a solução de pagamento e as condições comerciais definidas pela Hineni.",
   },
 ];
 
@@ -247,8 +265,66 @@ export default async function ServicosPage() {
 
           <Reveal delay={0.16}>
             <p className="mt-8 max-w-2xl text-xs leading-relaxed text-slate-500">
-              Mensalidade não significa desenvolvimento ilimitado. Os planos de continuidade são uma estrutura
-              inicial da Hineni e podem ser ajustados conforme o projeto e as necessidades do cliente.
+              Mensalidade não significa desenvolvimento ilimitado. As horas do Hineni Growth ficam disponíveis
+              mediante solicitação do cliente e não representam desenvolvimento automático mensal. Os planos de
+              continuidade são uma estrutura inicial da Hineni e podem ser ajustados conforme o projeto e as
+              necessidades do cliente.
+            </p>
+          </Reveal>
+        </Container>
+      </section>
+
+      <section className={`section-shell soft-divider bg-shell ${SECTION_CLASSES.compact}`}>
+        <Container>
+          <Reveal>
+            <SectionHeading
+              eyebrow="Formas de pagamento"
+              title="Condições claras para contratar com segurança."
+              description="Formas de pagamento aceitas pela Hineni para projetos e planos de continuidade."
+            />
+          </Reveal>
+
+          <div className="mt-10 grid gap-3 sm:grid-cols-3">
+            {paymentMethods.map((method, index) => (
+              <Reveal key={method.name} delay={index * 0.05}>
+                <div className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white/70 px-4 py-4">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    className="mt-0.5 h-4 w-4 shrink-0 text-tech-blue"
+                  >
+                    <path d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-sm text-slate-600">
+                    <strong className="font-semibold text-deep-blue">{method.name}.</strong> {method.text}
+                  </span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={0.16}>
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+              <div className="flat-row py-1">
+                <p className="text-sm leading-relaxed text-slate-700">
+                  <strong className="font-semibold text-deep-blue">Projetos:</strong> pagamento à vista ou conforme
+                  condições definidas na proposta comercial.
+                </p>
+              </div>
+              <div className="flat-row py-1">
+                <p className="text-sm leading-relaxed text-slate-700">
+                  <strong className="font-semibold text-deep-blue">Mensalidades:</strong> cobrança mensal conforme o
+                  plano contratado.
+                </p>
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.2}>
+            <p className="mt-6 max-w-2xl text-xs leading-relaxed text-slate-500">
+              As condições de pagamento e parcelamento podem variar conforme o projeto, plano ou proposta comercial.
             </p>
           </Reveal>
         </Container>
