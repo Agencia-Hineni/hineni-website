@@ -7,7 +7,7 @@ export function HeroActions() {
     <div className="flex flex-wrap gap-4">
       <div className="transition-transform duration-300 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.992]">
         <LinkButton
-          href="/contato"
+          href={{ pathname: "/contato", query: { origem: "Home" } }}
           size="lg"
           className="cta-button shadow-[0_16px_30px_rgba(30,58,138,0.35)]"
         >

@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Reveal } from "@/components/animations/reveal";
 import { ProspectMockup } from "@/components/prospect/prospect-mockup";
 import { Container } from "@/components/ui/container";
 import { LinkButton } from "@/components/ui/link-button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SECTION_CLASSES } from "@/lib/constants";
+import { CREDIT_PACKS } from "@/lib/inquiry-options";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -129,15 +131,6 @@ const plans = [
   },
 ];
 
-const creditPacks = [
-  { credits: "+1.000", price: "R$ 249" },
-  { credits: "+2.500", price: "R$ 599" },
-  { credits: "+5.000", price: "R$ 1.149" },
-  { credits: "+10.000", price: "R$ 2.199" },
-  { credits: "+25.000", price: "R$ 5.499" },
-  { credits: "+50.000", price: "R$ 9.999" },
-];
-
 export default function ProspectPage() {
   return (
     <>
@@ -161,7 +154,14 @@ export default function ProspectPage() {
               </p>
             </Reveal>
             <Reveal delay={0.28} className="mt-10 flex flex-wrap gap-4">
-              <LinkButton href="/contato">Quero conhecer o Prospect</LinkButton>
+              <LinkButton
+                href={{
+                  pathname: "/contato",
+                  query: { interesse: "Hineni Prospect", origem: "Hineni Prospect" },
+                }}
+              >
+                Quero conhecer o Prospect
+              </LinkButton>
               <LinkButton href="#funcionalidades" variant="ghost">
                 Ver como funciona
               </LinkButton>
@@ -385,7 +385,17 @@ export default function ProspectPage() {
                     Créditos e recursos definidos pelo plano, com usuários ilimitados.
                   </p>
 
-                  <LinkButton href="/contato" size="sm" className="mt-6 w-full justify-center">
+                  <LinkButton
+                    href={{
+                      pathname: "/contato",
+                      query: {
+                        interesse: "Hineni Prospect",
+                        origem: `Hineni Prospect — Plano ${plan.name}`,
+                      },
+                    }}
+                    size="sm"
+                    className="mt-6 w-full justify-center"
+                  >
                     Solicitar acesso
                   </LinkButton>
                 </article>
@@ -410,19 +420,38 @@ export default function ProspectPage() {
           </Reveal>
 
           <div className="mt-10 grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
-            {creditPacks.map((pack, index) => (
-              <Reveal key={pack.credits} delay={index * 0.04}>
-                <div className="premium-card-light rounded-2xl px-4 py-5 text-center">
+            {CREDIT_PACKS.map((pack, index) => (
+              <Reveal key={pack.id} delay={index * 0.04}>
+                <Link
+                  href={{
+                    pathname: "/contato",
+                    query: {
+                      interesse: "Créditos adicionais do Hineni Prospect",
+                      origem: "Hineni Prospect — Créditos adicionais",
+                      pacote: pack.id,
+                    },
+                  }}
+                  className="premium-card-light block rounded-2xl px-4 py-5 text-center transition-colors hover:border-tech-blue/40"
+                >
                   <p className="text-lg font-semibold text-deep-blue">{pack.credits}</p>
                   <p className="mt-1 text-xs uppercase tracking-[0.1em] text-slate-500">créditos</p>
                   <p className="mt-3 text-sm font-semibold text-tech-blue">{pack.price}</p>
-                </div>
+                </Link>
               </Reveal>
             ))}
           </div>
           <Reveal delay={0.1}>
             <div className="mt-9 text-center">
-              <LinkButton href="/contato" size="md">
+              <LinkButton
+                href={{
+                  pathname: "/contato",
+                  query: {
+                    interesse: "Créditos adicionais do Hineni Prospect",
+                    origem: "Hineni Prospect — Créditos adicionais",
+                  },
+                }}
+                size="md"
+              >
                 Solicitar créditos
               </LinkButton>
             </div>
@@ -454,7 +483,13 @@ export default function ProspectPage() {
             </p>
           </Reveal>
           <Reveal delay={0.12} className="mt-9">
-            <LinkButton href="/contato" size="lg">
+            <LinkButton
+              href={{
+                pathname: "/contato",
+                query: { interesse: "Hineni Prospect", origem: "Hineni Prospect" },
+              }}
+              size="lg"
+            >
               Solicitar acesso
             </LinkButton>
           </Reveal>

@@ -1,6 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { SITE_CONFIG } from "@/lib/constants";
+import { findCreditPack, isInquiryInterest } from "@/lib/inquiry-options";
+
+const SUBJECT_LABELS: Partial<Record<string, string>> = {
+  "Créditos adicionais do Hineni Prospect": "Créditos adicionais",
+  "Continuidade (suporte mensal)": "Continuidade",
+};
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
 
 const WINDOW_MS = 60_000;
 const MAX_REQUESTS = 5;
@@ -114,20 +129,30 @@ export async function POST(req: NextRequest) {
     const empresa = String(body.empresa ?? "").trim();
     const email = String(body.email ?? "").trim();
     const telefone = String(body.telefone ?? "").trim();
-    const servico = String(body.servico ?? "").trim();
+    const rawServico = String(body.servico ?? "").trim();
     const contexto = String(body.contexto ?? "").trim();
     const website = String(body.website ?? "").trim();
+    const origem = String(body.origem ?? "").trim().slice(0, 120) || "Site";
+    const rawPacoteId = String(body.pacote ?? "").trim();
 
     if (website) {
       return NextResponse.json({ ok: true }, { status: 200 });
     }
 
-    if (!nome || !empresa || !email || !servico || !contexto) {
+    if (!nome || !empresa || !email || !rawServico || !contexto) {
       return NextResponse.json(
         { ok: false, message: "Preencha todos os campos obrigatórios." },
         { status: 400 },
       );
     }
+
+    // Never trust freeform values for the interest label or the credit-pack price —
+    // both are resolved against the server-side canonical lists.
+    const servico = isInquiryInterest(rawServico) ? rawServico : "Outro";
+    const creditPack =
+      servico === "Créditos adicionais do Hineni Prospect" && rawPacoteId
+        ? findCreditPack(rawPacoteId)
+        : undefined;
 
     if (!isValidEmail(email)) {
       return NextResponse.json({ ok: false, message: "E-mail inválido." }, { status: 400 });
@@ -153,30 +178,55 @@ export async function POST(req: NextRequest) {
       auth: { user, pass },
     });
 
+    const subject = `[Hineni] Novo lead — ${SUBJECT_LABELS[servico] ?? servico}`;
+
+    const textLines = ["NOVO LEAD", "", `Origem: ${origem}`, `Interesse: ${servico}`];
+    if (creditPack) {
+      textLines.push(`Pacote: ${creditPack.credits} créditos`, `Valor de referência: ${creditPack.price}`);
+    }
+    textLines.push(
+      "",
+      "DADOS DO CONTATO",
+      "",
+      `Nome: ${nome}`,
+      `Empresa: ${empresa}`,
+      `E-mail: ${email}`,
+      `WhatsApp: ${telefone || "Não informado"}`,
+      "",
+      "INFORMAÇÕES DO PROJETO",
+      "",
+      "Descrição:",
+      contexto,
+    );
+
+    const htmlRows = [
+      `<p><strong>Origem:</strong> ${escapeHtml(origem)}</p>`,
+      `<p><strong>Interesse:</strong> ${escapeHtml(servico)}</p>`,
+    ];
+    if (creditPack) {
+      htmlRows.push(
+        `<p><strong>Pacote:</strong> ${escapeHtml(creditPack.credits)} créditos</p>`,
+        `<p><strong>Valor de referência:</strong> ${escapeHtml(creditPack.price)}</p>`,
+      );
+    }
+
     await transporter.sendMail({
       from: `"Site HINENI" <${user}>`,
       to,
       replyTo: email,
-      subject: `[Contato Site] ${empresa} - ${servico}`,
-      text: [
-        `Nome: ${nome}`,
-        `Empresa: ${empresa}`,
-        `E-mail: ${email}`,
-        `Telefone: ${telefone || "Não informado"}`,
-        `Serviço: ${servico}`,
-        "",
-        "Contexto do projeto:",
-        contexto,
-      ].join("\n"),
+      subject,
+      text: textLines.join("\n"),
       html: `
-        <h2>Novo contato pelo site HINENI</h2>
-        <p><strong>Nome:</strong> ${nome}</p>
-        <p><strong>Empresa:</strong> ${empresa}</p>
-        <p><strong>E-mail:</strong> ${email}</p>
-        <p><strong>Telefone:</strong> ${telefone || "Não informado"}</p>
-        <p><strong>Serviço:</strong> ${servico}</p>
-        <p><strong>Contexto do projeto:</strong></p>
-        <p>${contexto.replace(/\n/g, "<br/>")}</p>
+        <h2>NOVO LEAD</h2>
+        ${htmlRows.join("\n        ")}
+        <h3>DADOS DO CONTATO</h3>
+        <p><strong>Nome:</strong> ${escapeHtml(nome)}</p>
+        <p><strong>Empresa:</strong> ${escapeHtml(empresa)}</p>
+        <p><strong>E-mail:</strong> ${escapeHtml(email)}</p>
+        <p><strong>WhatsApp:</strong> ${escapeHtml(telefone) || "Não informado"}</p>
+        <h3>INFORMAÇÕES DO PROJETO</h3>
+        <p><strong>Descrição:</strong></p>
+        <p>${escapeHtml(contexto).replace(/\n/g, "<br/>")}</p>
       `,
     });
 

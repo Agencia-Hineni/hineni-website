@@ -68,7 +68,12 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <LinkButton href="/contato" variant="secondary" size="sm" className="hidden sm:inline-flex">
+        <LinkButton
+          href={{ pathname: "/contato", query: { origem: "Menu" } }}
+          variant="secondary"
+          size="sm"
+          className="hidden sm:inline-flex"
+        >
           Falar com a Hineni
         </LinkButton>
 
@@ -140,7 +145,7 @@ export function SiteHeader() {
           })}
         </nav>
         <LinkButton
-          href="/contato"
+          href={{ pathname: "/contato", query: { origem: "Menu" } }}
           variant="secondary"
           size="md"
           onClick={() => setMobileOpen(false)}

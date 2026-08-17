@@ -4,6 +4,13 @@ import { FormEvent, useState } from "react";
 import { trackLeadSubmission } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import { SelectField, TextArea, TextInput } from "@/components/ui/field";
+import {
+  CONTEXT_PLACEHOLDERS,
+  CREDIT_PACKS,
+  DEFAULT_CONTEXT_PLACEHOLDER,
+  INQUIRY_INTERESTS,
+  isInquiryInterest,
+} from "@/lib/inquiry-options";
 
 type FormState = {
   nome: string;
@@ -11,24 +18,42 @@ type FormState = {
   email: string;
   telefone: string;
   servico: string;
+  pacote: string;
   contexto: string;
   website: string;
 };
 
-const initialState: FormState = {
-  nome: "",
-  empresa: "",
-  email: "",
-  telefone: "",
-  servico: "",
-  contexto: "",
-  website: "",
+type ContactFormProps = {
+  initialInterest?: string;
+  initialOrigin?: string;
+  initialPack?: string;
 };
 
-export function ContactForm() {
-  const [form, setForm] = useState<FormState>(initialState);
+function buildInitialState(initialInterest?: string, initialPack?: string): FormState {
+  return {
+    nome: "",
+    empresa: "",
+    email: "",
+    telefone: "",
+    servico: initialInterest && isInquiryInterest(initialInterest) ? initialInterest : "",
+    pacote: initialPack && CREDIT_PACKS.some((pack) => pack.id === initialPack) ? initialPack : "",
+    contexto: "",
+    website: "",
+  };
+}
+
+const CREDIT_INTEREST = "Créditos adicionais do Hineni Prospect";
+
+export function ContactForm({ initialInterest, initialOrigin, initialPack }: ContactFormProps) {
+  const [form, setForm] = useState<FormState>(() => buildInitialState(initialInterest, initialPack));
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
+
+  const origem = initialOrigin?.trim() || "Site";
+  const showPackField = form.servico === CREDIT_INTEREST;
+  const contextPlaceholder =
+    (isInquiryInterest(form.servico) ? CONTEXT_PLACEHOLDERS[form.servico] : undefined) ??
+    DEFAULT_CONTEXT_PLACEHOLDER;
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -39,7 +64,7 @@ export function ContactForm() {
       const response = await fetch("/api/contato", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, origem }),
       });
       const data = (await response.json()) as { ok: boolean; message?: string };
 
@@ -52,7 +77,7 @@ export function ContactForm() {
       setStatus("success");
       setMessage(data.message ?? "Solicitacao enviada com sucesso.");
       trackLeadSubmission(form.servico);
-      setForm(initialState);
+      setForm(buildInitialState());
     } catch {
       setStatus("error");
       setMessage("Falha ao enviar. Tente novamente.");
@@ -122,25 +147,49 @@ export function ContactForm() {
       </div>
 
       <label className="mt-5 block text-sm text-slate-700">
-        Servico de interesse
+        O que você procura?
         <SelectField
           required
           name="servico"
           value={form.servico}
-          onChange={(event) => setForm((prev) => ({ ...prev, servico: event.target.value }))}
+          onChange={(event) =>
+            setForm((prev) => ({
+              ...prev,
+              servico: event.target.value,
+              pacote: event.target.value === CREDIT_INTEREST ? prev.pacote : "",
+            }))
+          }
           className="mt-2"
         >
           <option value="" disabled>
             Selecione uma opcao
           </option>
-          <option>Landing Pages</option>
-          <option>Sites Institucionais</option>
-          <option>Sites Premium</option>
-          <option>Sistemas Web</option>
-          <option>SaaS</option>
-          <option>Hineni Prospect</option>
+          {INQUIRY_INTERESTS.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
         </SelectField>
       </label>
+
+      {showPackField ? (
+        <label className="mt-5 block text-sm text-slate-700">
+          Pacote desejado
+          <SelectField
+            name="pacote"
+            value={form.pacote}
+            onChange={(event) => setForm((prev) => ({ ...prev, pacote: event.target.value }))}
+            className="mt-2"
+          >
+            <option value="">Ainda não sei / quero orientação</option>
+            {CREDIT_PACKS.map((pack) => (
+              <option key={pack.id} value={pack.id}>
+                {pack.credits} créditos — {pack.price}
+              </option>
+            ))}
+          </SelectField>
+        </label>
+      ) : null}
 
       <label className="mt-5 block text-sm text-slate-700">
         Contexto do projeto
@@ -151,7 +200,7 @@ export function ContactForm() {
           onChange={(event) => setForm((prev) => ({ ...prev, contexto: event.target.value }))}
           rows={5}
           className="mt-2"
-          placeholder="Descreva objetivos, prazo e escopo esperado."
+          placeholder={contextPlaceholder}
         />
       </label>
 

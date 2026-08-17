@@ -17,7 +17,12 @@ export function SiteFooter() {
             Estruturas digitais para empresas que precisam de comunicação clara, operação confiável e evolução contínua.
           </p>
           <p className="mt-5 text-xs uppercase tracking-[0.18em] text-slate-400">{SITE_CONFIG.contactEmail}</p>
-          <LinkButton href="/contato" variant="ghost" size="sm" className="mt-6">
+          <LinkButton
+            href={{ pathname: "/contato", query: { origem: "Rodapé" } }}
+            variant="ghost"
+            size="sm"
+            className="mt-6"
+          >
             Falar com a Hineni
           </LinkButton>
         </div>

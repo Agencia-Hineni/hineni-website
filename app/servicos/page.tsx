@@ -196,7 +196,11 @@ export default async function ServicosPage() {
                     <p className="mt-2 text-lg font-semibold text-deep-blue">{service.price}</p>
                   </div>
 
-                  <LinkButton href="/contato" size="sm" className="mt-6 w-full justify-center">
+                  <LinkButton
+                    href={{ pathname: "/contato", query: { interesse: service.name, origem: "Serviços" } }}
+                    size="sm"
+                    className="mt-6 w-full justify-center"
+                  >
                     Falar com a Hineni
                   </LinkButton>
                 </article>
@@ -255,7 +259,17 @@ export default async function ServicosPage() {
                     ))}
                   </ul>
 
-                  <LinkButton href="/contato" size="sm" className="mt-6 w-full justify-center">
+                  <LinkButton
+                    href={{
+                      pathname: "/contato",
+                      query: {
+                        interesse: "Continuidade (suporte mensal)",
+                        origem: `Serviços — ${plan.name}`,
+                      },
+                    }}
+                    size="sm"
+                    className="mt-6 w-full justify-center"
+                  >
                     Falar com a Hineni
                   </LinkButton>
                 </article>
@@ -349,7 +363,7 @@ export default async function ServicosPage() {
               ))}
             </div>
             <Link
-              href="/contato"
+              href={{ pathname: "/contato", query: { origem: "Serviços" } }}
               className="link-underline mt-8 inline-flex items-center text-xs font-semibold uppercase tracking-[0.17em] text-gold-accent hover:text-shell"
             >
               Falar com a Hineni

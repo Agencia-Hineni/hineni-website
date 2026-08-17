@@ -21,8 +21,17 @@ const requirements = [
   "Referências de sites ou materiais existentes",
 ];
 
-export default async function ContatoPage() {
+type ContatoPageProps = {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
+export default async function ContatoPage({ searchParams }: ContatoPageProps) {
   const content = await getSiteContent();
+  const params = await searchParams;
+
+  const initialInterest = typeof params.interesse === "string" ? params.interesse : undefined;
+  const initialOrigin = typeof params.origem === "string" ? params.origem : undefined;
+  const initialPack = typeof params.pacote === "string" ? params.pacote : undefined;
 
   return (
     <section className={`section-shell bg-shell ${SECTION_CLASSES.standard}`}>
@@ -73,7 +82,7 @@ export default async function ContatoPage() {
         </Reveal>
 
         <Reveal delay={0.08}>
-          <ContactForm />
+          <ContactForm initialInterest={initialInterest} initialOrigin={initialOrigin} initialPack={initialPack} />
         </Reveal>
       </Container>
     </section>

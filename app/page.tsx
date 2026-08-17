@@ -349,7 +349,7 @@ export default async function HomePage() {
             </p>
           </Reveal>
           <Reveal delay={0.12} className="mt-9">
-            <LinkButton href="/contato" size="lg">
+            <LinkButton href={{ pathname: "/contato", query: { origem: "Home" } }} size="lg">
               Falar com a Hineni
             </LinkButton>
           </Reveal>
