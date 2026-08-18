@@ -1,16 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
+import { authorizeAdminRequest } from "@/lib/admin-auth";
 import { getSiteContent, setSiteContent, type SiteContent } from "@/lib/site-content";
 
-function isAuthorized(req: NextRequest) {
-  const token = req.headers.get("x-admin-token")?.trim();
-  const expected = process.env.ADMIN_PASSWORD?.trim();
-  if (!expected) return false;
-  return token === expected;
-}
-
 export async function GET(req: NextRequest) {
-  if (!isAuthorized(req)) {
-    return NextResponse.json({ ok: false, message: "Não autorizado." }, { status: 401 });
+  const auth = authorizeAdminRequest(req);
+  if (!auth.ok) {
+    return NextResponse.json({ ok: false, message: auth.message }, { status: auth.status });
   }
 
   const content = await getSiteContent();
@@ -18,8 +13,9 @@ export async function GET(req: NextRequest) {
 }
 
 export async function PUT(req: NextRequest) {
-  if (!isAuthorized(req)) {
-    return NextResponse.json({ ok: false, message: "Não autorizado." }, { status: 401 });
+  const auth = authorizeAdminRequest(req);
+  if (!auth.ok) {
+    return NextResponse.json({ ok: false, message: auth.message }, { status: auth.status });
   }
 
   try {

@@ -13,6 +13,12 @@
 # testing
 /coverage
 
+# local/internal project notes
+SITE_CONTEXT.md
+
+# generated CMS snapshots
+/data/history/*.json
+
 # next.js
 /.next/
 /out/
@@ -32,6 +38,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel
