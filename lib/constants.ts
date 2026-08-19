@@ -4,17 +4,17 @@
   contactEmail: "atendimento@hineni.com.br",
   instagram: "https://instagram.com/hineni.digital",
   cnpj: "65.519.046/0001-67",
-  tagline: "Tecnologia e solucoes digitais para negocios que querem evoluir",
-  defaultTitle: "HINENI | Tecnologia e Solucoes Digitais para Negocios",
+  tagline: "Tecnologia e soluções digitais para negócios que querem evoluir",
+  defaultTitle: "HINENI | Tecnologia e Soluções Digitais para Negócios",
   defaultDescription:
-    "A HINENI cria sites, landing pages, sistemas e produtos digitais sob medida para empresas que querem evoluir atraves da tecnologia.",
+    "A HINENI cria sites, landing pages, sistemas e produtos digitais sob medida para empresas que querem evoluir através da tecnologia.",
   keywords: [
-    "criacao de sites",
+    "criação de sites",
     "landing pages",
     "sites institucionais",
     "sistemas web sob medida",
     "desenvolvimento saas",
-    "solucoes digitais sob medida",
+    "soluções digitais sob medida",
   ],
 } as const;
 
@@ -27,7 +27,7 @@ export const NAV_LINKS = [
 ] as const;
 
 export const SECTION_CLASSES = {
-  hero: "py-28 lg:py-32",
-  standard: "py-24 lg:py-28",
-  compact: "py-20 lg:py-24",
+  hero: "py-20 sm:py-28 lg:py-32",
+  standard: "py-14 sm:py-24 lg:py-28",
+  compact: "py-12 sm:py-20 lg:py-24",
 } as const;

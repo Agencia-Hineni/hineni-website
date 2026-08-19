@@ -23,14 +23,15 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 border-b transition-all duration-300",
-        scrolled
-          ? "border-slate-800/70 bg-[#0B0F19]/94 shadow-[0_20px_50px_rgba(2,6,23,0.4)] backdrop-blur-2xl"
-          : "border-transparent bg-[#0B0F19]/70 backdrop-blur-xl",
-      )}
-    >
+    <>
+      <header
+        className={cn(
+          "sticky top-0 z-50 border-b transition-all duration-300",
+          scrolled
+            ? "border-slate-800/70 bg-[#0B0F19]/94 shadow-[0_20px_50px_rgba(2,6,23,0.4)] backdrop-blur-2xl"
+            : "border-transparent bg-[#0B0F19]/70 backdrop-blur-xl",
+        )}
+      >
       <Container className="flex h-[4.5rem] items-center justify-between gap-6 py-3">
         <Link href="/" className="inline-flex items-center gap-3">
           <span className="inline-flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border border-slate-700 bg-slate-900">
@@ -106,11 +107,12 @@ export function SiteHeader() {
           </span>
         </button>
       </Container>
+      </header>
 
       <div
         onClick={() => setMobileOpen(false)}
         className={cn(
-          "fixed inset-0 z-40 bg-[#020617]/55 backdrop-blur-[2px] transition-opacity duration-200 md:hidden",
+          "fixed inset-0 z-40 bg-[#020617]/92 backdrop-blur-md transition-opacity duration-200 md:hidden",
           mobileOpen ? "opacity-100" : "pointer-events-none opacity-0",
         )}
       />
@@ -154,6 +156,6 @@ export function SiteHeader() {
           Falar com a Hineni
         </LinkButton>
       </div>
-    </header>
+    </>
   );
 }

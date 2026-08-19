@@ -61,7 +61,7 @@ export function AdminPanel() {
   const disabled = useMemo(() => !token.trim(), [token]);
   const normalizedStatus = status.toLowerCase();
   const statusTone =
-    normalizedStatus.includes("falha") || normalizedStatus.includes("nao autorizado")
+    normalizedStatus.includes("falha") || normalizedStatus.includes("não autorizado")
       ? "border-rose-200 bg-rose-50 text-rose-700"
       : normalizedStatus.includes("salv") || normalizedStatus.includes("carregado")
         ? "border-emerald-200 bg-emerald-50 text-emerald-700"
@@ -91,7 +91,7 @@ export function AdminPanel() {
     }
 
     setLoaded(true);
-    setStatus("Conteudo carregado.");
+    setStatus("Conteúdo carregado.");
   }
 
   async function saveContent() {
@@ -120,7 +120,7 @@ export function AdminPanel() {
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-tech-blue">
                 Ambiente administrativo
               </p>
-              <h2 className="mt-3 text-3xl text-deep-blue">Gerencie o conteudo do site com mais clareza.</h2>
+              <h2 className="mt-3 text-3xl text-deep-blue">Gerencie o conteúdo do site com mais clareza.</h2>
               <p className="mt-3 text-sm leading-relaxed text-slate-600">
                 Edite contato, SEO local e planos comerciais em uma interface mais organizada, sem precisar tocar nos arquivos manualmente.
               </p>
@@ -156,7 +156,7 @@ export function AdminPanel() {
           </div>
           <div className="rounded-2xl border border-slate-200/70 bg-white/78 px-4 py-4">
             <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Snapshots</p>
-            <p className="mt-2 text-lg text-deep-blue">{history.length || 0} versoes salvas</p>
+            <p className="mt-2 text-lg text-deep-blue">{history.length || 0} versões salvas</p>
           </div>
         </div>
       </div>
@@ -167,7 +167,7 @@ export function AdminPanel() {
         <div className="space-y-6">
           <PanelSection
             eyebrow="Contato"
-            title="Informacoes institucionais"
+            title="Informações institucionais"
             description="Atualize os dados de contato que alimentam o site e o painel comercial."
           >
             <div className="grid gap-5 md:grid-cols-2">
@@ -202,7 +202,7 @@ export function AdminPanel() {
 
           <PanelSection
             eyebrow="SEO Local"
-            title="Presenca geolocalizada"
+            title="Presença geolocalizada"
             description="Edite o texto de atendimento regional e as cidades exibidas no site."
           >
             <div className="space-y-5">
@@ -215,11 +215,11 @@ export function AdminPanel() {
                       localSeo: { ...prev.localSeo, headline: event.target.value },
                     }))
                   }
-                  placeholder="Atendimento estrategico em todo o Brasil"
+                  placeholder="Atendimento estratégico em todo o Brasil"
                   className={inputClassName}
                 />
               </Field>
-              <Field label="Descricao">
+              <Field label="Descrição">
                 <textarea
                   value={content.localSeo.description}
                   onChange={(event) =>
@@ -229,13 +229,13 @@ export function AdminPanel() {
                     }))
                   }
                   rows={4}
-                  placeholder="Descreva como a HINENI atende empresas em diferentes regioes."
+                  placeholder="Descreva como a HINENI atende empresas em diferentes regiões."
                   className={`${inputClassName} min-h-[132px] resize-y`}
                 />
               </Field>
               <Field
                 label="Cidades ou marcadores"
-                hint="Separe os itens por virgula. Exemplo: Atendimento nacional, Operacao 100% digital."
+                hint="Separe os itens por vírgula. Exemplo: Atendimento nacional, Operação 100% digital."
               >
                 <textarea
                   value={content.localSeo.cities.join(", ")}
@@ -252,7 +252,7 @@ export function AdminPanel() {
                     }))
                   }
                   rows={3}
-                  placeholder="Atendimento nacional, Operacao 100% digital"
+                  placeholder="Atendimento nacional, Operação 100% digital"
                   className={`${inputClassName} min-h-[112px] resize-y`}
                 />
               </Field>
@@ -337,10 +337,10 @@ export function AdminPanel() {
             <div className="flex flex-col gap-4 rounded-[1.75rem] border border-slate-200/80 bg-white/92 p-5 shadow-[0_18px_42px_rgba(15,23,42,0.14)] backdrop-blur-md sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-tech-blue">
-                  Publicacao
+                  Publicação
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                  Salve as alteracoes para gerar um novo snapshot e atualizar o conteudo exibido no site.
+                  Salve as alterações para gerar um novo snapshot e atualizar o conteúdo exibido no site.
                 </p>
               </div>
               <button
@@ -348,15 +348,15 @@ export function AdminPanel() {
                 onClick={saveContent}
                 className="rounded-2xl bg-ink px-6 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-shell shadow-[0_18px_32px_rgba(15,23,42,0.18)]"
               >
-                Salvar alteracoes
+                Salvar alterações
               </button>
             </div>
           </div>
 
           <PanelSection
-            eyebrow="Historico"
+            eyebrow="Histórico"
             title="Snapshots recentes"
-            description="Cada salvamento cria uma nova versao de seguranca do conteudo anterior."
+            description="Cada salvamento cria uma nova versão de segurança do conteúdo anterior."
           >
             <div className="grid gap-3">
               {history.length ? (

@@ -43,7 +43,7 @@ export default function RootLayout({
     <html lang="pt-BR" className={`${bodyFont.variable} ${headingFont.variable}`}>
       <body className="bg-shell font-sans text-slate-900 antialiased">
         <a href="#conteudo-principal" className="skip-link">
-          Ir para o conteudo principal
+          Ir para o conteúdo principal
         </a>
         <script
           type="application/ld+json"

@@ -75,7 +75,7 @@ export function ContactForm({ initialInterest, initialOrigin, initialPack }: Con
       }
 
       setStatus("success");
-      setMessage(data.message ?? "Solicitacao enviada com sucesso.");
+      setMessage(data.message ?? "Solicitação enviada com sucesso.");
       trackLeadSubmission(form.servico);
       setForm(buildInitialState());
     } catch {
@@ -162,7 +162,7 @@ export function ContactForm({ initialInterest, initialOrigin, initialPack }: Con
           className="mt-2"
         >
           <option value="" disabled>
-            Selecione uma opcao
+            Selecione uma opção
           </option>
           {INQUIRY_INTERESTS.map((option) => (
             <option key={option} value={option}>
@@ -205,7 +205,7 @@ export function ContactForm({ initialInterest, initialOrigin, initialPack }: Con
       </label>
 
       <Button type="submit" disabled={status === "loading"} className="mt-7">
-        {status === "loading" ? "Enviando..." : "Enviar Solicitacao"}
+        {status === "loading" ? "Enviando..." : "Enviar Solicitação"}
       </Button>
 
       {message ? (

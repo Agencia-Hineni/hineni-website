@@ -17,7 +17,7 @@ import { getSiteContent } from "@/lib/site-content";
 export const metadata: Metadata = createPageMetadata({
   title: "Tecnologia e Soluções Digitais para Negócios",
   description:
-    "A HINENI cria sites, landing pages, sistemas e produtos digitais sob medida para empresas que querem evoluir atraves da tecnologia.",
+    "A HINENI cria sites, landing pages, sistemas e produtos digitais sob medida para empresas que querem evoluir através da tecnologia.",
   path: "/",
 });
 
@@ -105,12 +105,12 @@ const howItWorks = [
 ];
 
 const commitments = [
-  "Sites, sistemas e produtos digitais desenvolvidos com a mesma direcao estrategica",
-  "Presenca digital organizada para sustentar autoridade, conversao e operacao",
-  "Base tecnica preparada para acompanhamento e crescimento continuo",
+  "Sites, sistemas e produtos digitais desenvolvidos com a mesma direção estratégica",
+  "Presença digital organizada para sustentar autoridade, conversão e operação",
+  "Base técnica preparada para acompanhamento e crescimento contínuo",
 ];
 
-const trustSignals = ["Tecnologia aplicada", "Posicionamento premium", "Crescimento com consistencia"];
+const trustSignals = ["Tecnologia aplicada", "Posicionamento premium", "Crescimento com consistência"];
 
 export default async function HomePage() {
   const content = await getSiteContent();
@@ -142,13 +142,13 @@ export default async function HomePage() {
           unoptimized
           sizes="100vw"
           quality={75}
-          className="object-cover object-[62%_center] opacity-20 sm:object-center sm:opacity-15"
+          className="hidden object-cover opacity-20 sm:block sm:object-center sm:opacity-15"
         />
         <HeroParallax />
         <Container className="relative flex min-h-[100svh] flex-col justify-center py-16">
           <Reveal transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.04 }}>
             <p className="mb-8 inline-flex rounded-full border border-slate-600/80 bg-slate-900/72 px-5 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-slate-300">
-              Tecnologia e solucoes digitais para negocios
+              Tecnologia e soluções digitais para negócios
             </p>
           </Reveal>
           <Reveal delay={0.12}>
@@ -181,7 +181,7 @@ export default async function HomePage() {
           <SectionHeading
             eyebrow="Soluções"
             title="Quatro frentes para colocar sua ideia em produção."
-            description="De uma página de campanha a um produto SaaS completo, cada frente segue o mesmo padrao tecnico e estrategico."
+            description="De uma página de campanha a um produto SaaS completo, cada frente segue o mesmo padrão técnico e estratégico."
           />
           <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {solutions.map((solution, index) => (
@@ -204,7 +204,7 @@ export default async function HomePage() {
           <SectionHeading
             eyebrow="Como funciona"
             title="Um processo simples, do primeiro contato à entrega."
-            description="Conduzimos cada projeto com clareza de etapas, para que voce saiba exatamente o que esperar em cada momento."
+            description="Conduzimos cada projeto com clareza de etapas, para que você saiba exatamente o que esperar em cada momento."
           />
           <div className="mt-12 space-y-5 lg:max-w-2xl">
             {howItWorks.map((step, index) => (
@@ -294,7 +294,7 @@ export default async function HomePage() {
             tone="dark"
             eyebrow="Projetos"
             title="Alguns projetos que já colocamos no ar."
-            description="Cada projeto nasce de uma necessidade real. Veja o portfolio completo para entender o contexto e a solucao de cada um."
+            description="Cada projeto nasce de uma necessidade real. Veja o portfólio completo para entender o contexto e a solução de cada um."
           />
           <div className="mt-12 grid gap-8 lg:grid-cols-2">
             {projects.map((project, index) => (
