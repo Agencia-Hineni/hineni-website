@@ -83,25 +83,25 @@ export function SiteHeader() {
           aria-label={mobileOpen ? "Fechar menu" : "Abrir menu"}
           aria-expanded={mobileOpen}
           onClick={() => setMobileOpen((prev) => !prev)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-700 bg-slate-900 text-slate-200 md:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-700/70 bg-slate-900/50 text-slate-200 transition-colors hover:bg-slate-800/80 md:hidden"
         >
-          <span className="relative block h-3.5 w-5">
+          <span className="relative block h-3 w-4">
             <span
               className={cn(
-                "absolute left-0 top-0 h-[2px] w-5 bg-current transition-transform duration-300",
-                mobileOpen && "translate-y-[6px] rotate-45",
+                "absolute inset-x-0 top-0 h-[1.5px] rounded-full bg-current transition-all duration-300",
+                mobileOpen && "top-1/2 -translate-y-1/2 rotate-45",
               )}
             />
             <span
               className={cn(
-                "absolute left-0 top-[6px] h-[2px] w-5 bg-current transition-opacity duration-300",
+                "absolute inset-x-0 top-1/2 h-[1.5px] -translate-y-1/2 rounded-full bg-current transition-opacity duration-300",
                 mobileOpen && "opacity-0",
               )}
             />
             <span
               className={cn(
-                "absolute left-0 top-3 h-[2px] w-5 bg-current transition-transform duration-300",
-                mobileOpen && "-translate-y-[6px] -rotate-45",
+                "absolute inset-x-0 bottom-0 h-[1.5px] rounded-full bg-current transition-all duration-300",
+                mobileOpen && "bottom-1/2 translate-y-1/2 -rotate-45",
               )}
             />
           </span>
