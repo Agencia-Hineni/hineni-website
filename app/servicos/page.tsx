@@ -298,7 +298,7 @@ export default async function ServicosPage() {
             />
           </Reveal>
 
-          <div className="mt-10 grid gap-3 sm:grid-cols-3">
+          <div className="mt-10 grid gap-3 sm:grid-cols-3 sm:items-start">
             {paymentMethods.map((method, index) => (
               <Reveal key={method.name} delay={index * 0.05}>
                 <div className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white/70 px-4 py-4">
