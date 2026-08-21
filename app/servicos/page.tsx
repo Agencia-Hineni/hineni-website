@@ -11,7 +11,7 @@ import { getSiteContent } from "@/lib/site-content";
 export const metadata: Metadata = createPageMetadata({
   title: "Serviços",
   description:
-    "Sites, landing pages, sistemas web e produtos SaaS desenvolvidos sob medida pela HINENI para empresas que querem evoluir atraves da tecnologia.",
+    "Sites, landing pages, sistemas web e produtos SaaS desenvolvidos sob medida pela HINENI para empresas que querem evoluir através da tecnologia.",
   path: "/servicos",
 });
 
@@ -134,11 +134,35 @@ const continuityPlans = [
 ];
 
 const paymentMethods = [
-  { name: "Pix", text: "Pagamento à vista." },
-  { name: "Transferência bancária", text: "Pagamento à vista." },
+  {
+    name: "Pix",
+    text: "Aprovação imediata, ideal para pagamentos à vista.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5">
+        <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
+    name: "Transferência bancária",
+    text: "Pagamento à vista, direto para a conta da Hineni.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5">
+        <path d="M12 3 3 8h18Z" strokeLinejoin="round" />
+        <path d="M5 21V10M9 21V10M15 21V10M19 21V10" />
+        <path d="M3 21h18" />
+      </svg>
+    ),
+  },
   {
     name: "Cartão de crédito",
-    text: "Disponível conforme a solução de pagamento e as condições comerciais definidas pela Hineni.",
+    text: "À vista ou parcelado, conforme a operadora.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-5 w-5">
+        <rect x="3" y="6" width="18" height="13" rx="2" />
+        <path d="M3 10.5h18" />
+      </svg>
+    ),
   },
 ];
 
@@ -298,22 +322,17 @@ export default async function ServicosPage() {
             />
           </Reveal>
 
-          <div className="mt-10 grid gap-3 sm:grid-cols-3 sm:items-start">
+          <div className="mt-10 grid gap-4 sm:grid-cols-3 sm:items-start">
             {paymentMethods.map((method, index) => (
               <Reveal key={method.name} delay={index * 0.05}>
-                <div className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white/70 px-4 py-4">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    className="mt-0.5 h-4 w-4 shrink-0 text-tech-blue"
-                  >
-                    <path d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span className="text-sm text-slate-600">
-                    <strong className="font-semibold text-deep-blue">{method.name}.</strong> {method.text}
-                  </span>
+                <div className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white/70 px-5 py-5">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-tech-blue/20 bg-tech-blue/8 text-tech-blue">
+                    {method.icon}
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-deep-blue">{method.name}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-slate-600">{method.text}</p>
+                  </div>
                 </div>
               </Reveal>
             ))}
@@ -323,8 +342,8 @@ export default async function ServicosPage() {
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
               <div className="flat-row py-1">
                 <p className="text-sm leading-relaxed text-slate-700">
-                  <strong className="font-semibold text-deep-blue">Projetos:</strong> pagamento à vista ou conforme
-                  condições definidas na proposta comercial.
+                  <strong className="font-semibold text-deep-blue">Projetos:</strong> 50% na entrada e 50% na
+                  entrega, ou conforme condições definidas na proposta comercial.
                 </p>
               </div>
               <div className="flat-row py-1">
